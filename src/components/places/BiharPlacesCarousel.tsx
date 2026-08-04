@@ -1,0 +1,74 @@
+import Image from "next/image";
+import { MapPin } from "lucide-react";
+
+import { FadeIn } from "@/components/ui/FadeIn";
+
+const biharPlaces = [
+  { name: "Golghar", distance: "Approx. 5 km", image: "/images/background-of-sidhvedanta.png" },
+  { name: "Bihar Museum", distance: "Approx. 6 km", image: "/images/2.png" },
+  { name: "Gandhi Maidan", distance: "Approx. 5 km", image: "/images/event.png" },
+  { name: "Patna Sahib", distance: "Approx. 14 km", image: "/images/ring-ceremony.png" },
+  { name: "Buddha Smriti Park", distance: "Approx. 4 km", image: "/images/wedding.png" },
+  { name: "Eco Park", distance: "Approx. 7 km", image: "/images/background-of-sidhvedanta.png" },
+  { name: "Patna Zoo", distance: "Approx. 8 km", image: "/images/2.png" },
+  { name: "Ganga Path", distance: "Approx. 6 km", image: "/images/nn.png" },
+  { name: "ISKCON Patna", distance: "Approx. 5 km", image: "/images/event.png" },
+  { name: "Kumhrar Park", distance: "Approx. 9 km", image: "/images/wedding.png" },
+  { name: "Agam Kuan", distance: "Approx. 11 km", image: "/images/ring-ceremony.png" },
+  { name: "Vaishali", distance: "Approx. 55 km", image: "/images/background-of-sidhvedanta.png" },
+];
+
+export function BiharPlacesCarousel() {
+  return (
+    <section className="bihar-places-bg py-16 md:py-24 lg:py-32" aria-labelledby="bihar-places-heading">
+      <div className="mx-auto w-full">
+        <FadeIn className="mx-auto max-w-[var(--container-readable)] px-shell text-center">
+          <p className="brand-gradient-text text-caption tracking-[var(--tracking-eyebrow)]">
+            Explore Bihar
+          </p>
+          <h2
+            className="mt-5 text-heading-xl text-text-primary sm:text-display-lg"
+            id="bihar-places-heading"
+          >
+            <span className="block">Places Worth </span>
+            <span className="block text-brand-pink">Discovering Nearby</span>
+          </h2>
+          <p className="mt-6 text-body-lg text-text-secondary">
+            Discover Patna&apos;s landmarks, riverfront views, cultural stops, and a
+            few heritage escapes nearby. Distances are approximate from Hotel
+            Sidh Vedantha, Patna.
+          </p>
+        </FadeIn>
+
+        <FadeIn className="mt-14" delay={0.12}>
+          <div className="bihar-places-carousel flex snap-x gap-10 overflow-x-auto px-shell pb-8">
+            {biharPlaces.map((place) => (
+              <article
+                className="bihar-place-card group relative shrink-0 snap-center overflow-hidden shadow-lg"
+                key={place.name}
+              >
+                <Image
+                  alt={`${place.name} near Hotel Sidh Vedantha Patna`}
+                  className="size-full object-cover transition-transform duration-slow group-hover:scale-[1.08]"
+                  fill
+                  sizes="(min-width: 1024px) 22rem, 82vw"
+                  src={place.image}
+                />
+                <span className="absolute inset-0 bg-gradient-to-t from-primary/86 via-primary/28 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 z-[var(--z-raised)] p-6 text-center text-primary-foreground">
+                  <span className="mx-auto inline-flex size-10 items-center justify-center rounded-full border border-primary-foreground/35 bg-primary-foreground/12 backdrop-blur-md">
+                    <MapPin className="size-4" aria-hidden="true" />
+                  </span>
+                  <h3 className="mt-4 text-heading-sm">{place.name}</h3>
+                  <p className="mt-2 text-caption text-primary-foreground/78">
+                    {place.distance} from hotel
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  );
+}

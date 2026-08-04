@@ -1,29 +1,40 @@
 @import "tailwindcss";
 
 :root {
-  --primary: #111111;
-  --primary-foreground: #ffffff;
-  --secondary: #e9e4da;
-  --secondary-foreground: #1a1a1a;
-  --accent: #c8a96a;
-  --accent-foreground: #111111;
-  --background: #ffffff;
-  --surface: #f8f6f2;
-  --surface-hover: #f0ebe2;
-  --card: #ffffff;
-  --border: #e5ded2;
-  --muted: #a0a0a0;
-  --muted-foreground: #6d6d6d;
-  --text-primary: #1a1a1a;
-  --text-secondary: #6d6d6d;
-  --text-muted: #a0a0a0;
-  --success: #16a34a;
-  --warning: #f59e0b;
-  --error: #dc2626;
-  --gold: #c8a96a;
-  --glass: rgba(255, 255, 255, 0.65);
-  --overlay: rgba(0, 0, 0, 0.45);
-  --shadow: rgba(17, 17, 17, 0.12);
+  --primary: #18181B;
+  --primary-foreground: #FFFFFF;
+  --secondary: color-mix(in srgb, #FFF8F3 86%, #6C63FF);
+  --secondary-foreground: #18181B;
+  --accent: #FF8A3D;
+  --accent-foreground: #18181B;
+  --accent-hover: #FF5FA2;
+  --accent-active: #6C63FF;
+  --background: #FFFFFF;
+  --surface: #FFFFFF;
+  --surface-hover: color-mix(in srgb, #FFF8F3 88%, #FF8A3D);
+  --card: #FFFFFF;
+  --border: color-mix(in srgb, #18181B 14%, #FFF8F3);
+  --muted: color-mix(in srgb, #18181B 42%, #FFF8F3);
+  --muted-foreground: color-mix(in srgb, #18181B 68%, #FFF8F3);
+  --text-primary: #18181B;
+  --text-secondary: color-mix(in srgb, #18181B 72%, #FFF8F3);
+  --text-muted: color-mix(in srgb, #18181B 52%, #FFF8F3);
+  --success: color-mix(in srgb, #6C63FF 72%, #FF8A3D);
+  --warning: #FF8A3D;
+  --error: #FF5FA2;
+  --brand-accent: #FF8A3D;
+  --brand-pink: var(--accent-hover);
+  --glass: color-mix(in srgb, #FFFFFF 72%, transparent);
+  --overlay: color-mix(in srgb, #18181B 48%, transparent);
+  --shadow: color-mix(in srgb, #18181B 14%, transparent);
+  --brand-gradient: linear-gradient(135deg, #FF8A3D 0%, #FF5FA2 55%, #6C63FF 100%);
+  --brand-gradient-glow: 0 18px 48px color-mix(in srgb, var(--accent-hover) 24%, transparent),
+    0 8px 28px color-mix(in srgb, var(--accent-active) 18%, transparent);
+  --section-ivory-start: color-mix(
+    in srgb,
+    color-mix(in srgb, var(--secondary) 66%, var(--background)) 82%,
+    var(--accent-hover)
+  );
 
   --font-heading-family: var(--font-heading);
   --font-body-family: var(--font-body);
@@ -69,13 +80,14 @@
   --radius-lg: 0.5rem;
   --radius-xl: 0.75rem;
   --radius-full: 999rem;
+  --radius-footer: calc(var(--radius-xl) * 3);
 
   --shadow-xs: 0 1px 2px var(--shadow);
   --shadow-sm: 0 4px 12px var(--shadow);
   --shadow-md: 0 12px 32px var(--shadow);
   --shadow-lg: 0 24px 60px var(--shadow);
-  --shadow-gold: 0 18px 48px rgba(200, 169, 106, 0.28);
-  --shadow-glass: 0 24px 70px rgba(17, 17, 17, 0.16);
+  --shadow-brand: var(--brand-gradient-glow);
+  --shadow-glass: 0 24px 70px color-mix(in srgb, var(--primary) 18%, transparent);
 
   --spacing-0: 0;
   --spacing-1: 0.25rem;
@@ -98,6 +110,8 @@
   --duration-fast: 140ms;
   --duration-base: 220ms;
   --duration-slow: 360ms;
+  --duration-footer-border: 10s;
+  --duration-footer-border-hover: 7s;
 
   --container-page: 76rem;
   --container-hero: 87.5rem;
@@ -111,7 +125,7 @@
   --text-hero-copy-line-height: 1.65;
   --tracking-eyebrow: 0.28em;
   --tracking-cta: 0.28em;
-  --hero-min-height: 112svh;
+  --hero-min-height: 96svh;
 
   --z-base: 0;
   --z-raised: 10;
@@ -134,6 +148,8 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-active: var(--accent-active);
   --color-background: var(--background);
   --color-surface: var(--surface);
   --color-surface-hover: var(--surface-hover);
@@ -147,9 +163,11 @@
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-error: var(--error);
-  --color-gold: var(--gold);
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-pink: var(--brand-pink);
   --color-glass: var(--glass);
   --color-overlay: var(--overlay);
+  --background-image-brand: var(--brand-gradient);
 
   --font-sans: var(--font-body-family);
   --font-serif: var(--font-heading-family);
@@ -172,13 +190,14 @@
   --radius-md: var(--radius-md);
   --radius-lg: var(--radius-lg);
   --radius-xl: var(--radius-xl);
+  --radius-footer: var(--radius-footer);
   --radius-full: var(--radius-full);
 
   --shadow-xs: var(--shadow-xs);
   --shadow-sm: var(--shadow-sm);
   --shadow-md: var(--shadow-md);
   --shadow-lg: var(--shadow-lg);
-  --shadow-gold: var(--shadow-gold);
+  --shadow-brand: var(--shadow-brand);
   --shadow-glass: var(--shadow-glass);
 
   --spacing-0: var(--spacing-0);
@@ -242,8 +261,8 @@ textarea {
 }
 
 ::selection {
-  background: var(--gold);
-  color: var(--primary);
+  background: var(--accent-hover);
+  color: var(--primary-foreground);
 }
 
 .font-heading {
@@ -344,5 +363,542 @@ textarea {
 }
 
 .luxury-focus:focus-visible {
-  box-shadow: 0 0 0 var(--spacing-1) var(--gold);
+  box-shadow: 0 0 0 var(--spacing-1) color-mix(in srgb, var(--accent) 70%, transparent),
+    0 0 0 var(--spacing-2) color-mix(in srgb, var(--accent-active) 28%, transparent);
+}
+
+.hero-image-layer {
+  position: absolute;
+  inset: var(--spacing-0) var(--spacing-0) calc(var(--spacing-16) * -1) var(--spacing-0);
+}
+
+@media (max-width: 767px) {
+  .hero-image-layer {
+    inset: var(--spacing-0) var(--spacing-0) calc(var(--spacing-8) * -1) var(--spacing-0);
+  }
+}
+
+.hero-image-motion {
+  animation: hero-image-float var(--duration-footer-border) ease-in-out infinite;
+  transform: scale(1.04);
+  transform-origin: center;
+  will-change: transform;
+}
+
+.hero-readability-overlay {
+  position: absolute;
+  inset: var(--spacing-0);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--accent-active) 24%, var(--overlay)) 0%,
+    color-mix(in srgb, var(--accent-active) 18%, transparent) 46%,
+    color-mix(in srgb, var(--accent-active) 28%, var(--primary)) 100%
+  );
+}
+
+.hero-organic-wave {
+  position: absolute;
+  left: calc(var(--spacing-8) * -1);
+  bottom: calc(var(--spacing-1) * -1);
+  z-index: var(--z-raised);
+  display: block;
+  width: calc(100% + var(--spacing-16));
+  height: clamp(var(--spacing-24), 16vw, calc(var(--spacing-32) * 1.45));
+  color: var(--background);
+  pointer-events: none;
+  transform-origin: center bottom;
+}
+
+.brand-gradient-bg {
+  background-image: var(--brand-gradient);
+  background-size: 100% 100%;
+  color: var(--primary-foreground);
+  box-shadow: var(--brand-gradient-glow);
+}
+
+.brand-gradient-bg:hover {
+  color: var(--primary-foreground);
+  box-shadow: var(--shadow-md), var(--brand-gradient-glow);
+}
+
+.brand-gradient-fill {
+  background-image: var(--brand-gradient);
+  background-size: 100% 100%;
+}
+
+.brand-gradient-text {
+  background-image: var(--brand-gradient);
+  background-clip: text;
+  color: transparent;
+}
+
+.brand-gradient-link {
+  background-image: var(--brand-gradient);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+}
+
+.brand-gradient-link:hover,
+.brand-gradient-link[aria-current="page"] {
+  background-size: 100% 1px;
+  color: var(--accent-hover);
+}
+
+.brand-gradient-border {
+  border-color: transparent;
+  background:
+    linear-gradient(var(--surface), var(--surface)) padding-box,
+    var(--brand-gradient) border-box;
+}
+
+.brand-gradient-icon {
+  color: var(--accent-hover);
+  filter: drop-shadow(0 8px 18px color-mix(in srgb, var(--accent-active) 22%, transparent));
+}
+
+.brand-gradient-social {
+  color: var(--text-secondary);
+}
+
+.brand-gradient-social:hover {
+  border-color: transparent;
+  background-image: var(--brand-gradient);
+  color: var(--primary-foreground);
+  box-shadow: var(--brand-gradient-glow);
+}
+
+.footer-brand-frame {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: var(--radius-footer);
+  background:
+    linear-gradient(var(--surface), var(--surface)) padding-box,
+    var(--brand-gradient) border-box;
+  background-size: 100% 100%, 260% 260%;
+  background-position: 0 0, 0% 50%;
+  box-shadow: var(--shadow-lg);
+  animation: footer-gradient-border var(--duration-footer-border) linear infinite;
+}
+
+.footer-brand-frame::before {
+  content: "";
+  position: absolute;
+  inset: var(--spacing-0);
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--brand-gradient);
+  opacity: 0.08;
+  filter: blur(var(--spacing-8));
+  transform: translateZ(0);
+  transition-duration: var(--duration-slow);
+  transition-property: opacity, filter;
+  transition-timing-function: ease;
+}
+
+.footer-brand-frame:hover {
+  animation-duration: var(--duration-footer-border-hover);
+  box-shadow: var(--shadow-lg), var(--brand-gradient-glow);
+}
+
+.footer-brand-frame:hover::before {
+  opacity: 0.16;
+}
+
+.occasion-section-bg {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  background: transparent;
+}
+
+.occasion-carousel {
+  max-width: 100%;
+  overflow-x: clip;
+  mask-image: linear-gradient(90deg, transparent, var(--primary) var(--spacing-8), var(--primary) calc(100% - var(--spacing-8)), transparent);
+}
+
+.occasion-carousel-track {
+  animation: occasion-carousel-slide 34s linear infinite;
+}
+
+.occasion-carousel:hover .occasion-carousel-track {
+  animation-play-state: paused;
+}
+
+.event-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: var(--radius-xl);
+  background:
+    linear-gradient(var(--surface), var(--surface)) padding-box,
+    var(--brand-gradient) border-box;
+  box-shadow: var(--shadow-md);
+}
+
+.event-card::before,
+.event-card::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: var(--spacing-12);
+  height: var(--spacing-12);
+  border-color: color-mix(in srgb, var(--accent-hover) 54%, transparent);
+  opacity: 0.55;
+  transition-duration: var(--duration-slow);
+  transition-property: opacity, transform;
+  transition-timing-function: ease;
+}
+
+.event-card::before {
+  top: var(--spacing-4);
+  right: var(--spacing-4);
+  border-top: 1px solid;
+  border-right: 1px solid;
+}
+
+.event-card::after {
+  left: var(--spacing-4);
+  bottom: var(--spacing-4);
+  border-bottom: 1px solid;
+  border-left: 1px solid;
+}
+
+.event-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.event-card:hover::before,
+.event-card:hover::after {
+  opacity: 0.55;
+  transform: none;
+}
+
+.occasion-feature-frame {
+  z-index: var(--z-raised);
+  border: var(--spacing-2) solid var(--background);
+  border-radius: calc(var(--radius-footer) * 4) calc(var(--radius-footer) * 4) var(--radius-footer) var(--radius-footer);
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+}
+
+.occasion-feature-frame::after {
+  content: "";
+  position: absolute;
+  inset: var(--spacing-0);
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--primary) 8%, transparent),
+    color-mix(in srgb, var(--primary) 32%, transparent)
+  );
+}
+
+.occasion-feature-frame figcaption {
+  z-index: var(--z-raised);
+}
+
+.dining-editorial-panel {
+  position: relative;
+  z-index: var(--z-raised);
+  width: min(100% - var(--spacing-8), calc(var(--container-narrow) * 0.92));
+  margin: calc(var(--spacing-6) * -1) 0 var(--spacing-0) auto;
+  padding: var(--spacing-6);
+  background: var(--glass);
+  box-shadow: var(--shadow-glass);
+  backdrop-filter: blur(var(--spacing-3));
+}
+
+.dining-editorial-panel::before {
+  content: "";
+  position: absolute;
+  inset: var(--spacing-0);
+  z-index: -1;
+  background: var(--brand-gradient);
+  opacity: 0.05;
+}
+
+.dining-thumbnail {
+  position: relative;
+  width: var(--spacing-20);
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: var(--spacing-1) solid var(--background);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-md);
+  transition-duration: var(--duration-slow);
+  transition-property: transform, box-shadow;
+  transition-timing-function: ease;
+}
+
+.dining-thumbnail + .dining-thumbnail {
+  margin-left: calc(var(--spacing-5) * -1);
+}
+
+.dining-thumbnail:hover {
+  transform: translateY(calc(var(--spacing-2) * -1));
+  box-shadow: var(--shadow-lg);
+}
+
+.luxury-ivory-section {
+  background:
+    radial-gradient(circle at 12% 10%, color-mix(in srgb, var(--accent) 8%, transparent), transparent 32%),
+    linear-gradient(180deg, var(--section-ivory-start), var(--background) 58%),
+    var(--background);
+}
+
+.luxury-dark-section {
+  background:
+    radial-gradient(circle at 12% 0%, color-mix(in srgb, var(--accent-hover) 18%, transparent), transparent 34%),
+    radial-gradient(circle at 88% 14%, color-mix(in srgb, var(--accent-active) 28%, transparent), transparent 38%),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--accent-active) 30%, var(--primary)) 0%,
+      color-mix(in srgb, var(--accent-active) 18%, var(--primary)) 46%,
+      color-mix(in srgb, var(--secondary) 8%, var(--primary)) 100%
+    );
+}
+
+.luxury-charcoal-section {
+  background:
+    radial-gradient(circle at 18% 18%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 32%),
+    radial-gradient(circle at 82% 0%, color-mix(in srgb, var(--accent-active) 24%, transparent), transparent 36%),
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--accent-active) 26%, var(--primary)),
+      color-mix(in srgb, var(--secondary) 7%, var(--primary))
+    );
+}
+
+.luxury-glass-section {
+  background:
+    radial-gradient(circle at 18% 18%, color-mix(in srgb, var(--accent-hover) 10%, transparent), transparent 32%),
+    radial-gradient(circle at 82% 8%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 30%),
+    linear-gradient(180deg, color-mix(in srgb, var(--surface) 82%, var(--secondary)), var(--surface));
+}
+
+.luxury-cta-section {
+  background:
+    linear-gradient(180deg, var(--background), color-mix(in srgb, var(--accent-active) 8%, var(--background))),
+    var(--background);
+}
+
+.banquet-section-bg {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent-hover) 7%, transparent), transparent 34%),
+    linear-gradient(315deg, color-mix(in srgb, var(--accent-active) 8%, transparent), transparent 38%),
+    radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--accent) 8%, transparent), transparent 34%),
+    var(--background);
+}
+
+.banquet-card {
+  background: var(--card);
+}
+
+.banquet-panel {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--secondary) 28%, var(--surface)), var(--surface));
+  color: var(--text-primary);
+}
+
+.luxury-dark-section,
+.luxury-charcoal-section {
+  color: color-mix(in srgb, var(--primary-foreground) 86%, var(--secondary));
+}
+
+.luxury-dark-section .text-primary-foreground,
+.luxury-charcoal-section .text-primary-foreground {
+  color: color-mix(in srgb, var(--primary-foreground) 88%, var(--secondary));
+}
+
+.luxury-dark-section .text-primary-foreground\/72,
+.luxury-charcoal-section .text-primary-foreground\/72 {
+  color: color-mix(in srgb, var(--primary-foreground) 68%, var(--secondary));
+}
+
+.luxury-dark-section .text-primary-foreground\/82,
+.luxury-charcoal-section .text-primary-foreground\/82 {
+  color: color-mix(in srgb, var(--primary-foreground) 78%, var(--secondary));
+}
+
+.luxury-dark-section .text-primary-foreground\/68,
+.luxury-charcoal-section .text-primary-foreground\/68,
+.luxury-dark-section .text-primary-foreground\/70,
+.luxury-charcoal-section .text-primary-foreground\/70,
+.luxury-dark-section .text-primary-foreground\/75,
+.luxury-charcoal-section .text-primary-foreground\/75,
+.luxury-dark-section .text-primary-foreground\/78,
+.luxury-charcoal-section .text-primary-foreground\/78,
+.luxury-dark-section .text-primary-foreground\/85,
+.luxury-charcoal-section .text-primary-foreground\/85,
+.luxury-dark-section .text-primary-foreground\/86,
+.luxury-charcoal-section .text-primary-foreground\/86,
+.luxury-dark-section .text-primary-foreground\/90,
+.luxury-charcoal-section .text-primary-foreground\/90 {
+  color: color-mix(in srgb, var(--primary-foreground) 72%, var(--secondary));
+}
+
+.luxury-dark-section .bg-primary,
+.luxury-charcoal-section .bg-primary {
+  background-color: color-mix(in srgb, var(--accent-active) 20%, var(--primary));
+}
+
+.luxury-dark-section .bg-primary\/55,
+.luxury-charcoal-section .bg-primary\/55 {
+  background-color: color-mix(in srgb, var(--accent-active) 18%, transparent);
+}
+
+.luxury-dark-section .bg-primary\/35,
+.luxury-charcoal-section .bg-primary\/35 {
+  background-color: color-mix(in srgb, var(--secondary) 7%, transparent);
+}
+
+.luxury-dark-section .bg-surface,
+.luxury-charcoal-section .bg-surface {
+  background-color: color-mix(in srgb, var(--secondary) 10%, var(--primary));
+}
+
+.luxury-dark-section .bg-card,
+.luxury-charcoal-section .bg-card {
+  background-color: color-mix(in srgb, var(--secondary) 9%, var(--primary));
+}
+
+.luxury-dark-section .border-border,
+.luxury-charcoal-section .border-border {
+  border-color: color-mix(in srgb, var(--primary-foreground) 12%, transparent);
+}
+
+.luxury-dark-section [class*="border-primary-foreground"],
+.luxury-charcoal-section [class*="border-primary-foreground"] {
+  border-color: color-mix(in srgb, var(--primary-foreground) 16%, transparent);
+}
+
+.luxury-dark-section [class*="bg-primary-foreground"],
+.luxury-charcoal-section [class*="bg-primary-foreground"] {
+  background-color: color-mix(in srgb, var(--primary-foreground) 10%, transparent);
+}
+
+.bihar-places-bg {
+  background:
+    radial-gradient(circle at 20% 12%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 30%),
+    linear-gradient(180deg, color-mix(in srgb, var(--secondary) 62%, var(--background)), color-mix(in srgb, var(--accent) 4%, var(--background))),
+    var(--background);
+}
+
+.bihar-places-carousel {
+  scrollbar-width: none;
+}
+
+.bihar-places-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.bihar-place-card {
+  width: min(78vw, 18.5rem);
+  height: 29rem;
+  border-radius: 50% 50% var(--radius-md) var(--radius-md) / 24% 24% var(--radius-md) var(--radius-md);
+  transition-duration: var(--duration-slow);
+  transition-property: transform, box-shadow;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.bihar-place-card:hover {
+  transform: translateY(calc(var(--spacing-2) * -1)) scale(1.045);
+  box-shadow: var(--shadow-lg), var(--brand-gradient-glow);
+}
+
+@media (min-width: 768px) {
+  .bihar-place-card {
+    width: 19rem;
+    height: 32rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  .occasion-carousel {
+    max-width: 100%;
+  }
+
+  .occasion-feature-frame {
+    border-radius: var(--radius-footer);
+    border-width: 1px;
+  }
+}
+
+@media (max-width: 639px) {
+  .occasion-carousel {
+    margin-inline: calc(var(--spacing-shell) * -1);
+    padding-inline: var(--spacing-shell);
+    mask-image: linear-gradient(90deg, transparent, var(--primary) var(--spacing-5), var(--primary) calc(100% - var(--spacing-5)), transparent);
+  }
+
+  .occasion-carousel-track {
+    gap: var(--spacing-4);
+  }
+
+  .event-card::before,
+  .event-card::after {
+    width: var(--spacing-8);
+    height: var(--spacing-8);
+  }
+
+  .dining-editorial-panel {
+    width: 100%;
+    margin-top: calc(var(--spacing-4) * -1);
+    padding: var(--spacing-5);
+  }
+
+  .dining-thumbnail {
+    width: var(--spacing-16);
+  }
+}
+
+@keyframes footer-gradient-border {
+  0% {
+    background-position: 0 0, 0% 50%;
+  }
+
+  50% {
+    background-position: 0 0, 100% 50%;
+  }
+
+  100% {
+    background-position: 0 0, 0% 50%;
+  }
+}
+
+@keyframes occasion-carousel-slide {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes hero-image-float {
+  0%,
+  100% {
+    transform: scale(1.04) translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: scale(1.08) translate3d(0, calc(var(--spacing-3) * -1), 0);
+  }
+}
+
+@keyframes hero-wave-breathe {
+  0%,
+  100% {
+    transform: translateY(var(--spacing-0)) scaleX(1);
+  }
+
+  50% {
+    transform: translateY(calc(var(--spacing-1) * -1)) scaleX(1.015);
+  }
 }

@@ -35,6 +35,21 @@ export function MobileMenu({
               >
                 {item.label}
               </Link>
+              {item.children ? (
+                <ul className="ml-4 grid gap-1 border-l border-border pl-3">
+                  {item.children.map((child) => (
+                    <li key={child.href}>
+                      <Link
+                        className="luxury-focus block rounded-md px-4 py-3 text-body-md text-text-secondary hover:bg-surface-hover hover:text-accent-hover"
+                        href={child.href}
+                        onClick={onNavigate}
+                      >
+                        {child.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
             </li>
           ))}
         </ul>

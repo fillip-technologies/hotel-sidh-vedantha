@@ -1,19 +1,19 @@
 import Link from "next/link";
 
 type BookNowButtonProps = {
-  variant?: "primary" | "outline" | "gold";
+  variant?: "primary" | "outline" | "brand";
   className?: string;
 };
 
 export function BookNowButton({
-  variant = "gold",
+  variant = "brand",
   className = "",
 }: Readonly<BookNowButtonProps>) {
   const variants = {
-    primary: "bg-primary text-primary-foreground hover:bg-text-primary",
+    primary: "brand-gradient-bg",
     outline:
-      "border border-current bg-transparent text-current hover:border-gold hover:text-gold",
-    gold: "bg-gold text-accent-foreground shadow-gold hover:bg-accent",
+      "brand-gradient-link border border-current bg-transparent text-current hover:border-accent-hover hover:text-accent-hover",
+    brand: "brand-gradient-bg",
   };
 
   return (

@@ -1,24 +1,26 @@
+import { Search } from "lucide-react";
+
 export function BookingForm() {
   return (
     <form
-      className="grid border border-primary-foreground/25 bg-background shadow-md md:grid-cols-[1fr_1fr_1fr_auto]"
+      className="mx-auto grid w-full max-w-[var(--container-page)] overflow-hidden rounded-xl border border-primary-foreground/25 bg-background p-2 shadow-glass md:grid-cols-[1fr_1fr_0.85fr_auto] md:items-center md:rounded-full"
       id="booking"
     >
-      <label className="grid gap-2 border-b border-border p-5 md:border-b-0 md:border-r">
+      <label className="grid gap-2 border-b border-border px-6 py-4 md:border-b-0 md:border-r lg:px-8">
         <span className="text-caption text-text-muted">Check In</span>
         <input
           className="luxury-focus bg-transparent text-body-md text-text-primary"
           type="date"
         />
       </label>
-      <label className="grid gap-2 border-b border-border p-5 md:border-b-0 md:border-r">
+      <label className="grid gap-2 border-b border-border px-6 py-4 md:border-b-0 md:border-r lg:px-8">
         <span className="text-caption text-text-muted">Check Out</span>
         <input
           className="luxury-focus bg-transparent text-body-md text-text-primary"
           type="date"
         />
       </label>
-      <label className="grid gap-2 border-b border-border p-5 md:border-b-0 md:border-r">
+      <label className="grid gap-2 border-b border-border px-6 py-4 md:border-b-0 md:border-r lg:px-8">
         <span className="text-caption text-text-muted">Guests</span>
         <select className="luxury-focus bg-transparent text-body-md text-text-primary">
           <option>2 Guests</option>
@@ -28,9 +30,10 @@ export function BookingForm() {
         </select>
       </label>
       <button
-        className="luxury-focus bg-primary px-8 py-5 text-caption tracking-[var(--tracking-cta)] text-primary-foreground hover:bg-gold hover:text-accent-foreground"
+        className="luxury-focus brand-gradient-bg inline-flex items-center justify-center gap-3 rounded-full px-7 py-4 text-caption tracking-[var(--tracking-cta)] md:self-stretch lg:px-8"
         type="submit"
       >
+        <Search className="size-4" aria-hidden="true" />
         Check Availability
       </button>
     </form>

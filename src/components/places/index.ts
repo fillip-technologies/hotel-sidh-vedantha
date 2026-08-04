@@ -1,0 +1,1 @@
+export { BiharPlacesCarousel } from "./BiharPlacesCarousel";

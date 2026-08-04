@@ -7,9 +7,17 @@ import { DesktopNav, type NavItem } from "./DesktopNav";
 import { Logo } from "./Logo";
 import { MobileMenu } from "./MobileMenu";
 import { MobileNav } from "./MobileNav";
+import rooms from "@/data/rooms.json";
 
 const navItems: NavItem[] = [
-  { label: "Rooms", href: "/rooms" },
+  {
+    label: "Rooms",
+    href: "/rooms",
+    children: rooms.map((room) => ({
+      label: room.title,
+      href: `/rooms/${room.slug}`,
+    })),
+  },
   { label: "Experiences", href: "/experiences" },
   { label: "Dining", href: "/dining" },
   { label: "Gallery", href: "/gallery" },

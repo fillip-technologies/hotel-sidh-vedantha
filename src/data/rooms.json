@@ -1,0 +1,167 @@
+[
+  {
+    "slug": "executive-rooms",
+    "title": "Executive Rooms",
+    "shortTitle": "Executive",
+    "description": "Polished comfort for business travellers and premium weekend escapes.",
+    "longDescription": "Designed for calm, focused stays, the Executive Rooms pair refined bedding, practical work space, and warm hospitality for guests who want comfort without excess.",
+    "size": "380 sq ft",
+    "occupancy": "2 Guests",
+    "bed": "King-size or Twin Beds",
+    "image": "/images/2.png",
+    "gallery": ["/images/2.png", "/images/nn.png", "/images/event.png"],
+    "highlights": [
+      "Quiet work-friendly layout",
+      "Premium toiletries",
+      "Flexible king or twin bedding",
+      "Ideal for corporate stays"
+    ],
+    "idealFor": ["Business travel", "Short city stays", "Couples"],
+    "inclusions": [
+      "Daily housekeeping",
+      "In-room tea and coffee",
+      "Complimentary bottled water",
+      "High-speed Wi-Fi"
+    ],
+    "policies": ["Check-in from 12:00 PM", "Check-out by 11:00 AM", "Extra bed subject to availability"],
+    "roomSpecificAmenities": [
+      "King-size or Twin Beds",
+      "Luxurious Bathroom with Premium Toiletries"
+    ],
+    "popularAmenities": [
+      "24-Hour Restaurant",
+      "24-Hour Gym",
+      "Taxi Service",
+      "Complimentary 2 Bottles of Water Daily",
+      "Complimentary Tea/Coffee in Room",
+      "High-Speed Wi-Fi",
+      "Flat-Screen TV with a Variety of Channels",
+      "Mini-Bar Stocked with Refreshments",
+      "Spacious Work Desk"
+    ]
+  },
+  {
+    "slug": "club-rooms",
+    "title": "Club Rooms",
+    "shortTitle": "Club",
+    "description": "A relaxed room category with thoughtful essentials and flexible bedding.",
+    "longDescription": "Club Rooms are made for easy city stays, with comfortable twin bedding, in-room refreshments, and the flexibility needed for families, friends, and corporate guests.",
+    "size": "340 sq ft",
+    "occupancy": "2 Guests",
+    "bed": "Two Single Beds",
+    "image": "/images/2.png",
+    "gallery": ["/images/2.png", "/images/ring-ceremony.png", "/images/cooking.png"],
+    "highlights": [
+      "Comfortable twin bedding",
+      "Tea and coffee maker",
+      "Extra bed option",
+      "Simple, calm room planning"
+    ],
+    "idealFor": ["Friends", "Small families", "Corporate guests"],
+    "inclusions": [
+      "Daily housekeeping",
+      "Complimentary bottled water",
+      "Tea and coffee replenishment",
+      "High-speed Wi-Fi"
+    ],
+    "policies": ["Check-in from 12:00 PM", "Check-out by 11:00 AM", "Extra bed placement available on request"],
+    "roomSpecificAmenities": [
+      "Two Single Beds",
+      "Tea and Coffee Maker",
+      "Extra Bed Placement Available"
+    ],
+    "popularAmenities": [
+      "24-Hour Restaurant",
+      "24-Hour Gym",
+      "Taxi Service",
+      "Complimentary 2 Bottles of Water Daily",
+      "Complimentary Tea/Coffee in Room",
+      "High-Speed Wi-Fi",
+      "Flat-Screen TV with a Variety of Channels",
+      "Mini-Bar Stocked with Refreshments",
+      "Spacious Work Desk"
+    ]
+  },
+  {
+    "slug": "premium-rooms",
+    "title": "Premium Rooms",
+    "shortTitle": "Premium",
+    "description": "Elegant essentials, plush bedding, and calm comfort for refined stays.",
+    "longDescription": "Premium Rooms offer a more elevated stay with plush bedding, warm lighting, and an en-suite bathroom designed for restful nights and unhurried mornings.",
+    "size": "420 sq ft",
+    "occupancy": "2 Guests",
+    "bed": "King-size or Twin Beds",
+    "image": "/images/2.png",
+    "gallery": ["/images/2.png", "/images/background-of-sidhvedanta.png", "/images/nn.png"],
+    "highlights": [
+      "Plush bedding",
+      "Elegant warm lighting",
+      "Premium en-suite bathroom",
+      "Refined ambience for restful stays"
+    ],
+    "idealFor": ["Premium stays", "Couples", "Weekend escapes"],
+    "inclusions": [
+      "Daily housekeeping",
+      "Premium toiletries",
+      "Complimentary bottled water",
+      "High-speed Wi-Fi"
+    ],
+    "policies": ["Check-in from 12:00 PM", "Check-out by 11:00 AM", "Government ID required at check-in"],
+    "roomSpecificAmenities": [
+      "King-size or Twin Beds with Plush Bedding",
+      "Luxurious En-suite Bathroom"
+    ],
+    "popularAmenities": [
+      "24-Hour Restaurant",
+      "24-Hour Gym",
+      "Taxi Service",
+      "Complimentary 2 Bottles of Water Daily",
+      "Complimentary Tea/Coffee in Room",
+      "High-Speed Wi-Fi",
+      "Flat-Screen TV with a Variety of Channels",
+      "Mini-Bar Stocked with Refreshments",
+      "Spacious Work Desk"
+    ]
+  },
+  {
+    "slug": "vedantha-suite",
+    "title": "Vedantha Suite",
+    "shortTitle": "Suite",
+    "description": "A spacious suite with a separate living area and premium comforts.",
+    "longDescription": "The Vedantha Suite is crafted for guests who prefer more room to unwind, host, and rest, with a separate living area, premium toiletries, and elevated privacy.",
+    "size": "620 sq ft",
+    "occupancy": "4 Guests",
+    "bed": "King-size Bed",
+    "image": "/images/2.png",
+    "gallery": ["/images/2.png", "/images/wedding.png", "/images/ring-ceremony.png"],
+    "highlights": [
+      "Separate living area",
+      "Spacious suite planning",
+      "Premium bathroom amenities",
+      "Comfortable setting for longer stays"
+    ],
+    "idealFor": ["Families", "Longer stays", "Celebration guests"],
+    "inclusions": [
+      "Daily housekeeping",
+      "Premium toiletries",
+      "Complimentary bottled water",
+      "High-speed Wi-Fi"
+    ],
+    "policies": ["Check-in from 12:00 PM", "Check-out by 11:00 AM", "Suite requests are subject to availability"],
+    "roomSpecificAmenities": [
+      "King-size Bed with Separate Living Area",
+      "Luxurious En-suite Bathroom with Premium Toiletries"
+    ],
+    "popularAmenities": [
+      "24-Hour Restaurant",
+      "24-Hour Gym",
+      "Taxi Service",
+      "Complimentary 2 Bottles of Water Daily",
+      "Complimentary Tea/Coffee in Room",
+      "High-Speed Wi-Fi",
+      "Flat-Screen TV with a Variety of Channels",
+      "Mini-Bar Stocked with Refreshments",
+      "Spacious Work Desk"
+    ]
+  }
+]
