@@ -71,7 +71,7 @@ const carouselEvents = [...events, ...events];
 
 export function CelebrateEveryOccasion() {
   return (
-    <section className="bg-background pb-16 pt-16 md:pb-24 md:pt-24 lg:pb-28 lg:pt-28" aria-labelledby="celebrate-heading">
+    <section className="bg-background pb-16 pt-6 md:pb-24 md:pt-10 lg:pb-28 lg:pt-12" aria-labelledby="celebrate-heading">
       <div className="relative z-[var(--z-raised)] mx-auto w-full min-w-0 px-shell">
         <div className="relative mx-auto min-w-0 text-center">
           <motion.div

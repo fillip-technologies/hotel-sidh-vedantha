@@ -21,8 +21,7 @@ const navItems: NavItem[] = [
   { label: "Experiences", href: "/experiences" },
   { label: "Dining", href: "/dining" },
   { label: "Gallery", href: "/gallery" },
-  { label: "Offers", href: "/offers" },
-  { label: "Contact", href: "/contact" },
+  { label: "Contact", href: "/contact-us" },
 ];
 
 const scrollThreshold = 76;

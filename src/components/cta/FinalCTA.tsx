@@ -3,7 +3,7 @@ import { CalendarCheck, Phone } from "lucide-react";
 
 export function FinalCTA() {
   return (
-    <section className="luxury-cta-section px-shell py-16 md:py-24 lg:py-32" aria-labelledby="final-cta-heading">
+    <section className="luxury-cta-section px-shell pb-8 pt-16 md:pb-10 md:pt-24 lg:pt-32" aria-labelledby="final-cta-heading">
       <div className="luxury-dark-section mx-auto overflow-hidden rounded-xl px-6 py-12 text-center text-primary-foreground shadow-glass md:px-10 md:py-16">
         <p className="text-caption tracking-[var(--tracking-eyebrow)] text-primary-foreground/68">
           Hotel Sidh Vedantha

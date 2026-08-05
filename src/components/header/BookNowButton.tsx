@@ -19,7 +19,7 @@ export function BookNowButton({
   return (
     <Link
       className={`luxury-focus inline-flex items-center justify-center rounded-none px-8 py-4 text-body-md ${variants[variant]} ${className}`}
-      href="/contact"
+      href="/contact-us"
     >
       Book Now
     </Link>

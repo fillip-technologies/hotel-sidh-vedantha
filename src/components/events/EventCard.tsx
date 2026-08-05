@@ -55,9 +55,9 @@ export function EventCard({ event }: Readonly<EventCardProps>) {
         </p>
         <Link
           className="luxury-focus brand-gradient-bg mt-6 inline-flex h-11 items-center gap-2 self-start rounded-full px-5 text-button"
-          href={event.href}
+          href="/contact-us"
         >
-          Plan Your Event
+          Contact Us
           <ArrowRight
             className="size-4"
             aria-hidden="true"

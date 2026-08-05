@@ -1,17 +1,19 @@
 import Link from "next/link";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 
+import { siteContact } from "@/data/siteContact";
+
 const contactItems = [
   {
     icon: MapPin,
-    label: "Hotel Sidh Vedantha, Patna, Bihar",
-    href: "https://www.google.com/maps/search/?api=1&query=Hotel%20Sidh%20Vedantha%20Patna",
+    label: siteContact.address,
+    href: siteContact.mapsHref,
   },
-  { icon: Phone, label: "+91 98765 43210", href: "tel:+919876543210" },
+  { icon: Phone, label: siteContact.phoneDisplay, href: siteContact.phoneHref },
   {
     icon: Mail,
-    label: "reservations@hotelsidhvedantha.com",
-    href: "mailto:reservations@hotelsidhvedantha.com",
+    label: siteContact.email,
+    href: siteContact.emailHref,
   },
   { icon: Clock, label: "Open all days, 24 hours", href: "/contact" },
 ];

@@ -1,5 +1,4 @@
 import { AmenitiesSection } from "@/components/amenities";
-import { FinalCTA } from "@/components/cta";
 import { CelebrateEveryOccasion } from "@/components/events";
 import { DiningExperience } from "@/components/dining";
 import { FAQSection } from "@/components/faq";
@@ -22,7 +21,6 @@ export default function Home() {
       <GallerySection />
       <ExperienceSection />
       <FAQSection />
-      <FinalCTA />
     </main>
   );
 }

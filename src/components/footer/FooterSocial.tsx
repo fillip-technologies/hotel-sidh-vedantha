@@ -1,17 +1,22 @@
 import Link from "next/link";
 import { BriefcaseBusiness, Camera, MessageCircle, PlayCircle } from "lucide-react";
 
-const socialLinks = [
-  { label: "Instagram", href: "https://www.instagram.com", icon: Camera },
-  { label: "Facebook", href: "https://www.facebook.com", icon: MessageCircle },
-  { label: "LinkedIn", href: "https://www.linkedin.com", icon: BriefcaseBusiness },
-  { label: "YouTube", href: "https://www.youtube.com", icon: PlayCircle },
-];
+import { siteContact } from "@/data/siteContact";
+
+const socialIcons = {
+  Instagram: Camera,
+  Facebook: MessageCircle,
+  LinkedIn: BriefcaseBusiness,
+  YouTube: PlayCircle,
+};
 
 export function FooterSocial() {
   return (
     <ul className="mt-8 flex flex-wrap gap-3" aria-label="Social links">
-      {socialLinks.map(({ href, icon: Icon, label }) => (
+      {siteContact.social.map(({ href, label }) => {
+        const Icon = socialIcons[label as keyof typeof socialIcons] ?? MessageCircle;
+
+        return (
         <li key={label}>
           <Link
             aria-label={label}
@@ -21,7 +26,8 @@ export function FooterSocial() {
             <Icon className="size-4" aria-hidden="true" />
           </Link>
         </li>
-      ))}
+        );
+      })}
     </ul>
   );
 }

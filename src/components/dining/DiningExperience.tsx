@@ -20,6 +20,7 @@ type DiningItem = {
   title: string;
   description: string;
   image: string;
+  video?: string;
   icon: LucideIcon;
 };
 
@@ -29,6 +30,7 @@ const diningItems: DiningItem[] = [
     title: "Breakfast",
     description: "Fresh mornings with comforting classics, regional touches, and warm service.",
     image: "/images/cooking.png",
+    video: "/images/breakfast.mp4",
     icon: Coffee,
   },
   {
@@ -36,6 +38,7 @@ const diningItems: DiningItem[] = [
     title: "Lunch",
     description: "Balanced afternoon plates with authentic flavours and international favourites.",
     image: "/images/2.png",
+    video: "/images/lunch.mp4",
     icon: Soup,
   },
   {
@@ -43,6 +46,7 @@ const diningItems: DiningItem[] = [
     title: "Dinner",
     description: "Elegant evening dining shaped around rich aromas and graceful hospitality.",
     image: "/images/cooking.png",
+    video: "/images/dinner.mp4",
     icon: MoonStar,
   },
   {
@@ -152,14 +156,14 @@ function DiningColumn({
           className="relative h-full overflow-hidden rounded-xl"
           transition={{ duration: 0.35, ease: "easeOut" }}
         >
-          <Image
+          <DiningMedia
             alt={`${item.title} dining at Hotel Sidh Vedantha`}
-            className={`size-full object-cover transition-transform duration-[700ms] ease-in-out ${
+            className={`transition-transform duration-[700ms] ease-in-out ${
               isActive ? "scale-[1.06]" : "scale-100"
             }`}
-            fill
+            image={item.image}
             sizes="(min-width: 1024px) 46vw, 100vw"
-            src={item.image}
+            video={item.video}
           />
           <span className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/20 to-transparent" />
         </motion.div>
@@ -212,12 +216,11 @@ function DiningMobileCard({ item }: { item: DiningItem }) {
   return (
     <article className="overflow-hidden rounded-xl border border-border bg-background shadow-md">
       <div className="relative aspect-[16/10] overflow-hidden">
-        <Image
+        <DiningMedia
           alt={`${item.title} dining at Hotel Sidh Vedantha`}
-          className="size-full object-cover"
-          fill
+          image={item.image}
           sizes="(min-width: 640px) 50vw, 100vw"
-          src={item.image}
+          video={item.video}
         />
       </div>
       <div className="p-5">
@@ -228,5 +231,45 @@ function DiningMobileCard({ item }: { item: DiningItem }) {
         <p className="mt-3 text-body-sm text-text-secondary">{item.description}</p>
       </div>
     </article>
+  );
+}
+
+function DiningMedia({
+  alt,
+  className = "",
+  image,
+  sizes,
+  video,
+}: {
+  alt: string;
+  className?: string;
+  image: string;
+  sizes: string;
+  video?: string;
+}) {
+  if (video) {
+    return (
+      <video
+        aria-label={alt}
+        autoPlay
+        className={`size-full object-cover ${className}`}
+        loop
+        muted
+        playsInline
+        poster={image}
+      >
+        <source src={video} type="video/mp4" />
+      </video>
+    );
+  }
+
+  return (
+    <Image
+      alt={alt}
+      className={`size-full object-cover ${className}`}
+      fill
+      sizes={sizes}
+      src={image}
+    />
   );
 }
