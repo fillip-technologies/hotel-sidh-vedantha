@@ -10,9 +10,22 @@ const galleryImages = [
   { title: "Dining Setup", image: "/images/cooking.png", className: "" },
   { title: "Birthday Decor", image: "/images/birthday-celebration.png", className: "" },
   { title: "Business Event", image: "/images/event.png", className: "" },
+  { title: "Premium Room", image: "/images/Rooms/room 4-Premium/0Z8A8929.JPG", className: "" },
+  { title: "Club Room", image: "/images/Rooms/room 2-Club/0Z8A8891.JPG", className: "" },
+  { title: "Executive Room", image: "/images/Rooms/room 3-EXecutive/0Z8A9084.JPG", className: "" },
+  { title: "Vedantha Suite", image: "/images/Rooms/room 1-Suite/0Z8A8778.JPG", className: "md:col-span-2" },
+  { title: "Hotel Detail", image: "/images/Rooms/room 5-extra/0Z8A9003.JPG", className: "" },
+  { title: "Dining Moment", image: "/images/Rooms/room 5-extra/0Z8A8980.JPG", className: "" },
 ];
 
-export function GallerySection() {
+type GallerySectionProps = {
+  variant?: "home" | "page";
+};
+
+export function GallerySection({ variant = "home" }: Readonly<GallerySectionProps>) {
+  const isPage = variant === "page";
+  const visibleImages = isPage ? galleryImages : galleryImages.slice(0, 5);
+
   return (
     <section className="luxury-dark-section py-12 md:py-16 lg:py-20" aria-labelledby="gallery-heading">
       <div className="mx-auto w-full px-shell">
@@ -31,7 +44,7 @@ export function GallerySection() {
         </FadeIn>
 
         <FadeIn className="mt-10 grid auto-rows-[18rem] gap-5 md:grid-cols-4 md:auto-rows-[15rem]" delay={0.12}>
-          {galleryImages.map((item) => (
+          {visibleImages.map((item) => (
             <figure
               className={`group relative overflow-hidden rounded-xl shadow-md ${item.className}`}
               key={item.title}
@@ -48,6 +61,7 @@ export function GallerySection() {
           ))}
         </FadeIn>
 
+        {!isPage ? (
         <div className="mt-8 text-center">
           <Link
             className="luxury-focus brand-gradient-bg group inline-flex items-center gap-2 rounded-full px-5 py-3 text-button"
@@ -57,6 +71,7 @@ export function GallerySection() {
             <ArrowRight className="size-4 transition-transform duration-slow group-hover:translate-x-1" aria-hidden="true" />
           </Link>
         </div>
+        ) : null}
       </div>
     </section>
   );

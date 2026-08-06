@@ -10,7 +10,7 @@ import {
   UsersRound,
   type LucideIcon,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import type { CSSProperties } from "react";
 import { useState } from "react";
 
 import { FadeIn } from "@/components/ui/FadeIn";
@@ -20,7 +20,6 @@ type DiningItem = {
   title: string;
   description: string;
   image: string;
-  video?: string;
   icon: LucideIcon;
 };
 
@@ -29,24 +28,21 @@ const diningItems: DiningItem[] = [
     id: "breakfast",
     title: "Breakfast",
     description: "Fresh mornings with comforting classics, regional touches, and warm service.",
-    image: "/images/cooking.png",
-    video: "/images/breakfast.mp4",
+    image: "/images/brekfast.jpg",
     icon: Coffee,
   },
   {
     id: "lunch",
     title: "Lunch",
     description: "Balanced afternoon plates with authentic flavours and international favourites.",
-    image: "/images/2.png",
-    video: "/images/lunch.mp4",
+    image: "/images/lunch.jpg",
     icon: Soup,
   },
   {
     id: "dinner",
     title: "Dinner",
     description: "Elegant evening dining shaped around rich aromas and graceful hospitality.",
-    image: "/images/cooking.png",
-    video: "/images/dinner.mp4",
+    image: "/images/dinner.jpg",
     icon: MoonStar,
   },
   {
@@ -75,16 +71,35 @@ const diningItems: DiningItem[] = [
 export function DiningExperience() {
   const [activeItem, setActiveItem] = useState<string | null>(null);
   const hasActiveItem = activeItem !== null;
+  const panelColumns = activeItem
+    ? diningItems.map((item) => (item.id === activeItem ? "3.6fr" : "1fr")).join(" ")
+    : `repeat(${diningItems.length}, minmax(0, 1fr))`;
+
+  const activateItem = (itemId: string) => {
+    setActiveItem((currentItem) => (currentItem === itemId ? currentItem : itemId));
+  };
 
   return (
     <section
       aria-labelledby="dining-experience-heading"
-      className="luxury-dark-section relative isolate overflow-hidden py-0"
+      className="luxury-dark-section relative isolate overflow-hidden py-14 lg:py-0"
     >
       <div className="mx-auto w-full">
-        <h2 className="sr-only" id="dining-experience-heading">
-          Dining Experience
-        </h2>
+        <div className="px-shell text-center lg:sr-only">
+          <p className="brand-gradient-text text-caption tracking-[var(--tracking-eyebrow)]">
+            Dining Experience
+          </p>
+          <h2
+            className="mt-4 text-heading-lg text-primary-foreground"
+            id="dining-experience-heading"
+          >
+            Breakfast, Lunch, Dinner and More
+          </h2>
+          <p className="mx-auto mt-4 max-w-[var(--container-readable)] text-body-md text-primary-foreground/72">
+            Explore comforting meals, restaurant dining, and hosted meal
+            experiences at Hotel Sidh Vedantha.
+          </p>
+        </div>
         <FadeIn className="min-w-0" delay={0.12}>
           <div
             className="relative hidden h-[42rem] overflow-hidden border-y border-border lg:block"
@@ -100,20 +115,23 @@ export function DiningExperience() {
               src="/images/cooking.png"
             />
             <span className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/35 to-primary/10" />
-            <div className="relative z-[var(--z-raised)] flex h-full">
+            <div
+              className="relative z-[var(--z-raised)] grid h-full transition-[grid-template-columns] duration-[720ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+              style={{ gridTemplateColumns: panelColumns } as CSSProperties}
+            >
               {diningItems.map((item) => (
                 <DiningColumn
                   hasActiveItem={hasActiveItem}
                   isActive={activeItem === item.id}
                   item={item}
                   key={item.id}
-                  onActivate={() => setActiveItem(item.id)}
+                  onActivate={() => activateItem(item.id)}
                 />
               ))}
             </div>
           </div>
 
-          <div className="grid gap-6 px-shell sm:grid-cols-2 lg:hidden">
+          <div className="mt-10 grid gap-6 px-shell sm:grid-cols-2 lg:hidden">
             {diningItems.map((item) => (
               <DiningMobileCard item={item} key={item.id} />
             ))}
@@ -139,22 +157,20 @@ function DiningColumn({
   const isLightText = isActive || !hasActiveItem;
 
   return (
-    <motion.article
-      animate={{ flex: isActive ? 3.8 : 1 }}
+    <article
       aria-label={item.title}
-      className={`group relative min-w-0 overflow-hidden border-r border-primary-foreground/20 outline-none last:border-r-0 ${
+      className={`group relative min-w-0 overflow-hidden border-r border-primary-foreground/20 outline-none transition-colors duration-[520ms] ease-out last:border-r-0 ${
         hasActiveItem && !isActive ? "bg-surface/95" : "bg-transparent"
       }`}
       onFocus={onActivate}
-      onMouseEnter={onActivate}
+      onPointerEnter={onActivate}
       tabIndex={0}
-      transition={{ duration: 0.65, ease: "easeInOut" }}
     >
       <div className="absolute inset-0 p-5">
-        <motion.div
-          animate={{ opacity: isActive ? 1 : 0 }}
-          className="relative h-full overflow-hidden rounded-xl"
-          transition={{ duration: 0.35, ease: "easeOut" }}
+        <div
+          className={`relative h-full overflow-hidden rounded-xl transition-opacity duration-[520ms] ease-out ${
+            isActive ? "opacity-100" : "opacity-0"
+          }`}
         >
           <DiningMedia
             alt={`${item.title} dining at Hotel Sidh Vedantha`}
@@ -163,17 +179,16 @@ function DiningColumn({
             }`}
             image={item.image}
             sizes="(min-width: 1024px) 46vw, 100vw"
-            video={item.video}
           />
           <span className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/20 to-transparent" />
-        </motion.div>
+        </div>
       </div>
 
       <div className="relative z-[var(--z-raised)] flex h-full flex-col p-6">
-        <motion.div
-          animate={{ y: isActive ? -12 : 0 }}
-          className="mt-auto"
-          transition={{ duration: 0.65, ease: "easeInOut" }}
+        <div
+          className={`mt-auto transition-transform duration-[620ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            isActive ? "-translate-y-3" : "translate-y-0"
+          }`}
         >
           <span
             className={`inline-flex size-12 items-center justify-center rounded-full transition-colors duration-slow ${
@@ -193,20 +208,19 @@ function DiningColumn({
           >
             {item.title}
           </h3>
-        </motion.div>
+        </div>
 
-        <motion.div
-          animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 16 }}
-          className="mt-4 overflow-hidden"
-          initial={false}
-          transition={{ duration: 0.45, ease: "easeOut" }}
+        <div
+          className={`mt-4 overflow-hidden transition-[opacity,transform] duration-[420ms] ease-out ${
+            isActive ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+          }`}
         >
           <p className="max-w-[20rem] text-body-sm text-primary-foreground/85">
             {item.description}
           </p>
-        </motion.div>
+        </div>
       </div>
-    </motion.article>
+    </article>
   );
 }
 
@@ -214,21 +228,20 @@ function DiningMobileCard({ item }: { item: DiningItem }) {
   const Icon = item.icon;
 
   return (
-    <article className="overflow-hidden rounded-xl border border-border bg-background shadow-md">
-      <div className="relative aspect-[16/10] overflow-hidden">
+    <article className="overflow-hidden rounded-xl border border-primary-foreground/12 bg-primary-foreground/10 text-primary-foreground shadow-md backdrop-blur-md">
+      <div className="relative aspect-[16/11] overflow-hidden">
         <DiningMedia
           alt={`${item.title} dining at Hotel Sidh Vedantha`}
           image={item.image}
           sizes="(min-width: 640px) 50vw, 100vw"
-          video={item.video}
         />
       </div>
       <div className="p-5">
         <span className="brand-gradient-border inline-flex size-10 items-center justify-center rounded-full">
           <Icon className="brand-gradient-icon size-5" aria-hidden="true" />
         </span>
-        <h3 className="mt-4 text-heading-sm text-text-primary">{item.title}</h3>
-        <p className="mt-3 text-body-sm text-text-secondary">{item.description}</p>
+        <h3 className="mt-4 text-heading-sm text-primary-foreground">{item.title}</h3>
+        <p className="mt-3 text-body-sm text-primary-foreground/72">{item.description}</p>
       </div>
     </article>
   );
@@ -239,30 +252,12 @@ function DiningMedia({
   className = "",
   image,
   sizes,
-  video,
 }: {
   alt: string;
   className?: string;
   image: string;
   sizes: string;
-  video?: string;
 }) {
-  if (video) {
-    return (
-      <video
-        aria-label={alt}
-        autoPlay
-        className={`size-full object-cover ${className}`}
-        loop
-        muted
-        playsInline
-        poster={image}
-      >
-        <source src={video} type="video/mp4" />
-      </video>
-    );
-  }
-
   return (
     <Image
       alt={alt}

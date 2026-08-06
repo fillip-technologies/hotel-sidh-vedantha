@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function GalleryPage() {
   return (
     <main className="bg-background pt-24 text-text-primary">
-      <GallerySection />
+      <GallerySection variant="page" />
     </main>
   );
 }

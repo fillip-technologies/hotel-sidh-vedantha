@@ -125,7 +125,7 @@
   --text-hero-copy-line-height: 1.65;
   --tracking-eyebrow: 0.28em;
   --tracking-cta: 0.28em;
-  --hero-min-height: 96svh;
+  --hero-min-height: 108svh;
 
   --z-base: 0;
   --z-raised: 10;
@@ -243,6 +243,18 @@ body {
   line-height: var(--text-body-md-line-height);
 }
 
+img,
+video,
+canvas,
+svg {
+  display: block;
+}
+
+main > section:not(#top) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 56rem;
+}
+
 button,
 input,
 select,
@@ -349,6 +361,11 @@ textarea {
   line-height: var(--text-hero-title-line-height);
 }
 
+.reveal-on-load {
+  animation: reveal-on-load 560ms ease-out both;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
 .page-shell {
   width: min(100% - (var(--spacing-shell) * 2), var(--container-page));
   margin-inline: auto;
@@ -376,13 +393,15 @@ textarea {
   .hero-image-layer {
     inset: var(--spacing-0) var(--spacing-0) calc(var(--spacing-8) * -1) var(--spacing-0);
   }
+
+  .hero-image-motion {
+    will-change: auto;
+  }
 }
 
 .hero-image-motion {
-  animation: hero-image-float var(--duration-footer-border) ease-in-out infinite;
-  transform: scale(1.04);
   transform-origin: center;
-  will-change: transform;
+  will-change: auto;
 }
 
 .hero-readability-overlay {
@@ -516,8 +535,15 @@ textarea {
 
 .occasion-carousel {
   max-width: 100%;
-  overflow-x: clip;
+  overflow-x: auto;
   mask-image: linear-gradient(90deg, transparent, var(--primary) var(--spacing-8), var(--primary) calc(100% - var(--spacing-8)), transparent);
+  scrollbar-width: none;
+  scroll-padding-inline: var(--spacing-shell);
+  scroll-snap-type: x proximity;
+}
+
+.occasion-carousel::-webkit-scrollbar {
+  display: none;
 }
 
 .occasion-carousel-track {
@@ -881,24 +907,31 @@ textarea {
   }
 }
 
-@keyframes hero-image-float {
-  0%,
-  100% {
-    transform: scale(1.04) translate3d(0, 0, 0);
+@keyframes reveal-on-load {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 1.25rem, 0);
   }
 
-  50% {
-    transform: scale(1.08) translate3d(0, calc(var(--spacing-3) * -1), 0);
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 
-@keyframes hero-wave-breathe {
-  0%,
-  100% {
-    transform: translateY(var(--spacing-0)) scaleX(1);
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
   }
 
-  50% {
-    transform: translateY(calc(var(--spacing-1) * -1)) scaleX(1.015);
+  .hero-image-motion,
+  .occasion-carousel-track,
+  .footer-brand-frame {
+    animation: none !important;
   }
 }

@@ -17,37 +17,37 @@ type TestimonialCarouselProps = {
 
 const defaultTestimonials: Testimonial[] = [
   {
-    name: "Amit Kumar",
+    name: "Hotel Guest",
     stayType: "Business Stay",
     quote:
       "The room was peaceful, the service was quick, and the hotel team made my work trip feel smooth.",
   },
   {
-    name: "Priya Sinha",
+    name: "Event Host",
     stayType: "Family Celebration",
     quote:
       "Our celebration was handled beautifully. The venue, food, and hospitality felt warm and well planned.",
   },
   {
-    name: "Rohit Verma",
+    name: "Dining Guest",
     stayType: "Weekend Dining",
     quote:
       "The dining experience was relaxed and flavourful, with a team that paid attention to every small request.",
   },
   {
-    name: "Neha Singh",
+    name: "Wedding Guest",
     stayType: "Wedding Guest",
     quote:
       "The banquet setup felt elegant, and the staff made the celebration comfortable for the whole family.",
   },
   {
-    name: "Saurabh Jha",
+    name: "Corporate Guest",
     stayType: "Corporate Event",
     quote:
       "Our meeting was managed neatly with timely service, good food, and a professional environment.",
   },
   {
-    name: "Anjali Sharma",
+    name: "Family Guest",
     stayType: "Family Stay",
     quote:
       "Rooms were clean, the food was comforting, and the team responded quickly whenever we needed help.",

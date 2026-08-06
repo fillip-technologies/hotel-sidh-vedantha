@@ -1,13 +1,11 @@
 import Link from "next/link";
-import { BriefcaseBusiness, Camera, MessageCircle, PlayCircle } from "lucide-react";
+import { Camera, MessageCircle } from "lucide-react";
 
 import { siteContact } from "@/data/siteContact";
 
 const socialIcons = {
   Instagram: Camera,
   Facebook: MessageCircle,
-  LinkedIn: BriefcaseBusiness,
-  YouTube: PlayCircle,
 };
 
 export function FooterSocial() {

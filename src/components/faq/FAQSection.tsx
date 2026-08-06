@@ -83,7 +83,7 @@ const faqs = [
 
 export function FAQSection() {
   return (
-    <section className="bg-background py-16 md:py-24 lg:py-32" aria-labelledby="faq-heading">
+    <section className="bg-background pb-16 pt-8 md:pb-24 md:pt-10 lg:pb-32 lg:pt-12" aria-labelledby="faq-heading">
       <div className="mx-auto w-full px-shell">
         <FadeIn className="mx-auto max-w-[var(--container-readable)] text-center">
           <p className="brand-gradient-text text-caption tracking-[var(--tracking-eyebrow)]">

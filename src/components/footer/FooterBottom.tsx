@@ -19,7 +19,7 @@ export function FooterBottom() {
         >
           <Image
             alt="Fillip Technologies"
-            className="h-6 w-auto object-contain"
+            className="object-contain"
             height={24}
             src="/images/fillip-technologies.webp"
             width={92}

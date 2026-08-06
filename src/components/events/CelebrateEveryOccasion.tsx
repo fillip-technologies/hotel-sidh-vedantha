@@ -1,12 +1,9 @@
-"use client";
-
 import {
   BriefcaseBusiness,
   Crown,
   Heart,
   Sparkles,
 } from "lucide-react";
-import { motion } from "framer-motion";
 
 import { EventCard, type EventItem } from "./EventCard";
 
@@ -53,20 +50,6 @@ const events: EventItem[] = [
   },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.12,
-    },
-  },
-};
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0 },
-};
-
 const carouselEvents = [...events, ...events];
 
 export function CelebrateEveryOccasion() {
@@ -74,44 +57,34 @@ export function CelebrateEveryOccasion() {
     <section className="bg-background pb-16 pt-6 md:pb-24 md:pt-10 lg:pb-28 lg:pt-12" aria-labelledby="celebrate-heading">
       <div className="relative z-[var(--z-raised)] mx-auto w-full min-w-0 px-shell">
         <div className="relative mx-auto min-w-0 text-center">
-          <motion.div
-            className="mx-auto max-w-[var(--container-readable)] text-center"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.4 }}
-            variants={containerVariants}
-          >
-            <motion.p
+          <div className="reveal-on-load mx-auto max-w-[var(--container-readable)] text-center">
+            <p
               className="brand-gradient-text text-caption tracking-[var(--tracking-eyebrow)]"
-              variants={fadeUp}
-              transition={{ duration: 0.45, ease: "easeOut" }}
             >
               Events
-            </motion.p>
-            <motion.h2
+            </p>
+            <h2
               className="mt-5 text-heading-xl text-text-primary sm:text-display-lg"
               id="celebrate-heading"
-              variants={fadeUp}
-              transition={{ duration: 0.45, ease: "easeOut" }}
             >
               <span className="block sm:inline">Celebrate </span>
               <span className="block text-brand-pink sm:inline">Every Occasion</span>
-            </motion.h2>
-            <motion.p
+            </h2>
+            <p
               className="mx-auto mt-5 max-w-[var(--container-readable)] text-body-lg text-text-secondary"
-              variants={fadeUp}
-              transition={{ duration: 0.45, ease: "easeOut" }}
             >
               From dream weddings and ring ceremonies to birthdays and corporate
               events, Hotel Sidh Vedantha offers elegant venues, exceptional
               hospitality, and unforgettable experiences for every celebration.
-            </motion.p>
-          </motion.div>
+            </p>
+          </div>
 
-          <div className="occasion-carousel mt-14 overflow-hidden text-left md:mt-16" aria-label="Event categories">
-            <div className="occasion-carousel-track flex w-max gap-8">
+          <div className="occasion-carousel mt-10 overflow-x-auto pb-4 text-left md:mt-12" aria-label="Event categories">
+            <div className="occasion-carousel-track flex w-max snap-x gap-5 md:gap-6">
               {carouselEvents.map((event, index) => (
-                <EventCard event={event} key={`${event.title}-${index}`} />
+                <div className="snap-center" key={`${event.title}-${index}`}>
+                  <EventCard event={event} />
+                </div>
               ))}
             </div>
           </div>

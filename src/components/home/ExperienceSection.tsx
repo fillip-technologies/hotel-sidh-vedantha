@@ -47,7 +47,7 @@ export function ExperienceSection() {
   return (
     <section
       aria-labelledby="experience-heading"
-      className="banquet-section-bg relative isolate overflow-hidden py-16 md:py-24 lg:py-32"
+      className="banquet-section-bg relative isolate overflow-hidden pb-8 pt-16 md:pb-10 md:pt-24 lg:pb-12 lg:pt-32"
     >
       <div className="mx-auto w-full px-shell">
         <FadeIn className="mx-auto max-w-[var(--container-readable)] text-center">

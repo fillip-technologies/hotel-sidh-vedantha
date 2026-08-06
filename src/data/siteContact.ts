@@ -11,23 +11,13 @@ export const siteContact = {
   social: [
     {
       label: "Instagram",
-      handle: "@hotelsidhvedantha",
-      href: "https://www.instagram.com/hotelsidhvedantha",
+      handle: "@hotelsidhvedanthapatna",
+      href: "https://www.instagram.com/hotelsidhvedanthapatna/",
     },
     {
       label: "Facebook",
       handle: "@hotelsidhvedantha",
-      href: "https://www.facebook.com/hotelsidhvedantha",
-    },
-    {
-      label: "LinkedIn",
-      handle: "Hotel Sidh Vedantha",
-      href: "https://www.linkedin.com/company/hotelsidhvedantha",
-    },
-    {
-      label: "YouTube",
-      handle: "@hotelsidhvedantha",
-      href: "https://www.youtube.com/@hotelsidhvedantha",
+      href: "https://www.facebook.com/hotelsidhvedantha/",
     },
   ],
 };

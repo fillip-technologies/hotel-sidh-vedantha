@@ -1,7 +1,5 @@
 import Image from "next/image";
 
-import { BookingForm } from "./BookingForm";
-
 export function Hero() {
   return (
     <section
@@ -19,8 +17,9 @@ export function Hero() {
         />
       </div>
       <div className="hero-readability-overlay" />
+      <span className="absolute inset-x-0 bottom-0 z-[var(--z-raised)] h-44 bg-gradient-to-t from-background to-transparent" />
 
-      <div className="relative z-[var(--z-raised)] mx-auto flex min-h-[var(--hero-min-height)] w-full max-w-[var(--container-hero)] flex-col justify-end px-shell pb-44 pt-36 md:pb-48 lg:pb-52 lg:pt-40">
+      <div className="relative z-[var(--z-raised)] mx-auto flex min-h-[var(--hero-min-height)] w-full max-w-[var(--container-hero)] flex-col justify-end px-shell pb-40 pt-36 md:pb-44 lg:pb-48 lg:pt-40">
         <div className="max-w-[var(--container-hero-title)]">
           <p className="text-caption tracking-[var(--tracking-eyebrow)] text-primary-foreground/70">
             Hotel Sidh Vedantha | Patna
@@ -53,9 +52,9 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="mt-10 lg:mt-12">
+        {/* <div className="mt-10 lg:mt-12">
           <BookingForm />
-        </div>
+        </div> */}
       </div>
 
       <svg

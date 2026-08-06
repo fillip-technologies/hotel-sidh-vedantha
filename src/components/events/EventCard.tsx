@@ -1,9 +1,6 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, type LucideIcon } from "lucide-react";
-import { motion } from "framer-motion";
 
 export type EventItem = {
   title: string;
@@ -23,16 +20,7 @@ export function EventCard({ event }: Readonly<EventCardProps>) {
   const Icon = event.icon;
 
   return (
-    <motion.article
-      className="event-card flex h-[29rem] w-[min(82vw,20rem)] shrink-0 flex-col transition-transform duration-slow hover:-translate-y-1 sm:h-[30rem] md:h-[31rem] md:w-[22rem]"
-      initial="hidden"
-      animate="visible"
-      variants={{
-        hidden: { opacity: 0, x: 24 },
-        visible: { opacity: 1, x: 0 },
-      }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-    >
+    <article className="event-card flex h-[29rem] w-[min(82vw,20rem)] shrink-0 flex-col transition-transform duration-slow hover:-translate-y-1 sm:h-[30rem] md:h-[31rem] md:w-[22rem]">
       <div className="relative h-[13rem] shrink-0 overflow-hidden sm:h-[14rem] md:h-[15rem]">
         <Image
           alt={event.imageAlt}
@@ -64,6 +52,6 @@ export function EventCard({ event }: Readonly<EventCardProps>) {
           />
         </Link>
       </div>
-    </motion.article>
+    </article>
   );
 }
