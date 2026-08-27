@@ -12,7 +12,7 @@ export function BookNowButton({
   const variants = {
     primary: "brand-gradient-bg",
     outline:
-      "brand-gradient-link border border-current bg-transparent text-current hover:border-accent-hover hover:text-accent-hover",
+      "brand-gradient-link bg-transparent text-current hover:text-accent-hover",
     brand: "brand-gradient-bg",
   };
 

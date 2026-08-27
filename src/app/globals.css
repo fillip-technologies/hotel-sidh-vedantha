@@ -3,15 +3,15 @@
 :root {
   --primary: #18181B;
   --primary-foreground: #FFFFFF;
-  --secondary: color-mix(in srgb, #FFF8F3 86%, #6C63FF);
+  --secondary: color-mix(in srgb, #FFF8F3 88%, #8C1F3B);
   --secondary-foreground: #18181B;
-  --accent: #FF8A3D;
+  --accent: #D4A24C;
   --accent-foreground: #18181B;
-  --accent-hover: #FF5FA2;
-  --accent-active: #6C63FF;
+  --accent-hover: #8C1F3B;
+  --accent-active: #5C1526;
   --background: #FFFFFF;
   --surface: #FFFFFF;
-  --surface-hover: color-mix(in srgb, #FFF8F3 88%, #FF8A3D);
+  --surface-hover: color-mix(in srgb, #FFF8F3 88%, #D4A24C);
   --card: #FFFFFF;
   --border: color-mix(in srgb, #18181B 14%, #FFF8F3);
   --muted: color-mix(in srgb, #18181B 42%, #FFF8F3);
@@ -19,15 +19,15 @@
   --text-primary: #18181B;
   --text-secondary: color-mix(in srgb, #18181B 72%, #FFF8F3);
   --text-muted: color-mix(in srgb, #18181B 52%, #FFF8F3);
-  --success: color-mix(in srgb, #6C63FF 72%, #FF8A3D);
-  --warning: #FF8A3D;
-  --error: #FF5FA2;
-  --brand-accent: #FF8A3D;
+  --success: color-mix(in srgb, #5C1526 72%, #D4A24C);
+  --warning: #D4A24C;
+  --error: #C0293C;
+  --brand-accent: #D4A24C;
   --brand-pink: var(--accent-hover);
   --glass: color-mix(in srgb, #FFFFFF 72%, transparent);
   --overlay: color-mix(in srgb, #18181B 48%, transparent);
   --shadow: color-mix(in srgb, #18181B 14%, transparent);
-  --brand-gradient: linear-gradient(135deg, #FF8A3D 0%, #FF5FA2 55%, #6C63FF 100%);
+  --brand-gradient: linear-gradient(135deg, #D4A24C 0%, #8C1F3B 55%, #5C1526 100%);
   --brand-gradient-glow: 0 18px 48px color-mix(in srgb, var(--accent-hover) 24%, transparent),
     0 8px 28px color-mix(in srgb, var(--accent-active) 18%, transparent);
   --section-ivory-start: color-mix(
@@ -390,6 +390,10 @@ textarea {
 }
 
 @media (max-width: 767px) {
+  :root {
+    --hero-min-height: 78svh;
+  }
+
   .hero-image-layer {
     inset: var(--spacing-0) var(--spacing-0) calc(var(--spacing-8) * -1) var(--spacing-0);
   }
@@ -413,19 +417,6 @@ textarea {
     color-mix(in srgb, var(--accent-active) 18%, transparent) 46%,
     color-mix(in srgb, var(--accent-active) 28%, var(--primary)) 100%
   );
-}
-
-.hero-organic-wave {
-  position: absolute;
-  left: calc(var(--spacing-8) * -1);
-  bottom: calc(var(--spacing-1) * -1);
-  z-index: var(--z-raised);
-  display: block;
-  width: calc(100% + var(--spacing-16));
-  height: clamp(var(--spacing-24), 16vw, calc(var(--spacing-32) * 1.45));
-  color: var(--background);
-  pointer-events: none;
-  transform-origin: center bottom;
 }
 
 .brand-gradient-bg {

@@ -59,7 +59,7 @@ const reasons = [
 export default function ExperiencesPage() {
   return (
     <main className="bg-background text-text-primary">
-      <section className="relative isolate min-h-[86svh] overflow-hidden">
+      <section className="relative isolate min-h-[60svh] overflow-hidden md:min-h-[86svh]">
         <Image
           alt="Hotel Sidh Vedantha experiences"
           className="absolute inset-0 -z-10 size-full object-cover"
@@ -70,7 +70,7 @@ export default function ExperiencesPage() {
         />
         <span className="absolute inset-0 -z-10 bg-gradient-to-t from-primary/88 via-primary/48 to-primary/24" />
         <span className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-background to-transparent" />
-        <div className="page-shell flex min-h-[86svh] items-end pb-16 pt-32 md:pb-24">
+        <div className="page-shell flex min-h-[60svh] items-end pb-10 pt-28 md:min-h-[86svh] md:pb-24 md:pt-32">
           <div className="max-w-[58rem] text-primary-foreground">
             <p className="brand-gradient-text text-caption tracking-[var(--tracking-eyebrow)]">
               Experiences
