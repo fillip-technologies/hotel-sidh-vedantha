@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { CalendarCheck, Phone } from "lucide-react";
 
+import { siteContact } from "@/data/siteContact";
+
 export function FinalCTA() {
   return (
-    <section className="luxury-cta-section px-shell pb-8 pt-16 md:pb-10 md:pt-24 lg:pt-32" aria-labelledby="final-cta-heading">
-      <div className="luxury-dark-section mx-auto overflow-hidden rounded-xl px-6 py-12 text-center text-primary-foreground shadow-glass md:px-10 md:py-16">
+    <section className="bg-background px-shell section-y" aria-labelledby="final-cta-heading">
+      <div className="luxury-dark-section mx-auto max-w-[var(--container-page)] overflow-hidden rounded-lg px-6 py-14 text-center text-primary-foreground md:px-12 md:py-20">
         <p className="text-caption tracking-[var(--tracking-eyebrow)] text-primary-foreground/68">
           Hotel Sidh Vedantha
         </p>
@@ -20,15 +22,15 @@ export function FinalCTA() {
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <Link
-            className="luxury-focus brand-gradient-bg inline-flex items-center gap-2 rounded-full px-6 py-3 text-button"
-            href="/contact"
+            className="luxury-focus btn btn-primary"
+            href="/contact-us"
           >
             <CalendarCheck className="size-4" aria-hidden="true" />
             Start Planning
           </Link>
           <Link
-            className="luxury-focus brand-gradient-link inline-flex items-center gap-2 rounded-sm text-button text-primary-foreground hover:text-accent-hover"
-            href="tel:+919876543210"
+            className="luxury-focus btn btn-secondary btn-secondary--invert"
+            href={siteContact.phoneHref}
           >
             <Phone className="size-4" aria-hidden="true" />
             Call Now

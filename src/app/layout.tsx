@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Inter } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
+import { MobileBookingBar } from "@/components/cta";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import "./globals.css";
@@ -10,15 +11,17 @@ const inter = Inter({
   display: "swap",
 });
 
-const bricolage = Bricolage_Grotesque({
+const cormorant = Cormorant_Garamond({
   variable: "--font-heading",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "HSV Design System",
-  description: "Centralized luxury design tokens for Hotel Sidh Vedantha.",
+  title: "Hotel Sidh Vedantha, Patna | Luxury Stays & Banquets",
+  description:
+    "Luxury accommodation in Patna with elegant rooms and suites, fine dining, banquet venues for weddings and celebrations, and warm, personal hospitality.",
 };
 
 export default function RootLayout({
@@ -29,12 +32,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${bricolage.variable} h-full antialiased`}
+      className={`${inter.variable} ${cormorant.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <Header />
         <div className="flex-1">{children}</div>
         <Footer />
+        <MobileBookingBar />
       </body>
     </html>
   );

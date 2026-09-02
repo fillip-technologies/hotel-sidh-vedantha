@@ -5,21 +5,31 @@ type LogoProps = {
   isScrolled?: boolean;
 };
 
+const logos = [
+  { src: "/images/2-white.png", shownWhenScrolled: false },
+  { src: "/images/Hotel-siddha-vedantha-org.png", shownWhenScrolled: true },
+];
+
 export function Logo({ isScrolled = false }: Readonly<LogoProps>) {
   return (
     <Link
       aria-label="Hotel Sidh Vedantha home"
-      className="luxury-focus inline-flex h-[var(--size-logo-header-height)] w-[var(--size-logo-header-width)] items-center overflow-hidden"
+      className="luxury-focus relative inline-flex h-[var(--size-logo-header-height)] w-[var(--size-logo-header-width)] items-center"
       href="/"
     >
-      <Image
-        alt="Hotel Sidh Vedantha"
-        className="h-full w-full object-cover object-left"
-        height={850}
-        priority
-        src={isScrolled ? "/images/LOGO2.png" : "/images/LOGO.png"}
-        width={1600}
-      />
+      {logos.map((logo) => (
+        <Image
+          alt=""
+          className={`object-contain object-left transition-opacity duration-[var(--duration-slow)] ${
+            isScrolled === logo.shownWhenScrolled ? "opacity-100" : "opacity-0"
+          }`}
+          fill
+          key={logo.src}
+          priority
+          sizes="192px"
+          src={logo.src}
+        />
+      ))}
     </Link>
   );
 }

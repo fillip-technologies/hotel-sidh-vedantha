@@ -30,7 +30,7 @@ export function BookingForm() {
         </select>
       </label>
       <button
-        className="luxury-focus brand-gradient-bg inline-flex items-center justify-center gap-3 rounded-full px-7 py-4 text-caption tracking-[var(--tracking-cta)] md:self-stretch lg:px-8"
+        className="luxury-focus btn btn-primary md:self-stretch lg:px-8"
         type="submit"
       >
         <Search className="size-4" aria-hidden="true" />

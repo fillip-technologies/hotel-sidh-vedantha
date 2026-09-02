@@ -61,7 +61,7 @@ export function GallerySection({ variant = "home" }: Readonly<GallerySectionProp
   const activeImage = activeIndex === null ? null : visibleImages[activeIndex];
 
   return (
-    <section className="luxury-dark-section py-12 md:py-16 lg:py-20" aria-labelledby="gallery-heading">
+    <section className="luxury-dark-section section-y" aria-labelledby="gallery-heading">
       <div className="mx-auto w-full px-shell">
         <FadeIn className="mx-auto max-w-[var(--container-readable)] text-center">
           <h2
@@ -80,7 +80,7 @@ export function GallerySection({ variant = "home" }: Readonly<GallerySectionProp
         <FadeIn className="mt-10 grid auto-rows-[18rem] gap-5 md:grid-cols-4 md:auto-rows-[15rem]" delay={0.12}>
           {visibleImages.map((item, index) => (
             <figure
-              className={`group relative overflow-hidden rounded-xl shadow-md ${item.className}`}
+              className={`group relative overflow-hidden rounded-lg ${item.className}`}
               key={item.title}
             >
               <button
@@ -108,7 +108,7 @@ export function GallerySection({ variant = "home" }: Readonly<GallerySectionProp
         {!isPage ? (
         <div className="mt-8 text-center">
           <Link
-            className="luxury-focus brand-gradient-bg group inline-flex items-center gap-2 rounded-full px-5 py-3 text-button"
+            className="luxury-focus btn btn-primary group"
             href="/gallery"
           >
             View Full Gallery
@@ -187,7 +187,7 @@ function GalleryLightbox({
         className="relative flex max-h-[86svh] w-full max-w-4xl flex-col items-center"
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="relative aspect-[4/5] max-h-[76svh] w-full overflow-hidden rounded-xl shadow-glass sm:aspect-[3/2]">
+        <div className="relative aspect-[4/5] max-h-[76svh] w-full overflow-hidden rounded-lg sm:aspect-[3/2]">
           <Image
             alt={`${image.title} at Hotel Sidh Vedantha`}
             className="object-contain"

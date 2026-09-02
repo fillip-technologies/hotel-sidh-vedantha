@@ -13,7 +13,7 @@ export function Rooms() {
   );
 
   return (
-    <section className="luxury-ivory-section py-16 md:py-24 lg:py-32" aria-labelledby="rooms-heading">
+    <section className="luxury-ivory-section section-y" aria-labelledby="rooms-heading">
       <div className="mx-auto w-full px-shell">
         <div className="mx-auto mb-12 max-w-[var(--container-readable)] text-center md:mb-16">
           <p className="brand-gradient-text text-caption tracking-[var(--tracking-eyebrow)]">
@@ -35,7 +35,7 @@ export function Rooms() {
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {rooms.map((room) => (
             <article
-              className="group overflow-hidden rounded-xl bg-card shadow-md transition-transform duration-slow hover:-translate-y-1 hover:shadow-lg"
+              className="group overflow-hidden rounded-lg border border-border/60 bg-surface transition-shadow duration-slow hover:shadow-md"
               key={room.title}
             >
               <div className="relative aspect-[4/3] overflow-hidden">
@@ -75,7 +75,7 @@ export function Rooms() {
 
                 <div className="mt-auto flex flex-wrap items-center gap-3">
                   <Link
-                    className="luxury-focus brand-gradient-bg inline-flex items-center gap-2 rounded-full px-4 py-3 text-button text-primary-foreground transition-transform duration-normal hover:translate-x-1"
+                    className="luxury-focus btn btn-primary btn-sm transition-transform duration-normal hover:translate-x-1"
                     href="/contact"
                   >
                     Quick Book

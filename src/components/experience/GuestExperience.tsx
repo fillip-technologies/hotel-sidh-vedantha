@@ -111,7 +111,7 @@ export function GuestExperience() {
           </div>
 
           <Link
-            className="luxury-focus brand-gradient-bg group m-5 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-button"
+            className="luxury-focus btn btn-primary group m-5"
             href="/experiences"
           >
             Explore More

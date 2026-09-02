@@ -149,7 +149,7 @@ export function RoomDetailPage({ room, otherRooms }: RoomDetailPageProps) {
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
-                className="luxury-focus brand-gradient-bg inline-flex items-center gap-2 rounded-full px-6 py-3 text-button"
+                className="luxury-focus btn btn-primary"
                 href="/contact"
               >
                 Book This Room
@@ -249,7 +249,7 @@ function BookingWidget({
               <BookingField label="Guests" type="number" />
             </div>
             <Link
-              className="luxury-focus brand-gradient-bg inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-4 text-center text-button"
+              className="luxury-focus btn btn-primary"
               href="/contact"
             >
               Reserve Now
@@ -342,7 +342,7 @@ function ImmersiveGallery({
             <h2 className="mt-4 text-heading-lg text-text-primary">See the room before you arrive.</h2>
           </div>
           <button
-            className="luxury-focus brand-gradient-link inline-flex items-center gap-2 rounded-sm text-button text-text-primary hover:text-accent-hover"
+            className="luxury-focus btn btn-secondary"
             onClick={() => onOpen(images[0])}
             type="button"
           >
@@ -536,7 +536,7 @@ function RoomExperience({
           <div className="mt-10 flex flex-wrap gap-4">
             {room.tourVideo ? (
               <Link
-                className="luxury-focus brand-gradient-bg inline-flex min-h-11 items-center gap-2 rounded-full px-6 py-3 text-center text-button"
+                className="luxury-focus btn btn-primary"
                 href={room.tourVideo}
               >
                 <Play className="size-4" aria-hidden="true" />
@@ -544,7 +544,7 @@ function RoomExperience({
               </Link>
             ) : (
               <Link
-                className="luxury-focus brand-gradient-bg inline-flex min-h-11 items-center gap-2 rounded-full px-6 py-3 text-center text-button"
+                className="luxury-focus btn btn-primary"
                 href="/contact"
               >
                 <Play className="size-4" aria-hidden="true" />
@@ -552,7 +552,7 @@ function RoomExperience({
               </Link>
             )}
             <Link
-              className="luxury-focus brand-gradient-link inline-flex items-center gap-2 rounded-sm text-button text-text-primary hover:text-accent-hover"
+              className="luxury-focus btn btn-secondary"
               href="/contact"
             >
               Ask Concierge
@@ -604,7 +604,7 @@ function AvailabilityPricing({
             ))}
           </div>
           <Link
-            className="luxury-focus brand-gradient-bg mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-button"
+            className="luxury-focus btn btn-primary mt-8 w-full"
             href="/contact"
           >
             Reserve Now
@@ -726,7 +726,7 @@ function FinalRoomCta({ roomTitle }: { roomTitle: string }) {
         </div>
         <div className="flex flex-wrap gap-4">
           <Link
-            className="luxury-focus brand-gradient-bg inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-4 text-center text-button"
+            className="luxury-focus btn btn-primary"
             href="/contact"
           >
             Book This Room
@@ -800,7 +800,7 @@ function MobileBookingBar({ price, roomTitle }: { price: string; roomTitle: stri
           <p className="text-body-sm text-text-primary">{price}</p>
         </div>
         <Link
-          className="luxury-focus brand-gradient-bg inline-flex shrink-0 items-center justify-center gap-2 rounded-full px-5 py-3 text-button"
+          className="luxury-focus btn btn-primary shrink-0"
           href="/contact"
         >
           Book

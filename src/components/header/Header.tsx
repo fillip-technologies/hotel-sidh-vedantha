@@ -58,15 +58,23 @@ export function Header() {
           isMenuOpen ? "z-[var(--z-modal)]" : "z-[var(--z-sticky)]"
         } transition-[background-color,box-shadow,backdrop-filter,color] duration-[var(--duration-slow)] ${
           isScrolled || isMenuOpen
-            ? "bg-surface text-text-primary shadow-sm backdrop-blur-md"
-            : "bg-transparent text-primary-foreground shadow-none backdrop-blur-none"
+            ? "border-b border-border/70 bg-surface/95 text-text-primary shadow-sm backdrop-blur-md"
+            : "border-b border-transparent bg-transparent text-primary-foreground shadow-none backdrop-blur-none"
         }`}
       >
-        <div className="page-shell grid h-24 grid-cols-[auto_1fr_auto] items-center gap-8">
+        <div
+          className="page-shell site-header-row grid grid-cols-[auto_1fr_auto] items-center gap-8"
+          style={{
+            ["--header-height" as string]:
+              isScrolled || isMenuOpen
+                ? "var(--header-height-scrolled)"
+                : undefined,
+          }}
+        >
           <Logo isScrolled={isScrolled || isMenuOpen} />
           <DesktopNav items={navItems} isScrolled={isScrolled} />
           <div className="hidden items-center justify-end lg:flex">
-            <BookNowButton variant="outline" />
+            <BookNowButton />
           </div>
           <div className="flex justify-end lg:hidden">
             <MobileNav

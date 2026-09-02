@@ -85,7 +85,7 @@ export function MasterLeadForm({
         </label>
       </div>
       <button
-        className="luxury-focus brand-gradient-bg mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-button"
+        className="luxury-focus btn btn-primary mt-6 w-full"
         type="submit"
       >
         {ctaLabel}

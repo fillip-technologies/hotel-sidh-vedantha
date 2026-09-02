@@ -82,7 +82,7 @@ export function DiningExperience() {
   return (
     <section
       aria-labelledby="dining-experience-heading"
-      className="luxury-dark-section relative isolate overflow-hidden py-14 lg:py-0"
+      className="luxury-dark-section relative isolate overflow-hidden section-y"
     >
       <div className="mx-auto w-full">
         <div className="px-shell text-center lg:sr-only">

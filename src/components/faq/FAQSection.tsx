@@ -83,7 +83,7 @@ const faqs = [
 
 export function FAQSection() {
   return (
-    <section className="bg-background pb-16 pt-8 md:pb-24 md:pt-10 lg:pb-32 lg:pt-12" aria-labelledby="faq-heading">
+    <section className="bg-background section-y" aria-labelledby="faq-heading">
       <div className="mx-auto w-full px-shell">
         <FadeIn className="mx-auto max-w-[var(--container-readable)] text-center">
           <p className="brand-gradient-text text-caption tracking-[var(--tracking-eyebrow)]">
@@ -106,7 +106,7 @@ export function FAQSection() {
           <div className="grid gap-5">
             {faqs.map((faq) => (
               <details
-                className="group rounded-xl border border-border bg-card p-6 shadow-sm"
+                className="group rounded-lg border border-border/70 bg-surface p-6"
                 key={faq.question}
               >
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-heading-sm text-text-primary">
@@ -123,7 +123,7 @@ export function FAQSection() {
             ))}
           </div>
 
-          <aside className="luxury-dark-section rounded-xl px-6 py-10 text-primary-foreground shadow-glass lg:sticky lg:top-28">
+          <aside className="luxury-dark-section rounded-lg px-7 py-10 text-primary-foreground lg:sticky lg:top-32">
             <p className="text-caption tracking-[var(--tracking-eyebrow)] text-primary-foreground/68">
               Hotel Sidh Vedantha
             </p>
@@ -136,14 +136,14 @@ export function FAQSection() {
             </p>
             <div className="mt-8 grid gap-4 sm:flex lg:grid">
               <Link
-                className="luxury-focus brand-gradient-bg inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-button"
+                className="luxury-focus btn btn-primary"
                 href="/contact"
               >
                 <CalendarCheck className="size-4" aria-hidden="true" />
                 Start Planning
               </Link>
               <Link
-                className="luxury-focus brand-gradient-link inline-flex items-center justify-center gap-2 rounded-sm text-button text-primary-foreground hover:text-accent-hover"
+                className="luxury-focus btn btn-secondary btn-secondary--invert"
                 href="tel:+919876543210"
               >
                 <Phone className="size-4" aria-hidden="true" />

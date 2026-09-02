@@ -47,7 +47,7 @@ export function ExperienceSection() {
   return (
     <section
       aria-labelledby="experience-heading"
-      className="banquet-section-bg relative isolate overflow-hidden pb-8 pt-16 md:pb-10 md:pt-24 lg:pb-12 lg:pt-32"
+      className="bg-background relative isolate overflow-hidden section-y"
     >
       <div className="mx-auto w-full px-shell">
         <FadeIn className="mx-auto max-w-[var(--container-readable)] text-center">
@@ -69,7 +69,7 @@ export function ExperienceSection() {
         </FadeIn>
 
         <FadeIn className="mt-14 md:mt-16" delay={0.12}>
-          <div className="banquet-card grid overflow-hidden rounded-xl border border-border shadow-lg lg:grid-cols-[0.62fr_0.38fr]">
+          <div className="banquet-card grid overflow-hidden rounded-lg border border-border/70 shadow-sm lg:grid-cols-[0.62fr_0.38fr]">
             <div className="relative min-h-[28rem] overflow-hidden md:min-h-[34rem]">
               <Image
                 alt={`${activeVenue.title} at Hotel Sidh Vedantha`}
@@ -129,7 +129,7 @@ export function ExperienceSection() {
               </div>
 
               <Link
-                className="luxury-focus brand-gradient-bg group mt-8 inline-flex items-center gap-2 self-start rounded-full px-5 py-3 text-button"
+                className="luxury-focus btn btn-primary group mt-8 self-start"
                 href="/events"
               >
                 Enquire Now
@@ -153,7 +153,7 @@ function VenueMetric({
   value: string;
 }) {
   return (
-    <div className="flex items-center gap-4 rounded-sm border border-border bg-background p-4">
+    <div className="flex items-center gap-4 rounded-md border border-border/60 bg-surface p-4">
       <span className="brand-gradient-border inline-flex size-11 shrink-0 items-center justify-center rounded-full">
         <Icon className="brand-gradient-icon size-5" aria-hidden="true" />
       </span>

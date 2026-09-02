@@ -16,7 +16,7 @@ const biharPlaces = [
 
 export function BiharPlacesCarousel() {
   return (
-    <section className="bihar-places-bg py-16 md:py-24 lg:py-32" aria-labelledby="bihar-places-heading">
+    <section className="bg-background section-y" aria-labelledby="bihar-places-heading">
       <div className="mx-auto w-full">
         <FadeIn className="mx-auto max-w-[var(--container-readable)] px-shell text-center">
           <p className="brand-gradient-text text-caption tracking-[var(--tracking-eyebrow)]">
@@ -40,7 +40,7 @@ export function BiharPlacesCarousel() {
           <div className="bihar-places-carousel flex snap-x gap-10 overflow-x-auto px-shell pb-8">
             {biharPlaces.map((place) => (
               <article
-                className="bihar-place-card group relative shrink-0 snap-center overflow-hidden shadow-lg"
+                className="bihar-place-card group relative shrink-0 snap-center overflow-hidden shadow-sm"
                 key={place.name}
                 tabIndex={0}
               >

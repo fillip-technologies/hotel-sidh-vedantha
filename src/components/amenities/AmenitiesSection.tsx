@@ -24,7 +24,7 @@ const amenities = [
 
 export function AmenitiesSection() {
   return (
-    <section className="luxury-glass-section py-16 md:py-24 lg:py-32" aria-labelledby="amenities-heading">
+    <section className="luxury-ivory-section section-y" aria-labelledby="amenities-heading">
       <div className="mx-auto w-full px-shell">
         <FadeIn className="mx-auto max-w-[var(--container-readable)] text-center">
           <p className="brand-gradient-text text-caption tracking-[var(--tracking-eyebrow)]">
@@ -49,7 +49,7 @@ export function AmenitiesSection() {
 
             return (
               <article
-                className="group rounded-xl border border-border bg-background p-6 shadow-sm transition-all duration-slow hover:-translate-y-1 hover:shadow-md"
+                className="group rounded-lg border border-border/60 bg-surface p-7 transition-colors duration-slow hover:border-accent/45"
                 key={amenity.label}
               >
                 <span className="brand-gradient-border inline-flex size-12 items-center justify-center rounded-full">

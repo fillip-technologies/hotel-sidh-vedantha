@@ -58,7 +58,7 @@ export function SimpleContentPage({
             </p>
           </div>
           <Link
-            className="luxury-focus brand-gradient-bg inline-flex items-center justify-center rounded-full px-6 py-4 text-button"
+            className="luxury-focus btn btn-primary"
             href="/contact-us"
           >
             Contact Hotel

@@ -1,94 +1,165 @@
-import {
-  BriefcaseBusiness,
-  Crown,
-  Heart,
-  Sparkles,
-} from "lucide-react";
+"use client";
 
-import { EventCard, type EventItem } from "./EventCard";
+import { useRef, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
-const events: EventItem[] = [
+type Occasion = {
+  title: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+};
+
+const occasions: Occasion[] = [
   {
     title: "Wedding",
     description:
       "Elegant spaces, graceful service, and refined details for a celebration that feels deeply personal.",
-    href: "/events/wedding",
     image: "/images/wedding.png",
     imageAlt: "Luxury wedding celebration venue at Hotel Sidh Vedantha",
-    icon: Crown,
-    amenities: ["Grand banquet setup", "Curated menus", "Guest rooms"],
   },
   {
     title: "Ring Ceremony",
     description:
       "An intimate setting for meaningful rituals, soft ambience, and memorable family moments.",
-    href: "/events/ring-ceremony",
     image: "/images/ring-ceremony.png",
     imageAlt: "Premium ring ceremony venue at Hotel Sidh Vedantha",
-    icon: Sparkles,
-    amenities: ["Private venue styling", "Family dining", "Photography corners"],
   },
   {
     title: "Birthday Celebration",
     description:
       "Playful luxury, curated menus, and warm hospitality for milestone birthdays and private parties.",
-    href: "/events/birthday-celebration",
     image: "/images/birthday-celebration.png",
     imageAlt: "Birthday celebration venue at Hotel Sidh Vedantha",
-    icon: Heart,
-    amenities: ["Theme decor", "Celebration cake", "Music-ready space"],
   },
   {
     title: "Business Event",
     description:
       "Polished venues for meetings, launches, and corporate gatherings with seamless guest care.",
-    href: "/events/business-event",
     image: "/images/event.png",
     imageAlt: "Business event venue at Hotel Sidh Vedantha",
-    icon: BriefcaseBusiness,
-    amenities: ["Conference seating", "AV support", "Tea and lunch service"],
   },
 ];
 
-const carouselEvents = [...events, ...events];
-
 export function CelebrateEveryOccasion() {
-  return (
-    <section className="bg-background pb-16 pt-6 md:pb-24 md:pt-10 lg:pb-28 lg:pt-12" aria-labelledby="celebrate-heading">
-      <div className="relative z-[var(--z-raised)] mx-auto w-full min-w-0 px-shell">
-        <div className="relative mx-auto min-w-0 text-center">
-          <div className="reveal-on-load mx-auto max-w-[var(--container-readable)] text-center">
-            <p
-              className="brand-gradient-text text-caption tracking-[var(--tracking-eyebrow)]"
-            >
-              Events
-            </p>
-            <h2
-              className="mt-5 text-heading-xl text-text-primary sm:text-display-lg"
-              id="celebrate-heading"
-            >
-              <span className="block sm:inline">Celebrate </span>
-              <span className="block text-brand-pink sm:inline">Every Occasion</span>
-            </h2>
-            <p
-              className="mx-auto mt-5 max-w-[var(--container-readable)] text-body-lg text-text-secondary"
-            >
-              From dream weddings and ring ceremonies to birthdays and corporate
-              events, Hotel Sidh Vedantha offers elegant venues, exceptional
-              hospitality, and unforgettable experiences for every celebration.
-            </p>
-          </div>
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-          <div className="occasion-carousel mt-10 overflow-x-auto pb-4 text-left md:mt-12" aria-label="Event categories">
-            <div className="occasion-carousel-track flex w-max snap-x gap-5 md:gap-6">
-              {carouselEvents.map((event, index) => (
-                <div className="snap-center" key={`${event.title}-${index}`}>
-                  <EventCard event={event} />
+  const active = occasions[activeIndex];
+  const peek = occasions[Math.min(activeIndex + 1, occasions.length - 1)];
+
+  const scrollToIndex = (index: number) => {
+    const track = trackRef.current;
+    if (!track) {
+      return;
+    }
+
+    track.scrollTo({ left: track.clientWidth * index, behavior: "smooth" });
+  };
+
+  const handleScroll = () => {
+    const track = trackRef.current;
+    if (!track) {
+      return;
+    }
+
+    const index = Math.round(track.scrollLeft / track.clientWidth);
+    setActiveIndex(Math.min(Math.max(index, 0), occasions.length - 1));
+  };
+
+  return (
+    <section
+      className="relative overflow-hidden bg-background section-y"
+      aria-labelledby="celebrate-heading"
+    >
+      <div className="mx-auto w-full max-w-[var(--container-hero)] px-shell">
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-16">
+          <div className="relative">
+            <div
+              aria-label="Occasion gallery"
+              className="occasion-track luxury-focus"
+              onScroll={handleScroll}
+              ref={trackRef}
+              role="region"
+              tabIndex={0}
+            >
+              {occasions.map((occasion, index) => (
+                <div className="occasion-slide" key={occasion.title}>
+                  <Image
+                    alt={occasion.imageAlt}
+                    className="size-full object-cover"
+                    fill
+                    priority={index === 0}
+                    sizes="(min-width: 1024px) 55vw, 100vw"
+                    src={occasion.image}
+                  />
                 </div>
               ))}
             </div>
+
+            <div className="absolute bottom-5 right-5 z-[var(--z-raised)] flex items-center gap-3 md:bottom-7 md:right-7">
+              <button
+                aria-label="Previous occasion"
+                className="occasion-nav-button luxury-focus"
+                disabled={activeIndex === 0}
+                onClick={() => scrollToIndex(activeIndex - 1)}
+                type="button"
+              >
+                <ArrowLeft aria-hidden="true" className="size-5" />
+              </button>
+              <button
+                aria-label="Next occasion"
+                className="occasion-nav-button occasion-nav-button--solid luxury-focus"
+                disabled={activeIndex === occasions.length - 1}
+                onClick={() => scrollToIndex(activeIndex + 1)}
+                type="button"
+              >
+                <ArrowRight aria-hidden="true" className="size-5" />
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <p
+              className="brand-gradient-text text-caption tracking-[var(--tracking-eyebrow)]"
+              id="celebrate-heading"
+            >
+              Celebrate Every Occasion
+            </p>
+
+            <div aria-live="polite">
+              <div className="reveal-on-load" key={active.title}>
+                <h2 className="occasion-headline mt-6 text-heading-lg uppercase text-text-primary md:text-heading-xl">
+                  {active.title}
+                </h2>
+                <p className="mt-6 max-w-[34rem] text-body-lg text-text-secondary">
+                  {active.description}
+                </p>
+              </div>
+            </div>
+
+            <Link
+              className="luxury-focus btn btn-primary mt-9"
+              href="/contact-us"
+            >
+              Contact Us
+              <ArrowRight aria-hidden="true" className="size-4" />
+            </Link>
           </div>
         </div>
+      </div>
+
+      <div aria-hidden="true" className="occasion-peek">
+        <Image
+          alt=""
+          className="size-full object-cover"
+          height={720}
+          sizes="12rem"
+          src={peek.image}
+          width={540}
+        />
       </div>
     </section>
   );

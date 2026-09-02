@@ -1,12 +1,13 @@
 import { AmenitiesSection } from "@/components/amenities";
+import { FinalCTA } from "@/components/cta";
 import { CelebrateEveryOccasion } from "@/components/events";
-import { DiningExperience } from "@/components/dining";
+import { DiningMosaic } from "@/components/dining";
 import { FAQSection } from "@/components/faq";
 import { GallerySection } from "@/components/gallery";
 import { Hero } from "@/components/hero";
 import { ExperienceSection, WelcomePopup } from "@/components/home";
 import { BiharPlacesCarousel } from "@/components/places";
-import { Rooms } from "@/components/rooms";
+import { Rooms, RoomsShowcase } from "@/components/rooms";
 
 export default function Home() {
   return (
@@ -14,14 +15,18 @@ export default function Home() {
       <WelcomePopup />
       <Hero />
       <CelebrateEveryOccasion />
-      <DiningExperience />
-      <Rooms />
+      <RoomsShowcase />
+      <DiningMosaic />
+       <Rooms />
+       <BiharPlacesCarousel />
+        <AmenitiesSection />
+         <ExperienceSection />
+      {/* <DiningExperience /> */}
       
-      <AmenitiesSection />
-      <BiharPlacesCarousel />
       <GallerySection />
-      <ExperienceSection />
+     
       <FAQSection />
+      <FinalCTA />
     </main>
   );
 }

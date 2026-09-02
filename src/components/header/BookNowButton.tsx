@@ -10,15 +10,14 @@ export function BookNowButton({
   className = "",
 }: Readonly<BookNowButtonProps>) {
   const variants = {
-    primary: "brand-gradient-bg",
-    outline:
-      "brand-gradient-link bg-transparent text-current hover:text-accent-hover",
-    brand: "brand-gradient-bg",
+    primary: "btn-primary",
+    outline: "btn-secondary",
+    brand: "btn-primary",
   };
 
   return (
     <Link
-      className={`luxury-focus inline-flex items-center justify-center rounded-none px-8 py-4 text-body-md ${variants[variant]} ${className}`}
+      className={`luxury-focus btn ${variants[variant]} ${className}`}
       href="/contact-us"
     >
       Book Now
