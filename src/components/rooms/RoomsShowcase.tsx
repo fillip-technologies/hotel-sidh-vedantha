@@ -2,11 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Maximize2, Users } from "lucide-react";
 
+import { showcaseImages } from "@/data/homepageImages";
 import rooms from "@/data/rooms.json";
 
 type Room = (typeof rooms)[number];
 
 const featuredSlugs = ["vedantha-suite", "premium-rooms", "executive-rooms"];
+
 
 const featured = featuredSlugs
   .map((slug) => rooms.find((room) => room.slug === slug))
@@ -37,7 +39,7 @@ function RoomTile({
         fill
         priority={priority}
         sizes={sizes}
-        src={room.image}
+        src={showcaseImages[room.slug] ?? room.image}
       />
       <span aria-hidden="true" className="room-tile-scrim" />
 
@@ -80,11 +82,10 @@ export function RoomsShowcase() {
               Rooms &amp; Suites
             </p>
             <h2
-              className="mt-4 text-heading-lg text-text-primary md:text-heading-xl"
+              className="mt-4 text-balance text-heading-lg text-text-primary md:text-heading-xl"
               id="rooms-showcase-heading"
             >
-              <span className="block">Our most Comfortable</span>
-              <span className="block">Rooms</span>
+              Our most Comfortable Rooms
             </h2>
           </div>
 

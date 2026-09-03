@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Inter } from "next/font/google";
 import { MobileBookingBar } from "@/components/cta";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { BrandGradientDefs } from "@/components/ui/BrandGradientDefs";
 import "./globals.css";
 
 const inter = Inter({
@@ -35,6 +36,7 @@ export default function RootLayout({
       className={`${inter.variable} ${cormorant.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <BrandGradientDefs />
         <Header />
         <div className="flex-1">{children}</div>
         <Footer />

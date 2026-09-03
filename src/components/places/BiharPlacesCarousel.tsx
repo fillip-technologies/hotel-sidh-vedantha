@@ -12,24 +12,28 @@ const biharPlaces = [
   { name: "Patna Zoo", distance: "Approx. 8 km", image: "/images/Explore-Bihar/patna-zoo.png" },
   { name: "Ganga Ghat", distance: "Approx. 6 km", image: "/images/Explore-Bihar/ganga-ghat.png" },
   { name: "ISKCON Patna", distance: "Approx. 5 km", image: "/images/Explore-Bihar/isckon.png" },
+  { name: "Rajgir Glass Bridge", distance: "Approx. 100 km", image: "/images/Explore-Bihar/glass-bridge.png" },
+  { name: "Rajgir Wildlife Safari", distance: "Approx. 100 km", image: "/images/Explore-Bihar/rajgir-wildlife-safari.png" },
+  { name: "Venu Van, Rajgir", distance: "Approx. 100 km", image: "/images/Explore-Bihar/venu-van.png" },
+  { name: "Nalanda University Ruins", distance: "Approx. 90 km", image: "/images/Explore-Bihar/NALANDA-UNIVERSITY.png" },
 ];
 
 export function BiharPlacesCarousel() {
   return (
-    <section className="bg-background section-y" aria-labelledby="bihar-places-heading">
+    <section className="bg-background section-y-tight" aria-labelledby="bihar-places-heading">
       <div className="mx-auto w-full">
-        <FadeIn className="mx-auto max-w-[var(--container-readable)] px-shell text-center">
+        <FadeIn className="mx-auto max-w-[var(--container-hero)] px-shell text-center">
           <p className="brand-gradient-text text-caption tracking-[var(--tracking-eyebrow)]">
             Explore Bihar
           </p>
           <h2
-            className="mt-5 text-heading-xl text-text-primary sm:text-display-lg"
+            className="mt-5 text-balance text-heading-xl text-text-primary sm:text-display-lg"
             id="bihar-places-heading"
           >
-            <span className="block">Places Worth </span>
-            <span className="block text-brand-pink">Discovering Nearby</span>
+            <span>Places Worth </span>
+            <span className="text-brand-pink">Discovering Nearby</span>
           </h2>
-          <p className="mt-6 text-body-lg text-text-secondary">
+          <p className="mx-auto mt-6 max-w-[var(--container-readable)] text-body-lg text-text-secondary">
             Discover Patna&apos;s landmarks, riverfront views, cultural stops, and a
             few heritage escapes nearby. Distances are approximate from Hotel
             Sidh Vedantha, Patna.

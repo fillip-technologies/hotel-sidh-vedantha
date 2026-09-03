@@ -47,7 +47,7 @@ export function ExperienceSection() {
   return (
     <section
       aria-labelledby="experience-heading"
-      className="bg-background relative isolate overflow-hidden section-y"
+      className="mosaic-backdrop section-y"
     >
       <div className="mx-auto w-full px-shell">
         <FadeIn className="mx-auto max-w-[var(--container-readable)] text-center">

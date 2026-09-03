@@ -8,6 +8,7 @@ import { Hero } from "@/components/hero";
 import { ExperienceSection, WelcomePopup } from "@/components/home";
 import { BiharPlacesCarousel } from "@/components/places";
 import { Rooms, RoomsShowcase } from "@/components/rooms";
+import { roomCardImages } from "@/data/homepageImages";
 
 export default function Home() {
   return (
@@ -17,7 +18,7 @@ export default function Home() {
       <CelebrateEveryOccasion />
       <RoomsShowcase />
       <DiningMosaic />
-       <Rooms />
+       <Rooms imageOverrides={roomCardImages} />
        <BiharPlacesCarousel />
         <AmenitiesSection />
          <ExperienceSection />

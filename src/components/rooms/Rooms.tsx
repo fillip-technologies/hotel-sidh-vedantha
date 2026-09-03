@@ -7,13 +7,21 @@ import { ArrowRight, CalendarCheck, ImageIcon, Maximize2, Users, X } from "lucid
 
 import rooms from "@/data/rooms.json";
 
-export function Rooms() {
+type RoomsProps = {
+  /**
+   * Optional per-slug image overrides. Only the homepage passes these; the
+   * /rooms page renders without them and keeps the rooms.json images.
+   */
+  imageOverrides?: Record<string, string>;
+};
+
+export function Rooms({ imageOverrides = {} }: Readonly<RoomsProps>) {
   const [activeRoom, setActiveRoom] = useState<(typeof rooms)[number] | null>(
     null,
   );
 
   return (
-    <section className="luxury-ivory-section section-y" aria-labelledby="rooms-heading">
+    <section className="white-fog-section" aria-labelledby="rooms-heading">
       <div className="mx-auto w-full px-shell">
         <div className="mx-auto mb-12 max-w-[var(--container-readable)] text-center md:mb-16">
           <p className="brand-gradient-text text-caption tracking-[var(--tracking-eyebrow)]">
@@ -44,7 +52,7 @@ export function Rooms() {
                   className="size-full object-cover transition-transform duration-slow group-hover:scale-[1.04]"
                   fill
                   sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"
-                  src={room.image}
+                  src={imageOverrides[room.slug] ?? room.image}
                 />
                 <button
                   aria-label={`View ${room.title} images`}
@@ -118,7 +126,7 @@ export function Rooms() {
                 className="size-full object-cover"
                 fill
                 sizes="(min-width: 1024px) 768px, 100vw"
-                src={activeRoom.image}
+                src={imageOverrides[activeRoom.slug] ?? activeRoom.image}
               />
             </div>
 

@@ -6,8 +6,8 @@ type LogoProps = {
 };
 
 const logos = [
-  { src: "/images/2-white.png", shownWhenScrolled: false },
-  { src: "/images/Hotel-siddha-vedantha-org.png", shownWhenScrolled: true },
+  { src: "/images/2-whitee.png", shownWhenScrolled: false },
+  { src: "/images/Hotel-siddha-vedantha-orgg.png", shownWhenScrolled: true },
 ];
 
 export function Logo({ isScrolled = false }: Readonly<LogoProps>) {
@@ -20,9 +20,8 @@ export function Logo({ isScrolled = false }: Readonly<LogoProps>) {
       {logos.map((logo) => (
         <Image
           alt=""
-          className={`object-contain object-left transition-opacity duration-[var(--duration-slow)] ${
-            isScrolled === logo.shownWhenScrolled ? "opacity-100" : "opacity-0"
-          }`}
+          className={`object-contain object-left transition-opacity duration-[var(--duration-slow)] ${isScrolled === logo.shownWhenScrolled ? "opacity-100" : "opacity-0"
+            }`}
           fill
           key={logo.src}
           priority
