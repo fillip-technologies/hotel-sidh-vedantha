@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState, type FormEvent } from "react";
+import { createPortal } from "react-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
   ArrowRight,
@@ -226,6 +227,8 @@ function BookingWidget({
   price: string;
   roomTitle: string;
 }) {
+  const booking = useBookingRequest();
+
   return (
     <section className="luxury-ivory-section py-10 md:py-14">
       <div className="page-shell min-w-0">
@@ -237,25 +240,18 @@ function BookingWidget({
           viewport={{ once: true, amount: 0.25 }}
           whileInView="show"
         >
-          <div className="grid min-w-0 gap-5 lg:grid-cols-[0.8fr_1fr_auto] lg:items-end">
+          <form className="grid min-w-0 gap-5 lg:grid-cols-[0.8fr_1fr_auto] lg:items-end" onSubmit={booking.openReservation}>
             <div className="min-w-0">
               <p className="text-caption text-text-muted">Starting Price</p>
               <p className="mt-2 text-heading-md text-text-primary">{price}</p>
               <p className="mt-2 text-body-sm text-text-secondary">{roomTitle}</p>
             </div>
-            <div className="grid min-w-0 gap-4 sm:grid-cols-3">
-              <BookingField label="Check In" type="date" />
-              <BookingField label="Check Out" type="date" />
-              <BookingField label="Guests" type="number" />
-            </div>
-            <Link
-              className="luxury-focus btn btn-primary"
-              href="/contact"
-            >
+            <BookingFields booking={booking} />
+            <button className="luxury-focus btn btn-primary" type="submit">
               Reserve Now
               <ArrowRight className="size-4" aria-hidden="true" />
-            </Link>
-          </div>
+            </button>
+          </form>
           <div className="mt-5 flex flex-wrap gap-3">
             {benefits.map((benefit) => (
               <span className="inline-flex items-center gap-2 rounded-full bg-surface px-4 py-2 text-body-sm text-text-secondary" key={benefit}>
@@ -266,6 +262,9 @@ function BookingWidget({
           </div>
         </motion.aside>
       </div>
+      {booking.isOpen ? (
+        <ReservationModal booking={booking} onClose={booking.closeReservation} roomTitle={roomTitle} />
+      ) : null}
     </section>
   );
 }
@@ -574,6 +573,8 @@ function AvailabilityPricing({
   price: string;
   roomTitle: string;
 }) {
+  const booking = useBookingRequest();
+
   return (
     <section className="luxury-ivory-section py-20 md:py-28">
       <div className="page-shell grid min-w-0 gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
@@ -587,14 +588,13 @@ function AvailabilityPricing({
             room preferences, and the best arrangement for {roomTitle}.
           </p>
         </div>
-        <div className="min-w-0 rounded-xl border border-border bg-glass p-6 shadow-glass backdrop-blur-md md:p-8">
+        <form
+          className="min-w-0 rounded-xl border border-border bg-glass p-6 shadow-glass backdrop-blur-md md:p-8"
+          onSubmit={booking.openReservation}
+        >
           <p className="text-caption text-text-muted">From</p>
           <p className="mt-2 text-heading-lg text-text-primary">{price}</p>
-          <div className="mt-6 grid min-w-0 gap-4 sm:grid-cols-3">
-            <BookingField label="Check In" type="date" />
-            <BookingField label="Check Out" type="date" />
-            <BookingField label="Guests" type="number" />
-          </div>
+          <BookingFields booking={booking} className="mt-6" />
           <div className="mt-6 grid gap-3">
             {benefits.map((benefit) => (
               <p className="flex items-center gap-3 text-body-sm text-text-secondary" key={benefit}>
@@ -603,15 +603,15 @@ function AvailabilityPricing({
               </p>
             ))}
           </div>
-          <Link
-            className="luxury-focus btn btn-primary mt-8 w-full"
-            href="/contact"
-          >
+          <button className="luxury-focus btn btn-primary mt-8 w-full" type="submit">
             Reserve Now
             <ArrowRight className="size-4" aria-hidden="true" />
-          </Link>
-        </div>
+          </button>
+        </form>
       </div>
+      {booking.isOpen ? (
+        <ReservationModal booking={booking} onClose={booking.closeReservation} roomTitle={roomTitle} />
+      ) : null}
     </section>
   );
 }
@@ -777,15 +777,231 @@ function RelatedRoomCard({ featured = false, room }: { featured?: boolean; room:
   );
 }
 
-function BookingField({ label, type }: { label: string; type: "date" | "number" }) {
+type BookingRequest = ReturnType<typeof useBookingRequest>;
+
+function useBookingRequest() {
+  const [checkIn, setCheckIn] = useState("");
+  const [checkOut, setCheckOut] = useState("");
+  const [guests, setGuests] = useState("2");
+  const [isOpen, setIsOpen] = useState(false);
+
+  return {
+    checkIn,
+    checkOut,
+    guests,
+    isOpen,
+    setCheckIn: (value: string) => {
+      setCheckIn(value);
+      if (checkOut && value && checkOut <= value) setCheckOut("");
+    },
+    setCheckOut,
+    setGuests,
+    openReservation: (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      setIsOpen(true);
+    },
+    closeReservation: () => setIsOpen(false),
+  };
+}
+
+function BookingFields({ booking, className = "" }: { booking: BookingRequest; className?: string }) {
+  return (
+    <div className={`grid min-w-0 gap-4 sm:grid-cols-3 ${className}`}>
+      <BookingField label="Check In" onChange={booking.setCheckIn} required type="date" value={booking.checkIn} />
+      <BookingField
+        label="Check Out"
+        min={booking.checkIn ? nextDay(booking.checkIn) : undefined}
+        onChange={booking.setCheckOut}
+        required
+        type="date"
+        value={booking.checkOut}
+      />
+      <BookingField label="Guests" min="1" onChange={booking.setGuests} required type="number" value={booking.guests} />
+    </div>
+  );
+}
+
+function BookingField({
+  label,
+  min,
+  onChange,
+  required = false,
+  type,
+  value,
+}: {
+  label: string;
+  min?: string;
+  onChange: (value: string) => void;
+  required?: boolean;
+  type: "date" | "number";
+  value: string;
+}) {
   return (
     <label className="grid min-w-0 gap-2 text-body-sm text-text-secondary">
       {label}
       <input
         className="luxury-focus block h-14 w-full min-w-0 rounded-full border border-border bg-surface px-4 py-3 text-text-primary"
-        min={type === "number" ? 1 : undefined}
+        min={min}
+        onChange={(event) => onChange(event.target.value)}
         placeholder={type === "number" ? "2" : undefined}
+        required={required}
         type={type}
+        value={value}
+      />
+    </label>
+  );
+}
+
+function ReservationModal({
+  booking,
+  onClose,
+  roomTitle,
+}: {
+  booking: BookingRequest;
+  onClose: () => void;
+  roomTitle: string;
+}) {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [onClose]);
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const subject = `Reservation Request - ${roomTitle}`;
+    const body = [
+      `Room: ${roomTitle}`,
+      `Check In: ${formatDate(booking.checkIn)}`,
+      `Check Out: ${formatDate(booking.checkOut)}`,
+      `Guests: ${booking.guests}`,
+      "",
+      `Name: ${name}`,
+      `Phone: ${phone}`,
+      `Email: ${email}`,
+    ].join("\n");
+
+    window.location.href = `${siteContact.emailHref}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setSubmitted(true);
+  };
+
+  return createPortal(
+    <div
+      aria-label={`Reserve ${roomTitle}`}
+      aria-modal="true"
+      className="fixed inset-0 z-[var(--z-modal)] flex items-center justify-center bg-primary/80 p-4 backdrop-blur-sm"
+      onClick={onClose}
+      role="dialog"
+    >
+      <div
+        className="relative max-h-[92svh] w-full max-w-lg overflow-y-auto rounded-xl border border-border bg-card p-6 shadow-glass md:p-8"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <button
+          aria-label="Close"
+          className="luxury-focus absolute right-4 top-4 inline-flex size-9 items-center justify-center rounded-full bg-surface text-text-primary"
+          onClick={onClose}
+          type="button"
+        >
+          <X className="size-4" aria-hidden="true" />
+        </button>
+
+        <p className="brand-gradient-text text-caption tracking-[var(--tracking-eyebrow)]">Reserve Now</p>
+        <h2 className="mt-3 pr-10 text-heading-md text-text-primary">{roomTitle}</h2>
+        <div className="mt-5 grid grid-cols-3 gap-3 rounded-lg bg-surface p-4 text-body-sm">
+          <ReservationSummaryItem label="Check In" value={formatDate(booking.checkIn)} />
+          <ReservationSummaryItem label="Check Out" value={formatDate(booking.checkOut)} />
+          <ReservationSummaryItem label="Guests" value={booking.guests} />
+        </div>
+
+        {submitted ? (
+          <div className="mt-6 text-center">
+            <CheckCircle2 className="mx-auto size-10 text-success" aria-hidden="true" />
+            <p className="mt-4 text-heading-sm text-text-primary">Thank you, {name}!</p>
+            <p className="mt-3 text-body-sm text-text-secondary">
+              Your reservation request is ready to send. Our team will confirm
+              availability shortly. For immediate help, call {siteContact.phoneDisplay}.
+            </p>
+            <button className="luxury-focus btn btn-primary mt-6 w-full" onClick={onClose} type="button">
+              Done
+            </button>
+          </div>
+        ) : (
+          <form className="mt-6 grid gap-4" onSubmit={handleSubmit}>
+            <ReservationInput autoComplete="name" label="Full Name" onChange={setName} type="text" value={name} />
+            <ReservationInput
+              autoComplete="tel"
+              label="Phone Number"
+              onChange={setPhone}
+              pattern="[+]?[0-9 \-]{10,15}"
+              title="Enter a valid phone number"
+              type="tel"
+              value={phone}
+            />
+            <ReservationInput autoComplete="email" label="Email" onChange={setEmail} type="email" value={email} />
+            <button className="luxury-focus btn btn-primary mt-2 w-full" type="submit">
+              Submit
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </button>
+          </form>
+        )}
+      </div>
+    </div>,
+    document.body,
+  );
+}
+
+function ReservationSummaryItem({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="min-w-0">
+      <p className="text-caption text-text-muted">{label}</p>
+      <p className="mt-1 break-words text-text-primary">{value}</p>
+    </div>
+  );
+}
+
+function ReservationInput({
+  autoComplete,
+  label,
+  onChange,
+  pattern,
+  title,
+  type,
+  value,
+}: {
+  autoComplete: string;
+  label: string;
+  onChange: (value: string) => void;
+  pattern?: string;
+  title?: string;
+  type: "text" | "tel" | "email";
+  value: string;
+}) {
+  return (
+    <label className="grid gap-2 text-body-sm text-text-secondary">
+      {label}
+      <input
+        autoComplete={autoComplete}
+        className="luxury-focus block h-12 w-full rounded-full border border-border bg-surface px-4 py-3 text-text-primary"
+        onChange={(event) => onChange(event.target.value)}
+        pattern={pattern}
+        required
+        title={title}
+        type={type}
+        value={value}
       />
     </label>
   );
@@ -836,6 +1052,21 @@ function Lightbox({
       </div>
     </div>
   );
+}
+
+function nextDay(date: string) {
+  const next = new Date(`${date}T00:00:00`);
+  next.setDate(next.getDate() + 1);
+  return `${next.getFullYear()}-${String(next.getMonth() + 1).padStart(2, "0")}-${String(next.getDate()).padStart(2, "0")}`;
+}
+
+function formatDate(date: string) {
+  if (!date) return "-";
+  return new Date(`${date}T00:00:00`).toLocaleDateString("en-IN", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
 }
 
 function unique(items: string[]) {
