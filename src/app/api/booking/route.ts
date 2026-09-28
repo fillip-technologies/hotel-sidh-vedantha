@@ -1,7 +1,7 @@
 import { readFormRequest, mailFailed } from "@/lib/formRequest";
 import { isDate, text, validateContact } from "@/lib/validation";
 import { sendMail } from "@/services/mail/mailService";
-import { buildBookingEmail } from "@/services/mail/templates";
+import { buildBookingConfirmation, buildBookingEmail } from "@/services/mail/templates";
 
 export async function POST(request: Request) {
   const parsed = await readFormRequest(request, "booking");
@@ -27,11 +27,18 @@ export async function POST(request: Request) {
     return Response.json({ ok: false, error: "Please check the form and try again.", errors }, { status: 400 });
   }
 
+  const details = { ...contact, roomTitle, checkIn, checkOut, guests };
+
   try {
-    await sendMail(buildBookingEmail({ ...contact, roomTitle, checkIn, checkOut, guests }));
+    await sendMail(buildBookingEmail(details));
   } catch (error) {
     return mailFailed(error);
   }
+
+  // The hotel has the request at this point, so a failed confirmation must not fail the form.
+  await sendMail(buildBookingConfirmation(details)).catch((error) =>
+    console.error("Failed to send guest confirmation:", error),
+  );
 
   return Response.json({ ok: true });
 }

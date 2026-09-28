@@ -5,6 +5,8 @@ export type MailMessage = {
   text: string;
   html: string;
   replyTo?: string;
+  /** Defaults to the MAIL_TO inbox. */
+  to?: string;
 };
 
 let transporter: Transporter | null = null;
@@ -46,13 +48,13 @@ function getTransporter(config: ReturnType<typeof getConfig>) {
   return transporter;
 }
 
-/** Sends a message to the inbox defined in MAIL_TO. Server-only. */
-export async function sendMail({ subject, text, html, replyTo }: MailMessage) {
+/** Sends a message to `to`, or to the inbox defined in MAIL_TO by default. Server-only. */
+export async function sendMail({ subject, text, html, replyTo, to }: MailMessage) {
   const config = getConfig();
 
   await getTransporter(config).sendMail({
     from: config.from,
-    to: config.to,
+    to: to ?? config.to,
     replyTo,
     subject,
     text,
