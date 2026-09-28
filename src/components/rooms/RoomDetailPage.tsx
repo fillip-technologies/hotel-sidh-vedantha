@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 
 import { siteContact } from "@/data/siteContact";
+import { postForm } from "@/lib/postForm";
 
 type RoomReview = {
   title: string;
@@ -864,7 +865,10 @@ function ReservationModal({
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -879,23 +883,27 @@ function ReservationModal({
     };
   }, [onClose]);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (isSending) return;
 
-    const subject = `Reservation Request - ${roomTitle}`;
-    const body = [
-      `Room: ${roomTitle}`,
-      `Check In: ${formatDate(booking.checkIn)}`,
-      `Check Out: ${formatDate(booking.checkOut)}`,
-      `Guests: ${booking.guests}`,
-      "",
-      `Name: ${name}`,
-      `Phone: ${phone}`,
-      `Email: ${email}`,
-    ].join("\n");
+    setIsSending(true);
+    setError(null);
 
-    window.location.href = `${siteContact.emailHref}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setSubmitted(true);
+    const failure = await postForm("/api/booking", {
+      roomTitle,
+      checkIn: booking.checkIn,
+      checkOut: booking.checkOut,
+      guests: booking.guests,
+      name,
+      phone,
+      email,
+      website,
+    });
+
+    setIsSending(false);
+    if (failure) setError(failure);
+    else setSubmitted(true);
   };
 
   return createPortal(
@@ -932,7 +940,7 @@ function ReservationModal({
             <CheckCircle2 className="mx-auto size-10 text-success" aria-hidden="true" />
             <p className="mt-4 text-heading-sm text-text-primary">Thank you, {name}!</p>
             <p className="mt-3 text-body-sm text-text-secondary">
-              Your reservation request is ready to send. Our team will confirm
+              Your reservation request has been sent. Our team will confirm
               availability shortly. For immediate help, call {siteContact.phoneDisplay}.
             </p>
             <button className="luxury-focus btn btn-primary mt-6 w-full" onClick={onClose} type="button">
@@ -952,8 +960,23 @@ function ReservationModal({
               value={phone}
             />
             <ReservationInput autoComplete="email" label="Email" onChange={setEmail} type="email" value={email} />
-            <button className="luxury-focus btn btn-primary mt-2 w-full" type="submit">
-              Submit
+            <input
+              aria-hidden="true"
+              autoComplete="off"
+              className="hidden"
+              name="website"
+              onChange={(event) => setWebsite(event.target.value)}
+              tabIndex={-1}
+              type="text"
+              value={website}
+            />
+            {error ? (
+              <p className="text-body-sm text-red-600" role="alert">
+                {error}
+              </p>
+            ) : null}
+            <button className="luxury-focus btn btn-primary mt-2 w-full disabled:opacity-60" disabled={isSending} type="submit">
+              {isSending ? "Sending..." : "Submit"}
               <ArrowRight className="size-4" aria-hidden="true" />
             </button>
           </form>
