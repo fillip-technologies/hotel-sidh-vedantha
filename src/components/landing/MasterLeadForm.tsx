@@ -3,7 +3,6 @@
 import { useState, type FormEvent } from "react";
 import { CalendarCheck, CheckCircle2, Mail, MessageSquare, Phone, UserRound } from "lucide-react";
 
-import { getRecaptchaToken } from "@/lib/recaptchaClient";
 import { postForm } from "@/lib/postForm";
 
 type MasterLeadFormProps = {
@@ -37,8 +36,7 @@ export function MasterLeadForm({
 
     setIsSending(true);
     setError(null);
-    const recaptchaToken = await getRecaptchaToken("enquiry");
-    const failure = await postForm("/api/enquiry", { ...data, context, recaptchaToken });
+    const failure = await postForm("/api/enquiry", { ...data, context });
     setIsSending(false);
 
     if (failure) setError(failure);

@@ -1,7 +1,6 @@
 import { isRateLimited } from "./rateLimit";
-import { verifyRecaptcha } from "./recaptcha";
 
-/** Shared guard for the form routes: rate limit, parse JSON, drop honeypot bots, verify reCAPTCHA v3 (action = scope). */
+/** Shared guard for the form routes: rate limit, parse JSON, drop honeypot bots. */
 export async function readFormRequest(request: Request, scope: string) {
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
 
@@ -19,15 +18,6 @@ export async function readFormRequest(request: Request, scope: string) {
   // Hidden "website" field: humans leave it empty, bots fill it. Pretend success and send nothing.
   if (typeof body.website === "string" && body.website !== "") {
     return { response: Response.json({ ok: true }) };
-  }
-
-  if (!(await verifyRecaptcha(body.recaptchaToken, scope, ip))) {
-    return {
-      response: Response.json(
-        { ok: false, error: "We couldn't verify you're human. Please refresh the page and try again." },
-        { status: 400 },
-      ),
-    };
   }
 
   return { body };
