@@ -84,7 +84,7 @@ export function Rooms({ imageOverrides = {} }: Readonly<RoomsProps>) {
                 <div className="mt-auto flex flex-wrap items-center gap-3">
                   <Link
                     className="luxury-focus btn btn-primary btn-sm transition-transform duration-normal hover:translate-x-1"
-                    href="/contact"
+                    href="/contact-us"
                   >
                     Quick Book
                     <CalendarCheck className="size-4" aria-hidden="true" />

@@ -12,12 +12,14 @@ import {
 } from "lucide-react";
 
 import { MasterLeadForm } from "@/components/landing";
+import { CopyEmailButton } from "@/components/ui/CopyEmailButton";
 import { siteContact } from "@/data/siteContact";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Hotel Sidh Vedantha Patna",
+  title: "Contact Us | Book Hotels in Patna | Hotel Sidh Vedantha",
   description:
-    "Contact Hotel Sidh Vedantha for room bookings, dining, weddings, events, meetings, and venue enquiries in Patna.",
+    "Contact Hotel Sidh Vedantha, one of the best hotels in Patna, for room bookings, dining, engagement and ring ceremony venues, and corporate events, with easy access to Patna Airport.",
+  keywords: ["Hotels in Patna", "Best hotels in Patna", "Patna Hotels Near Airport", "Ring ceremony venue in Patna"],
 };
 
 const contactCards = [
@@ -90,6 +92,10 @@ export default function ContactUsPage() {
                 <Mail className="size-4" aria-hidden="true" />
                 Email Hotel
               </Link>
+              <CopyEmailButton
+                className="luxury-focus inline-flex items-center gap-2 rounded-full border border-primary-foreground/30 bg-primary/20 px-6 py-3 text-button text-primary-foreground backdrop-blur-md hover:bg-primary-foreground/10"
+                label="Copy Email"
+              />
             </div>
           </div>
 

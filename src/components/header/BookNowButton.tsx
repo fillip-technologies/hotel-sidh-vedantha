@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { siteContact } from "@/data/siteContact";
 
 type BookNowButtonProps = {
   variant?: "primary" | "outline" | "brand";
@@ -16,11 +16,13 @@ export function BookNowButton({
   };
 
   return (
-    <Link
+    <a
       className={`luxury-focus btn ${variants[variant]} ${className}`}
-      href="/contact-us"
+      href={siteContact.bookingHref}
+      rel="noopener noreferrer"
+      target="_blank"
     >
       Book Now
-    </Link>
+    </a>
   );
 }

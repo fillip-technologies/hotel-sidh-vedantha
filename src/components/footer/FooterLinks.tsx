@@ -20,6 +20,9 @@ export function FooterLinks({ title, links }: Readonly<FooterLinksProps>) {
             <Link
               className="luxury-focus brand-gradient-link inline-flex rounded-sm text-body-sm text-text-secondary hover:text-accent-hover"
               href={link.href}
+              {...(link.href.startsWith("http")
+                ? { rel: "noopener noreferrer", target: "_blank" }
+                : {})}
             >
               {link.label}
             </Link>

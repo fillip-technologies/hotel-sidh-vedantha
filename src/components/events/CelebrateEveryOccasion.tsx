@@ -48,7 +48,6 @@ export function CelebrateEveryOccasion() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const active = occasions[activeIndex];
-  const peek = occasions[Math.min(activeIndex + 1, occasions.length - 1)];
 
   const scrollToIndex = (index: number) => {
     const track = trackRef.current;
@@ -147,19 +146,44 @@ export function CelebrateEveryOccasion() {
               Contact Us
               <ArrowRight aria-hidden="true" className="size-4" />
             </Link>
+
+            <div className="mt-10 grid grid-cols-4 gap-3">
+              {occasions.map((occasion, index) => {
+                const isActive = index === activeIndex;
+
+                return (
+                  <button
+                    aria-label={`Show ${occasion.title}`}
+                    aria-pressed={isActive}
+                    className={`luxury-focus group text-left transition-opacity duration-base ${
+                      isActive ? "opacity-100" : "opacity-60 hover:opacity-100"
+                    }`}
+                    key={occasion.title}
+                    onClick={() => scrollToIndex(index)}
+                    type="button"
+                  >
+                    <span
+                      className={`relative block aspect-[4/3] overflow-hidden rounded-md border-2 ${
+                        isActive ? "border-accent-hover" : "border-transparent"
+                      }`}
+                    >
+                      <Image
+                        alt=""
+                        className="object-cover transition-transform duration-slow group-hover:scale-105"
+                        fill
+                        sizes="8rem"
+                        src={occasion.image}
+                      />
+                    </span>
+                    <span className="mt-2 block text-caption text-text-secondary">
+                      {occasion.title}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
-      </div>
-
-      <div aria-hidden="true" className="occasion-peek">
-        <Image
-          alt=""
-          className="size-full object-cover"
-          height={720}
-          sizes="12rem"
-          src={peek.image}
-          width={540}
-        />
       </div>
     </section>
   );

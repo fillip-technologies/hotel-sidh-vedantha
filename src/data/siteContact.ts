@@ -1,8 +1,10 @@
 export const siteContact = {
+  siteUrl: "https://hotelsidhvedantha.com",
   phoneDisplay: "+91-8092877877",
   phoneHref: "tel:+918092877877",
   email: "reservation@hotelsidhvedantha.com",
   emailHref: "mailto:reservation@hotelsidhvedantha.com",
+  bookingHref: "https://letsbook.me/booking/hotelsidhvedantha",
   address: "West Ramkrishna Nagar, New Bypass, Patna-800027",
   mapsHref:
     "https://www.google.com/maps/search/?api=1&query=West%20Ramkrishna%20Nagar%20New%20Bypass%20Patna%20800027",

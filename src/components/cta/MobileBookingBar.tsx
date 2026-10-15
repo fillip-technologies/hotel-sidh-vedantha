@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { CalendarCheck, Phone } from "lucide-react";
 
 import { siteContact } from "@/data/siteContact";
@@ -9,6 +10,7 @@ import { siteContact } from "@/data/siteContact";
 const revealRatio = 0.6;
 
 export function MobileBookingBar() {
+  const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -32,18 +34,25 @@ export function MobileBookingBar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Room detail pages render their own "Reserve Now" bar in the same spot.
+  if (pathname.startsWith("/rooms/")) {
+    return null;
+  }
+
   return (
     <div
       className="mobile-booking-bar lg:hidden"
       data-visible={isVisible}
     >
-      <Link
+      <a
         className="luxury-focus btn btn-primary btn-sm"
-        href="/contact-us"
+        href={siteContact.bookingHref}
+        rel="noopener noreferrer"
+        target="_blank"
       >
         <CalendarCheck aria-hidden="true" className="size-4" />
         Book Now
-      </Link>
+      </a>
       <Link
         aria-label={`Call ${siteContact.phoneDisplay}`}
         className="luxury-focus btn btn-sm btn-icon mobile-booking-call"

@@ -2,12 +2,28 @@ import { CalendarCheck, HelpCircle, Phone } from "lucide-react";
 import Link from "next/link";
 
 import { FadeIn } from "@/components/ui/FadeIn";
+import { siteContact } from "@/data/siteContact";
 
 const faqs = [
   {
     question: "Where is Hotel Sidh Vedantha located?",
     answer:
-      "Hotel Sidh Vedantha is located in Bihar with easy access for leisure stays, family visits, dining, and events.",
+      "Hotel Sidh Vedantha is located at West Ramkrishna Nagar, New Bypass, Patna-800027, making it one of the well-connected hotels in Patna for leisure stays, family visits, dining, and events.",
+  },
+  {
+    question: "Why is Hotel Sidh Vedantha among the best hotels in Patna?",
+    answer:
+      "Guests looking for luxury hotels in Patna choose us for elegant rooms, the Norton Classic Restaurant, event halls, and warm, personal service, all at one address.",
+  },
+  {
+    question: "Is Hotel Sidh Vedantha a couple friendly hotel in Patna?",
+    answer:
+      "Yes, we are one of the couple friendly hotels in Patna. Couples are welcome with valid government ID, and enjoy private rooms, in-room dining support, and a calm stay.",
+  },
+  {
+    question: "Is the hotel convenient for Patna Airport?",
+    answer:
+      "Yes, the hotel is on New Bypass with easy road access to Patna Airport, and our team can help arrange taxis for arrivals and departures.",
   },
   {
     question: "How can I book a room?",
@@ -17,7 +33,7 @@ const faqs = [
   {
     question: "What types of rooms are available?",
     answer:
-      "The hotel offers comfortable room categories suited for business guests, families, couples, and group stays.",
+      "As a luxury 4 star hotel in Patna, we offer Executive Rooms, Club Rooms, Premium Rooms, and the Vedantha Suite for business guests, families, couples, and group stays.",
   },
   {
     question: "Is early check-in available?",
@@ -35,14 +51,14 @@ const faqs = [
       "Yes, outside guests can enjoy the dining experience and reserve tables based on availability.",
   },
   {
-    question: "Do you host weddings and ring ceremonies?",
+    question: "Do you host weddings, engagements, and ring ceremonies?",
     answer:
-      "Yes, the event spaces can be arranged for weddings, ring ceremonies, birthdays, and family celebrations.",
+      "Yes, guests often choose us as the best hotel for engagement in Patna. Our ring ceremony venue can be arranged for engagements, weddings, birthdays, and family celebrations.",
   },
   {
     question: "Can business meetings be arranged at the hotel?",
     answer:
-      "Yes, the team supports meetings, training sessions, corporate lunches, and formal gatherings with flexible setups.",
+      "Yes, we are one of the best hotels for corporate events in Patna, supporting meetings, training sessions, conferences, corporate lunches, and formal gatherings with flexible setups.",
   },
   {
     question: "Is parking available?",
@@ -137,17 +153,17 @@ export function FAQSection() {
             <div className="mt-8 grid gap-4 sm:flex lg:grid">
               <Link
                 className="luxury-focus btn btn-primary"
-                href="/contact"
+                href="/contact-us"
               >
                 <CalendarCheck className="size-4" aria-hidden="true" />
                 Start Planning
               </Link>
               <Link
                 className="luxury-focus btn btn-secondary btn-secondary--invert"
-                href="tel:+919876543210"
+                href={siteContact.phoneHref}
               >
                 <Phone className="size-4" aria-hidden="true" />
-                Call Now
+                Call {siteContact.phoneDisplay}
               </Link>
             </div>
           </aside>

@@ -22,7 +22,7 @@ export function Hero() {
       <span className="absolute inset-x-0 bottom-0 z-[var(--z-raised)] h-44 bg-gradient-to-t from-background to-transparent" />
 
       <h1 className="sr-only">
-        Hotel Sidh Vedantha, Patna — Luxury Stays, Timeless Hospitality
+        Hotel Sidh Vedantha — Luxury 4 Star Hotel in Patna for Stays, Engagements & Corporate Events
       </h1>
     </section>
   );

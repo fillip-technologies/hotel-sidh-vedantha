@@ -4,9 +4,10 @@ import Image from "next/image";
 import { GallerySection } from "@/components/gallery";
 
 export const metadata: Metadata = {
-  title: "Gallery | Hotel Sidh Vedantha Patna",
+  title: "Gallery | Hotel Sidh Vedantha, Luxury Hotel in Patna",
   description:
-    "Explore the gallery of Hotel Sidh Vedantha including rooms, dining, events, and celebrations in Patna.",
+    "Explore the gallery of Hotel Sidh Vedantha, a luxury 4 star hotel in Patna, including rooms, dining, engagement and ring ceremony setups, and events.",
+  keywords: ["Luxury hotels in Patna", "4 star hotels in Patna", "Ring ceremony venue in Patna"],
 };
 
 export default function GalleryPage() {

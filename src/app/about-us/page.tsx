@@ -4,9 +4,10 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2, HeartHandshake, Sparkles, UsersRound } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About Us | Hotel Sidh Vedantha Patna",
+  title: "About Us | Hotel Sidh Vedantha, Top Hotel in Patna",
   description:
-    "Learn about Hotel Sidh Vedantha, a refined hotel in Patna for rooms, dining, events, and warm hospitality.",
+    "Learn about Hotel Sidh Vedantha, a top hotel in Patna and one of the best luxury hotels in Patna for rooms, dining, engagements, corporate events, and warm hospitality.",
+  keywords: ["Top Hotel in Patna", "Patna Top Hotels", "Best hotels in Patna", "Luxury hotels in Patna"],
 };
 
 const values = [

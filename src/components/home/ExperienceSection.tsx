@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 import { ArrowRight, CalendarDays, LayoutPanelTop, Users } from "lucide-react";
 
 import { AnimatedArrow } from "@/components/ui/AnimatedArrow";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { siteContact } from "@/data/siteContact";
 
 const venues = [
   {
@@ -128,13 +128,15 @@ export function ExperienceSection() {
                 })}
               </div>
 
-              <Link
+              <a
                 className="luxury-focus btn btn-primary group mt-8 self-start"
-                href="/events"
+                href={siteContact.bookingHref}
+                rel="noopener noreferrer"
+                target="_blank"
               >
-                Enquire Now
+                Book Now
                 <AnimatedArrow />
-              </Link>
+              </a>
             </div>
           </div>
         </FadeIn>

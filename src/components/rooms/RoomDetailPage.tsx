@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState, type FormEvent } from "react";
-import { createPortal } from "react-dom";
+import { useState, type ReactNode } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
   ArrowRight,
@@ -26,7 +25,6 @@ import {
 } from "lucide-react";
 
 import { siteContact } from "@/data/siteContact";
-import { postForm } from "@/lib/postForm";
 
 type RoomReview = {
   title: string;
@@ -52,6 +50,7 @@ type Room = {
   roomSpecificAmenities: string[];
   popularAmenities: string[];
   startingPrice?: string;
+  bookingUrl?: string;
   bookingBenefits?: string[];
   view?: string;
   tourVideo?: string;
@@ -100,7 +99,7 @@ export function RoomDetailPage({ room, otherRooms }: RoomDetailPageProps) {
   const heroScale = useTransform(scrollY, [0, 700], [1.08, 1.16]);
   const galleryImages = [room.image, ...room.gallery.filter((image) => image !== room.image)];
   const bookingBenefits = room.bookingBenefits ?? ["Breakfast Included", "Free Cancellation"];
-  const price = room.startingPrice ?? "Contact for Best Rate";
+  const bookingUrl = room.bookingUrl ?? siteContact.bookingHref;
   const roomView = room.view ?? "City View";
   const storyBadges = [room.size, room.bed, room.occupancy, roomView, ...bookingBenefits].slice(0, 5);
   const highlights = unique([
@@ -150,13 +149,10 @@ export function RoomDetailPage({ room, otherRooms }: RoomDetailPageProps) {
               {room.longDescription}
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Link
-                className="luxury-focus btn btn-primary"
-                href="/contact"
-              >
+              <BookingLink href={bookingUrl}>
                 Book This Room
                 <CalendarCheck className="size-4" aria-hidden="true" />
-              </Link>
+              </BookingLink>
               <Link
                 className="luxury-focus inline-flex items-center gap-2 rounded-full border border-primary-foreground/30 bg-primary/20 px-6 py-3 text-button text-primary-foreground backdrop-blur-md hover:bg-primary-foreground/10"
                 href={siteContact.phoneHref}
@@ -185,7 +181,7 @@ export function RoomDetailPage({ room, otherRooms }: RoomDetailPageProps) {
         </div>
       </section>
 
-      <BookingWidget price={price} benefits={bookingBenefits} roomTitle={room.title} />
+      <BookingWidget benefits={bookingBenefits} bookingUrl={bookingUrl} roomTitle={room.title} />
 
       <RoomStory image={storyImage} room={room} badges={storyBadges} />
 
@@ -201,7 +197,7 @@ export function RoomDetailPage({ room, otherRooms }: RoomDetailPageProps) {
         room={room}
       />
 
-      <AvailabilityPricing benefits={bookingBenefits} price={price} roomTitle={room.title} />
+      <Availability benefits={bookingBenefits} bookingUrl={bookingUrl} roomTitle={room.title} />
 
       <GuestReviews reviews={reviews} />
 
@@ -209,9 +205,9 @@ export function RoomDetailPage({ room, otherRooms }: RoomDetailPageProps) {
 
       <SimilarRooms featuredRelated={featuredRelated} supportingRelated={supportingRelated} />
 
-      <FinalRoomCta roomTitle={room.title} />
+      <FinalRoomCta bookingUrl={bookingUrl} roomTitle={room.title} />
 
-      <MobileBookingBar price={price} roomTitle={room.title} />
+      <MobileBookingBar bookingUrl={bookingUrl} roomTitle={room.title} />
       {activePhoto ? (
         <Lightbox image={activePhoto} onClose={() => setActivePhoto(null)} roomTitle={room.title} />
       ) : null}
@@ -221,15 +217,13 @@ export function RoomDetailPage({ room, otherRooms }: RoomDetailPageProps) {
 
 function BookingWidget({
   benefits,
-  price,
+  bookingUrl,
   roomTitle,
 }: {
   benefits: string[];
-  price: string;
+  bookingUrl: string;
   roomTitle: string;
 }) {
-  const booking = useBookingRequest();
-
   return (
     <section className="luxury-ivory-section py-10 md:py-14">
       <div className="page-shell min-w-0">
@@ -241,18 +235,14 @@ function BookingWidget({
           viewport={{ once: true, amount: 0.25 }}
           whileInView="show"
         >
-          <form className="grid min-w-0 gap-5 lg:grid-cols-[0.8fr_1fr_auto] lg:items-end" onSubmit={booking.openReservation}>
+          <div className="flex min-w-0 flex-wrap items-center justify-between gap-5">
             <div className="min-w-0">
-              <p className="text-caption text-text-muted">Starting Price</p>
-              <p className="mt-2 text-heading-md text-text-primary">{price}</p>
-              <p className="mt-2 text-body-sm text-text-secondary">{roomTitle}</p>
+              <p className="text-caption text-text-muted">Book Direct</p>
+              <p className="mt-2 text-heading-md text-text-primary">{roomTitle}</p>
+              <p className="mt-2 text-body-sm text-text-secondary">Check live availability and confirm instantly.</p>
             </div>
-            <BookingFields booking={booking} />
-            <button className="luxury-focus btn btn-primary" type="submit">
-              Reserve Now
-              <ArrowRight className="size-4" aria-hidden="true" />
-            </button>
-          </form>
+            <ReserveNowLink href={bookingUrl} />
+          </div>
           <div className="mt-5 flex flex-wrap gap-3">
             {benefits.map((benefit) => (
               <span className="inline-flex items-center gap-2 rounded-full bg-surface px-4 py-2 text-body-sm text-text-secondary" key={benefit}>
@@ -263,9 +253,6 @@ function BookingWidget({
           </div>
         </motion.aside>
       </div>
-      {booking.isOpen ? (
-        <ReservationModal booking={booking} onClose={booking.closeReservation} roomTitle={roomTitle} />
-      ) : null}
     </section>
   );
 }
@@ -542,18 +529,10 @@ function RoomExperience({
                 <Play className="size-4" aria-hidden="true" />
                 Watch Room Video
               </Link>
-            ) : (
-              <Link
-                className="luxury-focus btn btn-primary"
-                href="/contact"
-              >
-                <Play className="size-4" aria-hidden="true" />
-                360 Room Tour
-              </Link>
-            )}
+            ) : null}
             <Link
               className="luxury-focus btn btn-secondary"
-              href="/contact"
+              href="/contact-us"
             >
               Ask Concierge
               <ArrowRight className="size-4" aria-hidden="true" />
@@ -565,37 +544,31 @@ function RoomExperience({
   );
 }
 
-function AvailabilityPricing({
+function Availability({
   benefits,
-  price,
+  bookingUrl,
   roomTitle,
 }: {
   benefits: string[];
-  price: string;
+  bookingUrl: string;
   roomTitle: string;
 }) {
-  const booking = useBookingRequest();
-
   return (
     <section className="luxury-ivory-section py-20 md:py-28">
       <div className="page-shell grid min-w-0 gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <div className="min-w-0">
           <p className="brand-gradient-text text-caption tracking-[var(--tracking-eyebrow)]">
-            Availability & Pricing
+            Availability
           </p>
           <h2 className="mt-5 text-heading-lg text-text-primary sm:text-heading-xl">Plan your stay with confidence.</h2>
           <p className="mt-6 text-body-lg text-text-secondary">
-            Share your preferred dates and our team will confirm availability,
-            room preferences, and the best arrangement for {roomTitle}.
+            Check live availability for {roomTitle} and confirm your stay
+            instantly on our secure booking page.
           </p>
         </div>
-        <form
-          className="min-w-0 rounded-xl border border-border bg-glass p-6 shadow-glass backdrop-blur-md md:p-8"
-          onSubmit={booking.openReservation}
-        >
-          <p className="text-caption text-text-muted">From</p>
-          <p className="mt-2 text-heading-lg text-text-primary">{price}</p>
-          <BookingFields booking={booking} className="mt-6" />
+        <div className="min-w-0 rounded-xl border border-border bg-glass p-6 shadow-glass backdrop-blur-md md:p-8">
+          <p className="text-caption text-text-muted">Selected Room</p>
+          <p className="mt-2 text-heading-lg text-text-primary">{roomTitle}</p>
           <div className="mt-6 grid gap-3">
             {benefits.map((benefit) => (
               <p className="flex items-center gap-3 text-body-sm text-text-secondary" key={benefit}>
@@ -604,15 +577,9 @@ function AvailabilityPricing({
               </p>
             ))}
           </div>
-          <button className="luxury-focus btn btn-primary mt-8 w-full" type="submit">
-            Reserve Now
-            <ArrowRight className="size-4" aria-hidden="true" />
-          </button>
-        </form>
+          <ReserveNowLink className="mt-8 w-full" href={bookingUrl} />
+        </div>
       </div>
-      {booking.isOpen ? (
-        <ReservationModal booking={booking} onClose={booking.closeReservation} roomTitle={roomTitle} />
-      ) : null}
     </section>
   );
 }
@@ -708,7 +675,7 @@ function SimilarRooms({
   );
 }
 
-function FinalRoomCta({ roomTitle }: { roomTitle: string }) {
+function FinalRoomCta({ bookingUrl, roomTitle }: { bookingUrl: string; roomTitle: string }) {
   return (
     <section className="luxury-dark-section py-20 md:py-28">
       <div className="page-shell grid min-w-0 items-center gap-10 lg:grid-cols-[1fr_auto]">
@@ -726,13 +693,10 @@ function FinalRoomCta({ roomTitle }: { roomTitle: string }) {
           </p>
         </div>
         <div className="flex flex-wrap gap-4">
-          <Link
-            className="luxury-focus btn btn-primary"
-            href="/contact"
-          >
+          <BookingLink href={bookingUrl}>
             Book This Room
             <CalendarCheck className="size-4" aria-hidden="true" />
-          </Link>
+          </BookingLink>
             <Link
               className="luxury-focus inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-primary-foreground/24 px-6 py-4 text-center text-button text-primary-foreground hover:bg-primary-foreground/10"
               href={siteContact.phoneHref}
@@ -778,273 +742,12 @@ function RelatedRoomCard({ featured = false, room }: { featured?: boolean; room:
   );
 }
 
-type BookingRequest = ReturnType<typeof useBookingRequest>;
-
-function useBookingRequest() {
-  const [checkIn, setCheckIn] = useState("");
-  const [checkOut, setCheckOut] = useState("");
-  const [guests, setGuests] = useState("2");
-  const [isOpen, setIsOpen] = useState(false);
-
-  return {
-    checkIn,
-    checkOut,
-    guests,
-    isOpen,
-    setCheckIn: (value: string) => {
-      setCheckIn(value);
-      if (checkOut && value && checkOut <= value) setCheckOut("");
-    },
-    setCheckOut,
-    setGuests,
-    openReservation: (event: FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-      setIsOpen(true);
-    },
-    closeReservation: () => setIsOpen(false),
-  };
-}
-
-function BookingFields({ booking, className = "" }: { booking: BookingRequest; className?: string }) {
-  return (
-    <div className={`grid min-w-0 gap-4 sm:grid-cols-3 ${className}`}>
-      <BookingField label="Check In" onChange={booking.setCheckIn} required type="date" value={booking.checkIn} />
-      <BookingField
-        label="Check Out"
-        min={booking.checkIn ? nextDay(booking.checkIn) : undefined}
-        onChange={booking.setCheckOut}
-        required
-        type="date"
-        value={booking.checkOut}
-      />
-      <BookingField label="Guests" min="1" onChange={booking.setGuests} required type="number" value={booking.guests} />
-    </div>
-  );
-}
-
-function BookingField({
-  label,
-  min,
-  onChange,
-  required = false,
-  type,
-  value,
-}: {
-  label: string;
-  min?: string;
-  onChange: (value: string) => void;
-  required?: boolean;
-  type: "date" | "number";
-  value: string;
-}) {
-  return (
-    <label className="grid min-w-0 gap-2 text-body-sm text-text-secondary">
-      {label}
-      <input
-        className="luxury-focus block h-14 w-full min-w-0 rounded-full border border-border bg-surface px-4 py-3 text-text-primary"
-        min={min}
-        onChange={(event) => onChange(event.target.value)}
-        placeholder={type === "number" ? "2" : undefined}
-        required={required}
-        type={type}
-        value={value}
-      />
-    </label>
-  );
-}
-
-function ReservationModal({
-  booking,
-  onClose,
-  roomTitle,
-}: {
-  booking: BookingRequest;
-  onClose: () => void;
-  roomTitle: string;
-}) {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [website, setWebsite] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [isSending, setIsSending] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", onKeyDown);
-
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", onKeyDown);
-    };
-  }, [onClose]);
-
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (isSending) return;
-
-    setIsSending(true);
-    setError(null);
-
-    const failure = await postForm("/api/booking", {
-      roomTitle,
-      checkIn: booking.checkIn,
-      checkOut: booking.checkOut,
-      guests: booking.guests,
-      name,
-      phone,
-      email,
-      website,
-    });
-
-    setIsSending(false);
-    if (failure) setError(failure);
-    else setSubmitted(true);
-  };
-
-  return createPortal(
-    <div
-      aria-label={`Reserve ${roomTitle}`}
-      aria-modal="true"
-      className="fixed inset-0 z-[var(--z-modal)] flex items-center justify-center bg-primary/80 p-4 backdrop-blur-sm"
-      onClick={onClose}
-      role="dialog"
-    >
-      <div
-        className="relative max-h-[92svh] w-full max-w-lg overflow-y-auto rounded-xl border border-border bg-card p-6 shadow-glass md:p-8"
-        onClick={(event) => event.stopPropagation()}
-      >
-        <button
-          aria-label="Close"
-          className="luxury-focus absolute right-4 top-4 inline-flex size-9 items-center justify-center rounded-full bg-surface text-text-primary"
-          onClick={onClose}
-          type="button"
-        >
-          <X className="size-4" aria-hidden="true" />
-        </button>
-
-        <p className="brand-gradient-text text-caption tracking-[var(--tracking-eyebrow)]">Reserve Now</p>
-        <h2 className="mt-3 pr-10 text-heading-md text-text-primary">{roomTitle}</h2>
-        <div className="mt-5 grid grid-cols-3 gap-3 rounded-lg bg-surface p-4 text-body-sm">
-          <ReservationSummaryItem label="Check In" value={formatDate(booking.checkIn)} />
-          <ReservationSummaryItem label="Check Out" value={formatDate(booking.checkOut)} />
-          <ReservationSummaryItem label="Guests" value={booking.guests} />
-        </div>
-
-        {submitted ? (
-          <div className="mt-6 text-center">
-            <CheckCircle2 className="mx-auto size-10 text-success" aria-hidden="true" />
-            <p className="mt-4 text-heading-sm text-text-primary">Thank you, {name}!</p>
-            <p className="mt-3 text-body-sm text-text-secondary">
-              Your reservation request has been sent. Our team will confirm
-              availability shortly. For immediate help, call {siteContact.phoneDisplay}.
-            </p>
-            <button className="luxury-focus btn btn-primary mt-6 w-full" onClick={onClose} type="button">
-              Done
-            </button>
-          </div>
-        ) : (
-          <form className="mt-6 grid gap-4" onSubmit={handleSubmit}>
-            <ReservationInput autoComplete="name" label="Full Name" onChange={setName} type="text" value={name} />
-            <ReservationInput
-              autoComplete="tel"
-              label="Phone Number"
-              onChange={setPhone}
-              pattern="[+]?[0-9 \-]{10,15}"
-              title="Enter a valid phone number"
-              type="tel"
-              value={phone}
-            />
-            <ReservationInput autoComplete="email" label="Email" onChange={setEmail} type="email" value={email} />
-            <input
-              aria-hidden="true"
-              autoComplete="off"
-              className="hidden"
-              name="website"
-              onChange={(event) => setWebsite(event.target.value)}
-              tabIndex={-1}
-              type="text"
-              value={website}
-            />
-            {error ? (
-              <p className="text-body-sm text-red-600" role="alert">
-                {error}
-              </p>
-            ) : null}
-            <button className="luxury-focus btn btn-primary mt-2 w-full disabled:opacity-60" disabled={isSending} type="submit">
-              {isSending ? "Sending..." : "Submit"}
-              <ArrowRight className="size-4" aria-hidden="true" />
-            </button>
-          </form>
-        )}
-      </div>
-    </div>,
-    document.body,
-  );
-}
-
-function ReservationSummaryItem({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="min-w-0">
-      <p className="text-caption text-text-muted">{label}</p>
-      <p className="mt-1 break-words text-text-primary">{value}</p>
-    </div>
-  );
-}
-
-function ReservationInput({
-  autoComplete,
-  label,
-  onChange,
-  pattern,
-  title,
-  type,
-  value,
-}: {
-  autoComplete: string;
-  label: string;
-  onChange: (value: string) => void;
-  pattern?: string;
-  title?: string;
-  type: "text" | "tel" | "email";
-  value: string;
-}) {
-  return (
-    <label className="grid gap-2 text-body-sm text-text-secondary">
-      {label}
-      <input
-        autoComplete={autoComplete}
-        className="luxury-focus block h-12 w-full rounded-full border border-border bg-surface px-4 py-3 text-text-primary"
-        onChange={(event) => onChange(event.target.value)}
-        pattern={pattern}
-        required
-        title={title}
-        type={type}
-        value={value}
-      />
-    </label>
-  );
-}
-
-function MobileBookingBar({ price, roomTitle }: { price: string; roomTitle: string }) {
+function MobileBookingBar({ bookingUrl, roomTitle }: { bookingUrl: string; roomTitle: string }) {
   return (
     <div className="fixed inset-x-0 bottom-0 z-[var(--z-sticky)] border-t border-border bg-glass px-shell py-3 shadow-lg backdrop-blur-md lg:hidden">
       <div className="flex items-center justify-between gap-4">
-        <div>
-          <p className="text-caption text-text-muted">From</p>
-          <p className="text-body-sm text-text-primary">{price}</p>
-        </div>
-        <Link
-          className="luxury-focus btn btn-primary shrink-0"
-          href="/contact"
-        >
-          Book
-          <CalendarCheck className="size-4" aria-hidden="true" />
-        </Link>
+        <p className="min-w-0 text-body-sm text-text-primary">{roomTitle}</p>
+        <ReserveNowLink className="shrink-0" href={bookingUrl} />
       </div>
       <p className="sr-only">Book {roomTitle}</p>
     </div>
@@ -1077,19 +780,29 @@ function Lightbox({
   );
 }
 
-function nextDay(date: string) {
-  const next = new Date(`${date}T00:00:00`);
-  next.setDate(next.getDate() + 1);
-  return `${next.getFullYear()}-${String(next.getMonth() + 1).padStart(2, "0")}-${String(next.getDate()).padStart(2, "0")}`;
+function ReserveNowLink({ className = "", href }: { className?: string; href: string }) {
+  return (
+    <BookingLink className={className} href={href}>
+      Reserve Now
+      <ArrowRight className="size-4" aria-hidden="true" />
+    </BookingLink>
+  );
 }
 
-function formatDate(date: string) {
-  if (!date) return "-";
-  return new Date(`${date}T00:00:00`).toLocaleDateString("en-IN", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
+function BookingLink({
+  children,
+  className = "",
+  href,
+}: {
+  children: ReactNode;
+  className?: string;
+  href: string;
+}) {
+  return (
+    <a className={`luxury-focus btn btn-primary ${className}`} href={href} rel="noopener noreferrer" target="_blank">
+      {children}
+    </a>
+  );
 }
 
 function unique(items: string[]) {

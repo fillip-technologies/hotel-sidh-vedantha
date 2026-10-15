@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 
 import { RoomDetailPage } from "@/components/rooms/RoomDetailPage";
 import rooms from "@/data/rooms.json";
+import { seoKeywords } from "@/data/seoKeywords";
 
 type RoomPageProps = {
   params: Promise<{ slug: string }>;
@@ -26,9 +27,14 @@ export async function generateMetadata({
     };
   }
 
+  const meta: { metaTitle?: string; metaDescription?: string } = room;
+
   return {
-    title: `${room.title} | Hotel Sidh Vedantha Patna`,
-    description: room.description,
+    title: meta.metaTitle ?? `${room.title} | Luxury Hotel in Patna | Hotel Sidh Vedantha`,
+    description:
+      meta.metaDescription ??
+      `${room.description} Book at Hotel Sidh Vedantha, one of the best 4 star hotels in Patna.`,
+    keywords: [`${room.title} Patna`, ...seoKeywords],
   };
 }
 

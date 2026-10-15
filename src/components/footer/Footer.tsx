@@ -3,6 +3,7 @@ import { FooterContact } from "./FooterContact";
 import { FooterLinks } from "./FooterLinks";
 import { FooterLogo } from "./FooterLogo";
 import rooms from "@/data/rooms.json";
+import { siteContact } from "@/data/siteContact";
 
 const quickLinks = [
   { label: "Home", href: "/" },
@@ -15,7 +16,7 @@ const quickLinks = [
 
 const accommodationLinks = [
   ...rooms.map((room) => ({ label: room.title, href: `/rooms/${room.slug}` })),
-  { label: "Book Your Stay", href: "/contact-us" },
+  { label: "Book Your Stay", href: siteContact.bookingHref },
 ];
 
 export function Footer() {

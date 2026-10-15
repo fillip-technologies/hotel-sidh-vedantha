@@ -6,8 +6,8 @@ type LogoProps = {
 };
 
 const logos = [
-  { src: "/images/2-whitee.png", shownWhenScrolled: false },
-  { src: "/images/Hotel-siddha-vedantha-orgg.png", shownWhenScrolled: true },
+  { src: "/images/logo-hsv-white.png", shownWhenScrolled: false },
+  { src: "/images/logo-hsv-gold.png", shownWhenScrolled: true },
 ];
 
 export function Logo({ isScrolled = false }: Readonly<LogoProps>) {

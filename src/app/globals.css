@@ -722,23 +722,6 @@ textarea {
   letter-spacing: 0.02em;
 }
 
-.occasion-peek {
-  position: absolute;
-  right: var(--spacing-0);
-  top: 50%;
-  width: clamp(var(--spacing-16), 9vw, var(--spacing-32));
-  height: var(--occasion-stage-height);
-  overflow: hidden;
-  transform: translateY(-50%);
-  pointer-events: none;
-}
-
-@media (max-width: 1279px) {
-  .occasion-peek {
-    display: none;
-  }
-}
-
 .occasion-feature-frame {
   z-index: var(--z-raised);
   border: var(--spacing-2) solid var(--background);

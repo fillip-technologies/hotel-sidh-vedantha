@@ -27,9 +27,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const title = page.metaTitle ?? `${page.title} | Hotel Sidh Vedantha Patna`;
+  const description = page.metaDescription ?? page.description;
+
   return {
-    title: `${page.title} | Hotel Sidh Vedantha Patna`,
-    description: page.description,
+    title,
+    description,
+    keywords: page.keywords,
+    alternates: { canonical: `/product/${page.slug}` },
+    openGraph: {
+      title,
+      description,
+      images: [page.image],
+    },
   };
 }
 

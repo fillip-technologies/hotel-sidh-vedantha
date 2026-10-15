@@ -1,14 +1,17 @@
 [
   {
     "slug": "executive-rooms",
+    "metaTitle": "Executive Rooms in Patna | Hotel Sidh Vedantha",
+    "metaDescription": "Book executive rooms in Patna at Hotel Sidh Vedantha, offering spacious interiors, modern amenities, comfort, and excellent hospitality for a relaxing stay.",
     "title": "Executive Rooms",
     "shortTitle": "Executive",
     "description": "Polished comfort for business travellers and premium weekend escapes.",
     "longDescription": "Designed for calm, focused stays, the Executive Rooms pair refined bedding, practical work space, and warm hospitality for guests who want comfort without excess.",
     "size": "380 sq ft",
     "occupancy": "2 Guests",
-    "bed": "King-size or Twin Beds",
-    "startingPrice": "INR 4,200 / night",
+    "bed": "King-size Bed",
+    "startingPrice": "INR 3,000 / night",
+    "bookingUrl": "https://letsbook.me/booking/hotelsidhvedantha",
     "bookingBenefits": ["Breakfast Included", "Free Cancellation", "Free WiFi"],
     "view": "City View",
     "image": "/images/Rooms/room 3-EXecutive/0Z8A9084.JPG",
@@ -24,7 +27,7 @@
     "highlights": [
       "Quiet work-friendly layout",
       "Premium toiletries",
-      "Flexible king or twin bedding",
+      "Plush king-size bedding",
       "Ideal for corporate stays"
     ],
     "idealFor": ["Business travel", "Short city stays", "Couples"],
@@ -36,7 +39,7 @@
     ],
     "policies": ["Check-in from 12:00 PM", "Check-out by 11:00 AM", "Extra bed subject to availability"],
     "roomSpecificAmenities": [
-      "King-size or Twin Beds",
+      "King-size Bed",
       "Luxurious Bathroom with Premium Toiletries"
     ],
     "popularAmenities": [
@@ -53,6 +56,8 @@
   },
   {
     "slug": "club-rooms",
+    "metaTitle": "Best Club Room in Patna | Hotel Sidh Vedantha",
+    "metaDescription": "Enjoy the Best Club Room in Patna at Hotel Sidh Vedantha, offering a luxury club room, modern amenities, elegant interiors, and a comfortable stay.",
     "title": "Club Rooms",
     "shortTitle": "Club",
     "description": "A relaxed room category with thoughtful essentials and flexible bedding.",
@@ -60,7 +65,8 @@
     "size": "340 sq ft",
     "occupancy": "2 Guests",
     "bed": "Two Single Beds",
-    "startingPrice": "INR 3,800 / night",
+    "startingPrice": "INR 3,300 / night",
+    "bookingUrl": "https://letsbook.me/booking/hotelsidhvedantha",
     "bookingBenefits": ["Breakfast Included", "Free Cancellation", "Free WiFi"],
     "view": "City View",
     "image": "/images/Rooms/room 2-Club/0Z8A8891.JPG",
@@ -113,7 +119,8 @@
     "size": "420 sq ft",
     "occupancy": "2 Guests",
     "bed": "King-size or Twin Beds",
-    "startingPrice": "INR 4,800 / night",
+    "startingPrice": "INR 3,700 / night",
+    "bookingUrl": "https://letsbook.me/booking/hotelsidhvedantha",
     "bookingBenefits": ["Breakfast Included", "Free Cancellation", "Free WiFi"],
     "view": "City View",
     "image": "/images/Rooms/room 4-Premium/0Z8A8929.JPG",
@@ -157,6 +164,8 @@
   },
   {
     "slug": "vedantha-suite",
+    "metaTitle": "Luxury Suites in Patna | Hotel Sidh Vedantha",
+    "metaDescription": "Experience luxury suites in Patna at Hotel Sidh Vedantha, offering spacious rooms, modern amenities, elegant comfort, and warm hospitality for a premium stay.",
     "title": "Vedantha Suite",
     "shortTitle": "Suite",
     "description": "A spacious suite with a separate living area and premium comforts.",
@@ -164,7 +173,8 @@
     "size": "620 sq ft",
     "occupancy": "4 Guests",
     "bed": "King-size Bed",
-    "startingPrice": "INR 7,200 / night",
+    "startingPrice": "INR 4,500 / night",
+    "bookingUrl": "https://letsbook.me/booking/hotelsidhvedantha",
     "bookingBenefits": ["Breakfast Included", "Free Cancellation", "Free WiFi"],
     "view": "City View",
     "image": "/images/Rooms/room 1-Suite/0Z8A8778.JPG",

@@ -8,9 +8,10 @@ import { MasterLeadForm } from "@/components/landing/MasterLeadForm";
 import { TestimonialCarousel } from "@/components/testimonials";
 
 export const metadata: Metadata = {
-  title: "Dining | Hotel Sidh Vedantha Patna",
+  title: "Dining | Luxury Hotel Restaurant in Patna | Hotel Sidh Vedantha",
   description:
-    "Explore dining at Hotel Sidh Vedantha Patna with breakfast, lunch, dinner, in-house guest meals, and a sample menu.",
+    "Explore dining at Hotel Sidh Vedantha, a luxury hotel in Patna, with breakfast, lunch, dinner, couple dining, event catering, and a sample menu.",
+  keywords: ["Luxury hotels in Patna", "Hotels for couples in Patna", "Best hotels in Patna"],
 };
 
 const stayDining = [

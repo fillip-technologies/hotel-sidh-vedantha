@@ -33,7 +33,7 @@ export function FinalCTA() {
             href={siteContact.phoneHref}
           >
             <Phone className="size-4" aria-hidden="true" />
-            Call Now
+            Call {siteContact.phoneDisplay}
           </Link>
         </div>
       </div>

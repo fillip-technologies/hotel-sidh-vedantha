@@ -15,9 +15,10 @@ import { MasterLeadForm } from "@/components/landing/MasterLeadForm";
 import { TestimonialCarousel } from "@/components/testimonials";
 
 export const metadata: Metadata = {
-  title: "Experiences | Hotel Sidh Vedantha Patna",
+  title: "Experiences | Corporate Events, Engagements & Couple Stays in Patna",
   description:
-    "Discover stays, dining, celebrations, corporate events, nearby attractions, and hospitality experiences at Hotel Sidh Vedantha Patna.",
+    "Discover stays, dining, engagements, ring ceremonies, and corporate events at Hotel Sidh Vedantha, one of the best hotels for corporate events and couple friendly hotels in Patna.",
+  keywords: ["Best Hotels for Corporate Events in Patna", "Hotels for engagement in Patna", "Couple Friendly hotels in Patna", "Ring ceremony venue in Patna"],
 };
 
 const experiences = [

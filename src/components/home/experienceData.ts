@@ -57,7 +57,7 @@ export const experienceData: ExperienceItem[] = [
     icon: PartyPopper,
     link: {
       label: "View Events",
-      href: "/events",
+      href: "/best-wedding-venue-in-patna",
     },
     color: "brand-gradient-bg",
   },
@@ -70,7 +70,7 @@ export const experienceData: ExperienceItem[] = [
     icon: Building2,
     link: {
       label: "Explore Meeting Spaces",
-      href: "/meetings",
+      href: "/corporate-event-venue-in-patna",
     },
     color: "brand-gradient-bg",
   },
@@ -83,7 +83,7 @@ export const experienceData: ExperienceItem[] = [
     icon: Landmark,
     link: {
       label: "Discover Patna",
-      href: "/patna",
+      href: "/experiences",
     },
     color: "brand-gradient-bg",
   },
@@ -96,7 +96,7 @@ export const experienceData: ExperienceItem[] = [
     icon: Car,
     link: {
       label: "Know More",
-      href: "/contact",
+      href: "/contact-us",
     },
     color: "brand-gradient-bg",
   },
