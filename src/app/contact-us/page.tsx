@@ -13,6 +13,7 @@ import {
 
 import { MasterLeadForm } from "@/components/landing";
 import { CopyEmailButton } from "@/components/ui/CopyEmailButton";
+import { BiharTourismLogo } from "@/components/ui/BiharTourismLogo";
 import { siteContact } from "@/data/siteContact";
 
 export const metadata: Metadata = {
@@ -109,6 +110,7 @@ export default function ContactUsPage() {
               Open in Maps
               <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
+            <BiharTourismLogo className="mt-6" />
           </div>
         </div>
       </section>

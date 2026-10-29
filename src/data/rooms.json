@@ -10,9 +10,12 @@
     "size": "380 sq ft",
     "occupancy": "2 Guests",
     "bed": "King-size Bed",
-    "startingPrice": "INR 3,000 / night",
     "bookingUrl": "https://letsbook.me/booking/hotelsidhvedantha",
-    "bookingBenefits": ["Breakfast Included", "Free Cancellation", "Free WiFi"],
+    "bookingBenefits": [
+      "Breakfast Included",
+      "Free Cancellation",
+      "Free WiFi"
+    ],
     "view": "City View",
     "image": "/images/Rooms/room 3-EXecutive/0Z8A9084.JPG",
     "gallery": [
@@ -30,14 +33,24 @@
       "Plush king-size bedding",
       "Ideal for corporate stays"
     ],
-    "idealFor": ["Business travel", "Short city stays", "Couples"],
+    "idealFor": [
+      "Business travel",
+      "Short city stays",
+      "Couples"
+    ],
     "inclusions": [
       "Daily housekeeping",
       "In-room tea and coffee",
       "Complimentary bottled water",
       "High-speed Wi-Fi"
     ],
-    "policies": ["Check-in from 12:00 PM", "Check-out by 11:00 AM", "Extra bed subject to availability"],
+    "policies": [
+      "Check-in at 11:00 AM",
+      "Check-out at 11:00 AM",
+      "Early check-in and check-out subject to availability",
+      "50% advance payment required to confirm booking",
+      "All major credit cards accepted"
+    ],
     "roomSpecificAmenities": [
       "King-size Bed",
       "Luxurious Bathroom with Premium Toiletries"
@@ -52,7 +65,8 @@
       "Flat-Screen TV with a Variety of Channels",
       "Mini-Bar Stocked with Refreshments",
       "Spacious Work Desk"
-    ]
+    ],
+    "roomCount": 5
   },
   {
     "slug": "club-rooms",
@@ -65,9 +79,12 @@
     "size": "340 sq ft",
     "occupancy": "2 Guests",
     "bed": "Two Single Beds",
-    "startingPrice": "INR 3,300 / night",
     "bookingUrl": "https://letsbook.me/booking/hotelsidhvedantha",
-    "bookingBenefits": ["Breakfast Included", "Free Cancellation", "Free WiFi"],
+    "bookingBenefits": [
+      "Breakfast Included",
+      "Free Cancellation",
+      "Free WiFi"
+    ],
     "view": "City View",
     "image": "/images/Rooms/room 2-Club/0Z8A8891.JPG",
     "gallery": [
@@ -85,14 +102,24 @@
       "Extra bed option",
       "Simple, calm room planning"
     ],
-    "idealFor": ["Friends", "Small families", "Corporate guests"],
+    "idealFor": [
+      "Friends",
+      "Small families",
+      "Corporate guests"
+    ],
     "inclusions": [
       "Daily housekeeping",
       "Complimentary bottled water",
       "Tea and coffee replenishment",
       "High-speed Wi-Fi"
     ],
-    "policies": ["Check-in from 12:00 PM", "Check-out by 11:00 AM", "Extra bed placement available on request"],
+    "policies": [
+      "Check-in at 11:00 AM",
+      "Check-out at 11:00 AM",
+      "Early check-in and check-out subject to availability",
+      "50% advance payment required to confirm booking",
+      "All major credit cards accepted"
+    ],
     "roomSpecificAmenities": [
       "Two Single Beds",
       "Tea and Coffee Maker",
@@ -108,7 +135,8 @@
       "Flat-Screen TV with a Variety of Channels",
       "Mini-Bar Stocked with Refreshments",
       "Spacious Work Desk"
-    ]
+    ],
+    "roomCount": 8
   },
   {
     "slug": "premium-rooms",
@@ -119,9 +147,12 @@
     "size": "420 sq ft",
     "occupancy": "2 Guests",
     "bed": "King-size or Twin Beds",
-    "startingPrice": "INR 3,700 / night",
     "bookingUrl": "https://letsbook.me/booking/hotelsidhvedantha",
-    "bookingBenefits": ["Breakfast Included", "Free Cancellation", "Free WiFi"],
+    "bookingBenefits": [
+      "Breakfast Included",
+      "Free Cancellation",
+      "Free WiFi"
+    ],
     "view": "City View",
     "image": "/images/Rooms/room 4-Premium/0Z8A8929.JPG",
     "gallery": [
@@ -138,14 +169,24 @@
       "Premium en-suite bathroom",
       "Refined ambience for restful stays"
     ],
-    "idealFor": ["Premium stays", "Couples", "Weekend escapes"],
+    "idealFor": [
+      "Premium stays",
+      "Couples",
+      "Weekend escapes"
+    ],
     "inclusions": [
       "Daily housekeeping",
       "Premium toiletries",
       "Complimentary bottled water",
       "High-speed Wi-Fi"
     ],
-    "policies": ["Check-in from 12:00 PM", "Check-out by 11:00 AM", "Government ID required at check-in"],
+    "policies": [
+      "Check-in at 11:00 AM",
+      "Check-out at 11:00 AM",
+      "Early check-in and check-out subject to availability",
+      "50% advance payment required to confirm booking",
+      "All major credit cards accepted"
+    ],
     "roomSpecificAmenities": [
       "King-size or Twin Beds with Plush Bedding",
       "Luxurious En-suite Bathroom"
@@ -160,22 +201,26 @@
       "Flat-Screen TV with a Variety of Channels",
       "Mini-Bar Stocked with Refreshments",
       "Spacious Work Desk"
-    ]
+    ],
+    "roomCount": 11
   },
   {
     "slug": "vedantha-suite",
     "metaTitle": "Luxury Suites in Patna | Hotel Sidh Vedantha",
     "metaDescription": "Experience luxury suites in Patna at Hotel Sidh Vedantha, offering spacious rooms, modern amenities, elegant comfort, and warm hospitality for a premium stay.",
-    "title": "Vedantha Suite",
-    "shortTitle": "Suite",
+    "title": "Sidh Vedantha Suite",
+    "shortTitle": "Sidh Vedantha Suite",
     "description": "A spacious suite with a separate living area and premium comforts.",
-    "longDescription": "The Vedantha Suite is crafted for guests who prefer more room to unwind, host, and rest, with a separate living area, premium toiletries, and elevated privacy.",
+    "longDescription": "The Sidh Vedantha Suite is crafted for guests who prefer more room to unwind, host, and rest, with a separate living area, premium toiletries, and elevated privacy.",
     "size": "620 sq ft",
     "occupancy": "4 Guests",
     "bed": "King-size Bed",
-    "startingPrice": "INR 4,500 / night",
     "bookingUrl": "https://letsbook.me/booking/hotelsidhvedantha",
-    "bookingBenefits": ["Breakfast Included", "Free Cancellation", "Free WiFi"],
+    "bookingBenefits": [
+      "Breakfast Included",
+      "Free Cancellation",
+      "Free WiFi"
+    ],
     "view": "City View",
     "image": "/images/Rooms/room 1-Suite/0Z8A8778.JPG",
     "gallery": [
@@ -196,14 +241,24 @@
       "Premium bathroom amenities",
       "Comfortable setting for longer stays"
     ],
-    "idealFor": ["Families", "Longer stays", "Celebration guests"],
+    "idealFor": [
+      "Families",
+      "Longer stays",
+      "Celebration guests"
+    ],
     "inclusions": [
       "Daily housekeeping",
       "Premium toiletries",
       "Complimentary bottled water",
       "High-speed Wi-Fi"
     ],
-    "policies": ["Check-in from 12:00 PM", "Check-out by 11:00 AM", "Suite requests are subject to availability"],
+    "policies": [
+      "Check-in at 11:00 AM",
+      "Check-out at 11:00 AM",
+      "Early check-in and check-out subject to availability",
+      "50% advance payment required to confirm booking",
+      "All major credit cards accepted"
+    ],
     "roomSpecificAmenities": [
       "King-size Bed with Separate Living Area",
       "Luxurious En-suite Bathroom with Premium Toiletries"
@@ -218,6 +273,7 @@
       "Flat-Screen TV with a Variety of Channels",
       "Mini-Bar Stocked with Refreshments",
       "Spacious Work Desk"
-    ]
+    ],
+    "roomCount": 1
   }
 ]

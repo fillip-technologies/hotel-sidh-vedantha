@@ -16,7 +16,7 @@ export function MobileNav({
       aria-controls="mobile-menu"
       aria-expanded={isOpen}
       aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-      className={`luxury-focus inline-flex size-11 items-center justify-center rounded-full border lg:hidden ${
+      className={`luxury-focus inline-flex size-11 items-center justify-center rounded-full border xl:hidden ${
         isScrolled
           ? "border-border bg-card text-text-primary"
           : "border-primary-foreground/40 bg-transparent text-primary-foreground"

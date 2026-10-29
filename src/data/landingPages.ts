@@ -87,7 +87,7 @@ const rateFaq: LandingPageFaq = {
 const checkInFaq: LandingPageFaq = {
   question: "What are the check-in and check-out timings?",
   answer:
-    "Check-in begins from 12:00 PM and check-out is by 11:00 AM. Early check-in and late check-out can be arranged subject to availability. A valid government photo ID is required at check-in.",
+    "Check-in and check-out are both at 11:00 AM. Early check-in and check-out are subject to availability. A 50% advance payment is required to confirm a booking, and all major credit cards are accepted.",
 };
 
 const locationFaq: LandingPageFaq = {
@@ -137,7 +137,7 @@ export const landingPages: LandingPageData[] = [
       ],
     },
     highlights: [
-      { title: "Four room categories", body: "Executive, Club, and Premium Rooms plus the Vedantha Suite, each with quality bedding and en-suite bathrooms." },
+      { title: "Four room categories", body: "Executive, Premium, Club, and Sidh Vedantha Suite, each with quality bedding and en-suite bathrooms." },
       { title: "Norton Classic Restaurant", body: "Breakfast, lunch, and dinner in-house, with Indian favourites and room-service support." },
       { title: "Banquet & event spaces", body: "Elegant venues for engagements, weddings, birthdays, and corporate meetings." },
       { title: "High-speed WiFi", body: "Reliable connectivity in rooms for work calls, streaming, and staying in touch." },
@@ -190,7 +190,7 @@ export const landingPages: LandingPageData[] = [
       ],
     },
     highlights: [
-      { title: "Elegant rooms & suite", body: "Executive, Club, and Premium Rooms and the spacious Vedantha Suite." },
+      { title: "Elegant rooms & suite", body: "Executive, Premium, Club, and the spacious Sidh Vedantha Suite." },
       { title: "Restaurant dining", body: "Norton Classic Restaurant serves breakfast, lunch, and dinner daily." },
       { title: "Event spaces", body: "Venues for engagements, weddings, birthdays, and business events." },
       { title: "Corporate support", body: "Meeting setups, WiFi, and room blocks for visiting teams." },
@@ -229,7 +229,7 @@ export const landingPages: LandingPageData[] = [
     title: "Luxury Hotels in Patna",
     eyebrow: "Refined Hospitality",
     description:
-      "Among luxury hotels in Patna, Hotel Sidh Vedantha offers elegant interiors, premium rooms, the Vedantha Suite, signature dining, and celebration venues with warm service.",
+      "Among luxury hotels in Patna, Hotel Sidh Vedantha offers elegant interiors, premium rooms, the Sidh Vedantha Suite, signature dining, and celebration venues with warm service.",
     keywords: ["Luxury hotels in Patna", "4 star hotels in Patna", "Best hotels in Patna", "Top Hotel in Patna"],
     kind: "stay",
     image: img.suite1,
@@ -239,11 +239,11 @@ export const landingPages: LandingPageData[] = [
       title: "Luxury that feels warm, not distant",
       paragraphs: [
         "True luxury is in the details: soft lighting, plush bedding, a quiet room, and a team that anticipates what you need. That is the standard we set at Hotel Sidh Vedantha, one of the luxury hotels in Patna designed for both restful stays and grand occasions.",
-        "From the separate living area of the Vedantha Suite to curated menus for your celebration, every experience is designed to feel refined, personal, and memorable.",
+        "From the separate living area of the Sidh Vedantha Suite to curated menus for your celebration, every experience is designed to feel refined, personal, and memorable.",
       ],
     },
     highlights: [
-      { title: "Vedantha Suite", body: "A 620 sq ft suite with a king-size bed and separate living area." },
+      { title: "Sidh Vedantha Suite", body: "A 620 sq ft suite with a king-size bed and separate living area." },
       { title: "Premium rooms", body: "Plush bedding, warm lighting, and luxurious en-suite bathrooms." },
       { title: "Signature dining", body: "Norton Classic Restaurant with Indian and multi-cuisine favourites." },
       { title: "Celebration venues", body: "Elegant spaces for engagements, weddings, and receptions." },
@@ -253,7 +253,7 @@ export const landingPages: LandingPageData[] = [
     sections: [
       {
         title: "Rooms designed for slow mornings",
-        body: "Rich wood finishes, calm colour palettes, and comfortable seating make every room a place to unwind. The Vedantha Suite adds space to host, work, or simply relax.",
+        body: "Rich wood finishes, calm colour palettes, and comfortable seating make every room a place to unwind. The Sidh Vedantha Suite adds space to host, work, or simply relax.",
         image: img.suite5,
         points: ["King-size beds in suites", "Premium bathroom amenities", "Smart TV and high-speed WiFi"],
       },
@@ -267,7 +267,7 @@ export const landingPages: LandingPageData[] = [
     faqs: [
       {
         question: "Is Hotel Sidh Vedantha a luxury hotel in Patna?",
-        answer: "Yes. The hotel offers premium rooms, the Vedantha Suite, signature dining, and elegant event venues, with the attentive service guests expect from luxury hotels in Patna.",
+        answer: "Yes. The hotel offers premium rooms, the Sidh Vedantha Suite, signature dining, and elegant event venues, with the attentive service guests expect from luxury hotels in Patna.",
       },
       rateFaq,
       checkInFaq,
@@ -292,7 +292,7 @@ export const landingPages: LandingPageData[] = [
       title: "A couple friendly hotel in Patna that respects your privacy",
       paragraphs: [
         "Finding couple friendly hotels in Patna should not be stressful. At Hotel Sidh Vedantha, couples are welcome with valid government photo ID, and our team offers the same discreet, respectful service to every guest.",
-        "Choose a Premium Room or the Vedantha Suite, add a romantic room setup for an anniversary or birthday, and enjoy dinner in your room or at Norton Classic Restaurant.",
+        "Choose a Premium Room or the Sidh Vedantha Suite, add a romantic room setup for an anniversary or birthday, and enjoy dinner in your room or at Norton Classic Restaurant.",
       ],
     },
     highlights: [
@@ -461,7 +461,7 @@ export const landingPages: LandingPageData[] = [
       ],
     },
     highlights: [
-      { title: "Rooms & suites", body: "Executive, Club, Premium Rooms and the Vedantha Suite." },
+      { title: "Rooms & suites", body: "Executive, Club, Premium Rooms and the Sidh Vedantha Suite." },
       { title: "Norton Classic Restaurant", body: "Multi-cuisine dining with breakfast, lunch, and dinner." },
       { title: "Banquet halls", body: "Event spaces for weddings, engagements, and conferences." },
       { title: "Gym", body: "Keep up your fitness routine while you travel." },
@@ -497,7 +497,7 @@ export const landingPages: LandingPageData[] = [
     title: "Book Hotel in Patna",
     eyebrow: "Reservations",
     description:
-      "Book your hotel in Patna directly with Hotel Sidh Vedantha. Choose from Executive, Club, Premium Rooms and the Vedantha Suite, and contact us for the best rate.",
+      "Book your hotel in Patna directly with Hotel Sidh Vedantha. Choose from Executive, Club, Premium Rooms and the Sidh Vedantha Suite, and contact us for the best rate.",
     keywords: ["Book hotel in Patna", "Hotels in Patna", "Best hotels in Patna", "Luxury hotels in Patna"],
     kind: "stay",
     image: img.exec2,
@@ -515,14 +515,14 @@ export const landingPages: LandingPageData[] = [
       { title: "Executive Rooms", body: "380 sq ft with a king-size bed, ideal for business stays." },
       { title: "Club Rooms", body: "340 sq ft with two single beds and extra-bed options." },
       { title: "Premium Rooms", body: "420 sq ft with plush bedding and a refined ambience." },
-      { title: "Vedantha Suite", body: "620 sq ft with a king bed and separate living area." },
+      { title: "Sidh Vedantha Suite", body: "620 sq ft with a king bed and separate living area." },
       { title: "Breakfast options", body: "Add breakfast at Norton Classic Restaurant to your stay." },
       { title: "Booking support", body: "Talk to a real person for dates, rates, and requests." },
     ],
     sections: [
       {
         title: "Reserve the right stay for your visit",
-        body: "Tell us why you are travelling and we will suggest the room that fits: a quiet Executive Room for work, a Club Room for friends, or the Vedantha Suite for a special stay.",
+        body: "Tell us why you are travelling and we will suggest the room that fits: a quiet Executive Room for work, a Club Room for friends, or the Sidh Vedantha Suite for a special stay.",
         image: img.suite2,
         points: ["Quick availability confirmation", "Best rate on direct booking", "Flexible support for changes"],
       },
@@ -607,7 +607,7 @@ export const landingPages: LandingPageData[] = [
       ],
     },
     highlights: [
-      { title: "Luxury rooms & suite", body: "Four room categories including the Vedantha Suite." },
+      { title: "Luxury rooms & suite", body: "Four room categories including the Sidh Vedantha Suite." },
       { title: "Signature dining", body: "Norton Classic Restaurant for every meal of the day." },
       { title: "Wedding & engagement venue", body: "Decor-ready spaces for family celebrations." },
       { title: "Corporate events", body: "Meetings, conferences, and team dinners handled end to end." },
@@ -823,7 +823,7 @@ export const landingPages: LandingPageData[] = [
       { title: "Decor coordination", body: "Stage, floral, and lighting decor to match your theme." },
       { title: "Wedding menus", body: "Traditional Bihari and multi-cuisine spreads." },
       { title: "Guest rooms", body: "Room blocks for families and baraat guests." },
-      { title: "Bridal suite", body: "The Vedantha Suite for the couple to get ready and rest." },
+      { title: "Bridal suite", body: "The Sidh Vedantha Suite for the couple to get ready and rest." },
       { title: "Event management", body: "A coordinator to manage timings and vendors." },
     ],
     sections: [
@@ -1071,11 +1071,11 @@ export const productLandingPages: LandingPageData[] = [
     metaTitle: "Suite Single Room – Hotel Sidh Vedantha",
     metaDescription:
       "Enjoy a comfortable stay at Hotel Sidh Vedantha with a well-appointed Suite Single Room, modern amenities, a relaxing ambiance, and personalized hospitality.",
-    title: "Vedantha Suite Single Room",
+    title: "Sidh Vedantha Suite Single Room",
     eyebrow: "Suite Booking",
     description:
-      "Book the Vedantha Suite at Hotel Sidh Vedantha, one of the luxury hotels in Patna: 620 sq ft with a king-size bed, separate living area, and premium amenities.",
-    keywords: ["Vedantha Suite", "Luxury suites in Patna", "Luxury hotels in Patna", "4 star hotels in Patna", "Hotels for couples in Patna"],
+      "Book the Sidh Vedantha Suite at Hotel Sidh Vedantha, one of the luxury hotels in Patna: 620 sq ft with a king-size bed, separate living area, and premium amenities.",
+    keywords: ["Sidh Vedantha Suite", "Luxury suites in Patna", "Luxury hotels in Patna", "4 star hotels in Patna", "Hotels for couples in Patna"],
     kind: "room",
     image: img.suite1,
     gallery: [img.suite1, img.suite2, img.suite3, img.suite4, img.suite5, img.suite6],
@@ -1084,7 +1084,7 @@ export const productLandingPages: LandingPageData[] = [
     intro: {
       title: "A suite for longer, calmer stays",
       paragraphs: [
-        "The Vedantha Suite is our finest room: 620 sq ft with a king-size bed, a separate living area, and a luxurious en-suite bathroom. It is crafted for guests who want more room to unwind, host, and rest with added privacy.",
+        "The Sidh Vedantha Suite is our finest room: 620 sq ft with a king-size bed, a separate living area, and a luxurious en-suite bathroom. It is crafted for guests who want more room to unwind, host, and rest with added privacy.",
         "Couples celebrating an occasion, families on a longer visit, and executives who like to work from a proper sitting area all find the suite a comfortable home in Patna.",
       ],
     },
@@ -1112,8 +1112,8 @@ export const productLandingPages: LandingPageData[] = [
     ],
     faqs: [
       {
-        question: "How many guests can stay in the Vedantha Suite?",
-        answer: "The Vedantha Suite comfortably accommodates up to 4 guests, with a king-size bed and a separate living area.",
+        question: "How many guests can stay in the Sidh Vedantha Suite?",
+        answer: "The Sidh Vedantha Suite comfortably accommodates up to 4 guests, with a king-size bed and a separate living area.",
       },
       rateFaq,
       checkInFaq,
@@ -1141,3 +1141,5 @@ export function getRelatedLandingPages(page: LandingPageData, count = 3) {
 export function getLandingPageHref(page: LandingPageData) {
   return productLandingPages.includes(page) ? `/product/${page.slug}` : `/${page.slug}`;
 }
+
+

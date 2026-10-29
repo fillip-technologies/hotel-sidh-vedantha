@@ -17,7 +17,7 @@ export function MobileMenu({
   return (
     <div
       aria-hidden={!isOpen}
-      className={`fixed inset-x-0 top-0 z-[var(--z-overlay)] min-h-screen bg-surface px-shell pb-10 pt-24 shadow-lg transition-[opacity,transform,visibility] duration-[var(--duration-slow)] lg:hidden ${
+      className={`fixed inset-x-0 top-0 z-[var(--z-overlay)] min-h-screen bg-surface px-shell pb-10 pt-24 shadow-lg transition-[opacity,transform,visibility] duration-[var(--duration-slow)] xl:hidden ${
         isOpen
           ? "visible translate-x-0 opacity-100"
           : "invisible translate-x-full opacity-0"
@@ -36,7 +36,7 @@ export function MobileMenu({
                 {item.label}
               </Link>
               {item.children ? (
-                <ul className="ml-4 grid gap-1 border-l border-border pl-3">
+                <ul aria-label={`${item.label} submenu`} className="ml-4 grid gap-1 border-l border-border pl-3">
                   {item.children.map((child) => (
                     <li key={child.href}>
                       <Link

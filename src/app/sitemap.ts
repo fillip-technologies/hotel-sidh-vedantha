@@ -11,6 +11,7 @@ const staticPaths = [
   "/dining",
   "/experiences",
   "/gallery",
+  "/careers",
   "/contact-us",
   "/privacy-policy",
   "/terms",

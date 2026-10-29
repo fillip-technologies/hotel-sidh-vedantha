@@ -79,6 +79,7 @@ export function Rooms({ imageOverrides = {} }: Readonly<RoomsProps>) {
                     <Users className="size-4" aria-hidden="true" />
                     {room.occupancy}
                   </span>
+                  <span className="text-text-secondary">{room.roomCount} {room.roomCount === 1 ? "room" : "rooms"} in this category</span>
                 </div>
 
                 <div className="mt-auto flex flex-wrap items-center gap-3">

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, HeartHandshake, Sparkles, UsersRound } from "lucide-react";
+import { BiharTourismLogo } from "@/components/ui/BiharTourismLogo";
 
 export const metadata: Metadata = {
   title: "About Us | Hotel Sidh Vedantha, Top Hotel in Patna",
@@ -47,7 +48,7 @@ export default function AboutUsPage() {
         <span className="absolute inset-0 -z-10 bg-gradient-to-t from-primary/88 via-primary/46 to-primary/22" />
         <span className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-background to-transparent" />
 
-        <div className="page-shell flex min-h-[86svh] items-end pb-16 pt-32 md:pb-24">
+        <div className="page-shell flex min-h-[86svh] flex-col items-start justify-end gap-8 pb-16 pt-32 md:flex-row md:items-end md:justify-between md:pb-24">
           <div className="max-w-[58rem] text-primary-foreground">
             <p className="brand-gradient-text text-caption tracking-[var(--tracking-eyebrow)]">
               About Us
@@ -61,6 +62,7 @@ export default function AboutUsPage() {
               Patna for business, family, and memorable occasions.
             </p>
           </div>
+          <BiharTourismLogo />
         </div>
       </section>
 

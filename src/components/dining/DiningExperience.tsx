@@ -49,14 +49,21 @@ const diningItems: DiningItem[] = [
     id: "live-kitchen",
     title: "Live Kitchen",
     description: "Chef-led theatre where fresh ingredients come alive with craft and precision.",
-    image: "/images/cooking.png",
+    image: "/images/chef/User%20attachment.jpg",
     icon: Flame,
+  },
+  {
+    id: "kitchen-team",
+    title: "Our Kitchen Team",
+    description: "A dedicated team brings care and consistency to every service.",
+    image: "/images/chef/User%20attachment4.jpg",
+    icon: UsersRound,
   },
   {
     id: "signature-specials",
     title: "Signature Specials",
     description: "House favourites and memorable plates prepared with a distinct Sidh Vedantha touch.",
-    image: "/images/2.png",
+    image: "/images/chef/User%20attachment3.jpg",
     icon: Sparkles,
   },
   {
@@ -112,7 +119,7 @@ export function DiningExperience() {
               }`}
               fill
               sizes="100vw"
-              src="/images/cooking.png"
+              src="/images/chef/User%20attachment1.jpg"
             />
             <span className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/35 to-primary/10" />
             <div

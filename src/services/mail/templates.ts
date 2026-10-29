@@ -17,8 +17,18 @@ export type EnquiryDetails = {
   service: string;
   name: string;
   phone: string;
-  email: string;
+  email?: string;
   message: string;
+  eventDate?: string;
+  guestCount?: number;
+};
+
+export type CareerApplicationDetails = {
+  name: string;
+  phone: string;
+  position: string;
+  to: string;
+  resume: { filename: string; content: Buffer; contentType: string };
 };
 
 function escapeHtml(value: string) {
@@ -79,15 +89,32 @@ export function buildEnquiryEmail(details: EnquiryDetails): MailMessage {
 
   return {
     subject: singleLine(title),
-    replyTo: details.email,
+    ...(details.email ? { replyTo: details.email } : {}),
     ...renderEmail(title, [
       ["Source", details.context],
       ["Service", details.service],
       ["Name", details.name],
       ["Phone", details.phone],
-      ["Email", details.email],
+      ...(details.email ? [["Email", details.email] as [string, string]] : []),
+      ...(details.eventDate ? [[details.context === "Meeting Room enquiry" ? "Meeting Date" : "Event Date", details.eventDate] as [string, string]] : []),
+      ...(details.guestCount ? [[details.context === "Meeting Room enquiry" ? "Expected Attendees" : "Expected Guests", String(details.guestCount)] as [string, string]] : []),
       ["Message", details.message || "-"],
     ]),
+  };
+}
+
+export function buildCareerApplicationEmail(details: CareerApplicationDetails): MailMessage {
+  const title = `Career Application - ${singleLine(details.position)}`;
+
+  return {
+    to: details.to,
+    subject: singleLine(title),
+    ...renderEmail(title, [
+      ["Name", details.name],
+      ["Phone", details.phone],
+      ["Position", details.position],
+    ]),
+    attachments: [details.resume],
   };
 }
 
@@ -148,6 +175,9 @@ export function buildBookingConfirmation(details: BookingDetails): MailMessage {
 }
 
 export function buildEnquiryConfirmation(details: EnquiryDetails): MailMessage {
+  if (!details.email) {
+    throw new Error("An email address is required for guest enquiry confirmation.");
+  }
   return {
     subject: singleLine(`We have received your enquiry - ${details.service}`),
     to: details.email,

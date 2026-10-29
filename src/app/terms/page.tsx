@@ -31,6 +31,10 @@ export default function TermsPage() {
             "Guests are expected to provide accurate information, follow hotel policies, and present valid identification when required.",
         },
         {
+          title: "Booking & Payment Policies",
+          body: "A 50% advance payment is required to confirm a booking. All major credit cards are accepted. Check-in and check-out are both at 11:00 AM. Early check-in and check-out depend on availability.",
+        },
+        {
           title: "Changes",
           body:
             "Hotel Sidh Vedantha may update website information, policies, services, and terms as needed.",

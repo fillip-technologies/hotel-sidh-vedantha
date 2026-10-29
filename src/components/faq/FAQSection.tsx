@@ -33,7 +33,7 @@ const faqs = [
   {
     question: "What types of rooms are available?",
     answer:
-      "As a luxury 4 star hotel in Patna, we offer Executive Rooms, Club Rooms, Premium Rooms, and the Vedantha Suite for business guests, families, couples, and group stays.",
+      "As a luxury 4 star hotel in Patna, we offer Executive, Premium, and Club Rooms, plus the Sidh Vedantha Suite for business guests, families, couples, and group stays.",
   },
   {
     question: "Is early check-in available?",

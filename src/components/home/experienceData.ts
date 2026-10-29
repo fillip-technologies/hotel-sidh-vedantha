@@ -26,7 +26,7 @@ export const experienceData: ExperienceItem[] = [
     id: "luxury-stay",
     title: "Luxury Stay",
     description:
-      "Elegant rooms designed for peaceful nights, modern comfort, and effortless relaxation.",
+      "Choose from Executive, Premium, and Club Rooms, plus the Sidh Vedantha Suite, with room details tailored to each category.",
     image: "/images/2.png",
     icon: Sparkles,
     link: {
@@ -39,7 +39,7 @@ export const experienceData: ExperienceItem[] = [
     id: "fine-dining",
     title: "Fine Dining",
     description:
-      "Fresh ingredients, live kitchen experiences, and flavours crafted with passion.",
+      "Norton Classic Restaurant serves breakfast, lunch, and dinner at the hotel.",
     image: "/images/cooking.png",
     icon: ChefHat,
     link: {
@@ -52,7 +52,7 @@ export const experienceData: ExperienceItem[] = [
     id: "celebrations",
     title: "Celebrations",
     description:
-      "Beautiful venues for weddings, birthdays, ring ceremonies and unforgettable celebrations.",
+      "Banquet spaces are listed for weddings, birthdays, engagements, and other family occasions. Ask the team about arrangements for your date.",
     image: "/images/2.png",
     icon: PartyPopper,
     link: {
@@ -65,7 +65,7 @@ export const experienceData: ExperienceItem[] = [
     id: "business-meetings",
     title: "Business Meetings",
     description:
-      "Professional meeting spaces designed for conferences, corporate lunches and successful collaborations.",
+      "The Oasis is a 500 sq ft board room for business meetings. Contact the team about availability and meeting arrangements.",
     image: "/images/nn.png",
     icon: Building2,
     link: {
@@ -75,14 +75,14 @@ export const experienceData: ExperienceItem[] = [
     color: "brand-gradient-bg",
   },
   {
-    id: "explore-patna",
-    title: "Explore Patna",
+    id: "hotel-facilities",
+    title: "Hotel Facilities",
     description:
-      "Stay close to iconic attractions, shopping, culture, and the city's most loved destinations.",
-    image: "/images/background-of-sidhvedanta.png",
+      "Explore the room categories, restaurant, event spaces, and guest facilities described on the hotel's website.",
+    image: "/images/hotel.png",
     icon: Landmark,
     link: {
-      label: "Discover Patna",
+      label: "View Facilities",
       href: "/experiences",
     },
     color: "brand-gradient-bg",
@@ -91,7 +91,7 @@ export const experienceData: ExperienceItem[] = [
     id: "travel-assistance",
     title: "Travel Assistance",
     description:
-      "Airport pickup, local transportation, travel support, and seamless guest assistance.",
+      "Taxi service is listed among the room amenities. Contact the hotel to discuss current availability and arrangements.",
     image: "/images/2.png",
     icon: Car,
     link: {

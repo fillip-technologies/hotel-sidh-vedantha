@@ -10,6 +10,16 @@ import { MobileNav } from "./MobileNav";
 import rooms from "@/data/rooms.json";
 
 const navItems: NavItem[] = [
+  { label: "About Us", href: "/about-us" },
+  {
+    label: "Banquets & Events",
+    href: "/#experience-heading",
+    children: [
+      { label: "Banquets", href: "/banquets-events" },
+      { label: "Meeting Room", href: "/meeting-room" },
+    ],
+  },
+  { label: "Reviews", href: "/experiences#reviews" },
   {
     label: "Rooms",
     href: "/rooms",
@@ -18,9 +28,10 @@ const navItems: NavItem[] = [
       href: `/rooms/${room.slug}`,
     })),
   },
-  { label: "Experiences", href: "/experiences" },
+  { label: "Facilities & Amenities", href: "/experiences" },
   { label: "Dining", href: "/dining" },
   { label: "Gallery", href: "/gallery" },
+  { label: "Careers", href: "/careers" },
   { label: "Contact", href: "/contact-us" },
 ];
 
@@ -63,7 +74,7 @@ export function Header() {
         }`}
       >
         <div
-          className="page-shell site-header-row grid grid-cols-[auto_1fr_auto] items-center gap-8"
+          className="site-header-row grid w-full grid-cols-[minmax(12rem,1fr)_auto_minmax(8rem,1fr)] items-center gap-4 px-shell"
           style={{
             ["--header-height" as string]:
               isScrolled || isMenuOpen
@@ -73,10 +84,10 @@ export function Header() {
         >
           <Logo isScrolled={isScrolled || isMenuOpen} />
           <DesktopNav items={navItems} isScrolled={isScrolled} />
-          <div className="hidden items-center justify-end lg:flex">
+          <div className="hidden items-center justify-end xl:flex">
             <BookNowButton />
           </div>
-          <div className="flex justify-end lg:hidden">
+          <div className="flex justify-end xl:hidden">
             <MobileNav
               isOpen={isMenuOpen}
               isScrolled={isScrolled || isMenuOpen}

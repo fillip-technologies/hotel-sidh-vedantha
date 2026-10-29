@@ -40,6 +40,7 @@ type Room = {
   longDescription: string;
   size: string;
   occupancy: string;
+  roomCount: number;
   bed: string;
   image: string;
   gallery: string[];
@@ -49,7 +50,6 @@ type Room = {
   policies: string[];
   roomSpecificAmenities: string[];
   popularAmenities: string[];
-  startingPrice?: string;
   bookingUrl?: string;
   bookingBenefits?: string[];
   view?: string;
@@ -68,8 +68,11 @@ const fadeUp = {
 };
 
 const houseRules = [
-  { title: "Check-in", detail: "Check-in begins from 12:00 PM with valid government ID." },
-  { title: "Check-out", detail: "Check-out is by 11:00 AM. Late check-out is subject to availability." },
+  { title: "Check-in", detail: "Check-in is at 11:00 AM." },
+  { title: "Check-out", detail: "Check-out is at 11:00 AM." },
+  { title: "Booking confirmation", detail: "A 50% advance payment is required to confirm a booking." },
+  { title: "Payment", detail: "All major credit cards are accepted." },
+  { title: "Early check-in & check-out", detail: "Early check-in and check-out are subject to availability." },
   { title: "Cancellation", detail: "Flexible cancellation support is available through the reservations team." },
   { title: "Children", detail: "Children are welcome. Please mention child occupancy while booking." },
   { title: "Extra Bed", detail: "Extra bed requests are subject to room category and availability." },
@@ -91,6 +94,81 @@ const fallbackReviews: RoomReview[] = [
       "Elegant interiors, warm service, and a quiet atmosphere made the stay feel personal.",
   },
 ];
+
+function getHighlightDescription(highlight: string, room: Room) {
+  const descriptions: Record<string, string> = {
+    "Luxury Bedding": `The listed ${room.bed.toLowerCase()} setup is arranged for a comfortable night's rest.`,
+    Workspace: "A spacious work desk is included among this room category's listed amenities.",
+    "High-Speed WiFi": "High-speed Wi-Fi is listed to help you stay connected during your stay.",
+    "Smart TV": "A flat-screen TV with a variety of channels is listed among the room amenities.",
+    "Mini Bar": "A stocked mini-bar is listed among the in-room amenities; ask the team about its current contents.",
+    "Room Service": "Room-service assistance is mentioned in the hotel's dining information; confirm current availability with the team.",
+    "Quiet work-friendly layout": "A work-friendly layout supports focused tasks during a business or city stay.",
+    "Premium toiletries": "Premium toiletries are listed among the room's bathroom amenities.",
+    "Plush king-size bedding": "The Executive Room is listed with plush king-size bedding.",
+    "Ideal for corporate stays": "The work-friendly layout and desk make this category suitable for business travel.",
+    "Comfortable twin bedding": "Two single beds give guests separate sleeping spaces.",
+    "Tea and coffee maker": "A tea and coffee maker is listed for in-room refreshments.",
+    "Extra bed option": "An extra bed can be requested, subject to room category and availability.",
+    "Simple, calm room planning": "The Club Room combines its listed essentials in a calm, practical layout.",
+    "Plush bedding": "Plush bedding is listed among the Premium Room's features.",
+    "Elegant warm lighting": "Warm lighting adds a softer feel to the Premium Room.",
+    "Premium en-suite bathroom": "The room includes an en-suite bathroom, with premium toiletries listed among its inclusions.",
+    "Refined ambience for restful stays": "Warm lighting and plush bedding give the Premium Room a restful feel.",
+    "Separate living area": "The suite's separate living area provides space to unwind beyond the bedroom.",
+    "Spacious suite planning": "The Sidh Vedantha Suite offers room to rest and use its separate living area.",
+    "Premium bathroom amenities": "Premium toiletries and an en-suite bathroom are listed among the suite features.",
+    "Comfortable setting for longer stays": "The suite pairs a separate living area with daily housekeeping and in-room refreshments.",
+  };
+
+  return descriptions[highlight] ?? `${highlight} is listed among the features for this room category.`;
+}
+
+function getAmenityDescription(amenity: string, room: Room) {
+  const normalized = amenity.toLowerCase();
+
+  if (normalized.includes("extra bed")) {
+    return "An extra bed can be requested, subject to room category and availability.";
+  }
+  if (normalized.includes("bed")) {
+    return `This room's listed bedding is ${room.bed.toLowerCase()}.`;
+  }
+  if (normalized.includes("bathroom") || normalized.includes("toiletr")) {
+    return `${amenity} is listed among the bathroom features for this room.`;
+  }
+  if (normalized.includes("tea") || normalized.includes("coffee")) {
+    return "Tea and coffee are listed among the in-room refreshments.";
+  }
+  if (normalized.includes("restaurant")) {
+    return "A 24-hour restaurant is listed among the hotel's room amenities.";
+  }
+  if (normalized.includes("gym")) {
+    return "A 24-hour gym is listed among the hotel's room amenities; confirm access details with the team.";
+  }
+  if (normalized.includes("taxi")) {
+    return "Taxi service is listed; contact the hotel to confirm current availability and arrangements.";
+  }
+  if (normalized.includes("water")) {
+    return "Two complimentary bottles of water per day are listed with this room category.";
+  }
+  if (normalized.includes("wi-fi") || normalized.includes("wifi")) {
+    return "High-speed Wi-Fi is listed among this room category's inclusions.";
+  }
+  if (normalized.includes("tv") || normalized.includes("channels")) {
+    return "A flat-screen television with a variety of channels is listed among the room amenities.";
+  }
+  if (normalized.includes("mini-bar")) {
+    return "A mini-bar stocked with refreshments is listed among the room amenities.";
+  }
+  if (normalized.includes("desk") || normalized.includes("workspace")) {
+    return "A spacious work desk is listed among the room amenities.";
+  }
+  if (normalized.includes("housekeeping")) {
+    return "Daily housekeeping is listed among this room category's inclusions.";
+  }
+
+  return `${amenity} is listed among the amenities for this room category.`;
+}
 
 export function RoomDetailPage({ room, otherRooms }: RoomDetailPageProps) {
   const [activePhoto, setActivePhoto] = useState<string | null>(null);
@@ -187,7 +265,7 @@ export function RoomDetailPage({ room, otherRooms }: RoomDetailPageProps) {
 
       <ImmersiveGallery images={galleryImages} onOpen={setActivePhoto} roomTitle={room.title} />
 
-      <RoomHighlights highlights={highlights} />
+      <RoomHighlights highlights={highlights} room={room} />
 
       <AmenitiesFeatures room={room} />
 
@@ -390,7 +468,7 @@ function GalleryButton({
   );
 }
 
-function RoomHighlights({ highlights }: { highlights: string[] }) {
+function RoomHighlights({ highlights, room }: { highlights: string[]; room: Room }) {
   const icons = [BedDouble, BriefcaseBusiness, Wifi, Monitor, Soup, ConciergeBell, Sparkles];
 
   return (
@@ -426,8 +504,7 @@ function RoomHighlights({ highlights }: { highlights: string[] }) {
                   {highlight}
                 </h3>
                 <p className="mt-3 text-body-sm text-text-secondary">
-                  Thoughtfully included to make the stay feel effortless, calm,
-                  and beautifully prepared.
+                  {getHighlightDescription(highlight, room)}
                 </p>
               </motion.article>
             );
@@ -468,7 +545,7 @@ function AmenitiesFeatures({ room }: { room: Room }) {
                 <Icon className="size-5 text-accent-hover" aria-hidden="true" />
                 <h3 className="mt-5 break-words text-heading-sm">{amenity}</h3>
                 <p className="mt-3 text-body-sm text-primary-foreground/72">
-                  Prepared with attentive service and a refined sense of ease.
+                  {getAmenityDescription(amenity, room)}
                 </p>
               </motion.article>
             );
@@ -509,8 +586,7 @@ function RoomExperience({
             <span className="block text-brand-pink">Stay surrounded by comfort.</span>
           </h2>
           <p className="mt-6 text-body-lg text-text-secondary">
-            From handcrafted comfort to thoughtfully designed interiors,
-            {room.title} helps every stay feel composed, private, and warmly hosted.
+            {room.longDescription}
           </p>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2">
             {highlights.map((item) => (

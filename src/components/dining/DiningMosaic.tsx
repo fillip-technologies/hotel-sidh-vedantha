@@ -20,8 +20,8 @@ const leftTiles: MosaicTile[] = [
 ];
 
 const featureTile: MosaicTile = {
-  src: "/images/cooking.png",
-  alt: "Chef grilling skewers at the live kitchen counter",
+  src: "/images/chef/User%20attachment3.jpg",
+  alt: "Hotel chef preparing dishes at the kitchen counter",
   sizes: "(min-width: 1024px) 36vw, 60vw",
 };
 

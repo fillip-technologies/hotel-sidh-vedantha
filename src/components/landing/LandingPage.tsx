@@ -46,7 +46,7 @@ const highlightIcons: Record<LandingPageKind, LucideIcon[]> = {
 };
 
 const whyChoose = [
-  "Four room categories, from Executive Rooms to the Vedantha Suite",
+  "Four room categories: Executive, Premium, Club, and Sidh Vedantha Suite",
   "Norton Classic Restaurant for breakfast, lunch, and dinner",
   "Banquet spaces for engagements, weddings, and corporate events",
   "New Bypass location with easy access to Patna Airport",
@@ -189,7 +189,7 @@ function QuickFacts({ page }: { page: LandingPageData }) {
       ? { icon: PartyPopper, label: "Venue", value: "Custom layouts, decor & catering" }
       : page.kind === "dining"
         ? { icon: Utensils, label: "Serving", value: "Breakfast, lunch & dinner" }
-        : { icon: Clock, label: "Check-in / Check-out", value: "12:00 PM / 11:00 AM" },
+        : { icon: Clock, label: "Check-in / Check-out", value: "11:00 AM / 11:00 AM" },
   ];
 
   return (

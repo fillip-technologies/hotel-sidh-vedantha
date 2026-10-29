@@ -51,7 +51,7 @@ export default function DiningPage() {
           fill
           priority
           sizes="100vw"
-          src="/images/cooking.png"
+          src="/images/chef/User%20attachment1.jpg"
         />
         <span className="absolute inset-0 -z-10 bg-gradient-to-t from-primary/88 via-primary/48 to-primary/24" />
         <span className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-background to-transparent" />

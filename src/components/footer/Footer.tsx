@@ -7,7 +7,6 @@ import { siteContact } from "@/data/siteContact";
 
 const quickLinks = [
   { label: "Home", href: "/" },
-  { label: "About Us", href: "/about-us" },
   { label: "Rooms", href: "/rooms" },
   { label: "Dining", href: "/dining" },
   { label: "Gallery", href: "/gallery" },

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { ArrowRight, CalendarDays, LayoutPanelTop, Users } from "lucide-react";
+import { ArrowRight, CalendarDays, LayoutPanelTop, Maximize2 } from "lucide-react";
 
 import { AnimatedArrow } from "@/components/ui/AnimatedArrow";
 import { FadeIn } from "@/components/ui/FadeIn";
@@ -11,34 +11,35 @@ import { siteContact } from "@/data/siteContact";
 const venues = [
   {
     id: "banquet",
-    title: "Banquet Hall",
+    title: "Lus Crown",
     image: "/images/nn.png",
     description:
-      "A graceful indoor venue for receptions, engagement ceremonies, corporate dinners, and milestone gatherings.",
-    capacity: "Up to 250 guests",
-    format: "Banquet, theatre, cluster",
-    support: "Decor, dining, AV",
+      "Banquet spaces are listed for weddings, engagements, birthdays, and family gatherings. Ask the hotel to confirm suitability and arrangements for your occasion.",
+    area: "5,000 sq ft",
+    format: "Banquet Hall",
+    support: "Discuss arrangements with the events team",
   },
   {
     id: "meetings",
-    title: "Meeting Room",
+    title: "La Imperial",
     image: "/images/event.png",
     description:
-      "A composed setting for board meetings, training sessions, presentations, and private business conversations.",
-    capacity: "Intimate to mid-size",
-    format: "Boardroom, classroom",
-    support: "Tea, lunch, projection",
+      "An event space for weddings, celebrations, and business gatherings. Contact the team to discuss arrangements for your occasion.",
+    area: "4,500 sq ft",
+    format: "Banquet Hall",
+    support: "Projection, tea, and lunch listed",
   },
   {
     id: "celebrations",
-    title: "Celebration Setup",
+    title: "Crystal Elite",
     image: "/images/wedding.png",
     description:
-      "Warm, decor-ready spaces for weddings, ring ceremonies, birthdays, and close family celebrations.",
-    capacity: "Flexible planning",
-    format: "Stage, lounge, dining",
-    support: "Menus and guest stays",
+      "The hotel's event spaces are listed for weddings, ring ceremonies, birthdays, and family celebrations. Share your plans to discuss available arrangements.",
+    area: "2,000 sq ft",
+    format: "Banquet Hall",
+    support: "Discuss arrangements with the events team",
   },
+  { id: "oasis", title: "The Oasis (Board Room)", image: "/images/event.png", description: "A board room for meetings and focused business gatherings.", area: "500 sq ft", format: "Board Room", support: "Discuss arrangements with the events team" },
 ];
 
 export function ExperienceSection() {
@@ -93,7 +94,7 @@ export function ExperienceSection() {
 
             <div className="banquet-panel flex flex-col p-6 md:p-8">
               <div className="grid gap-4">
-                <VenueMetric icon={Users} label="Capacity" value={activeVenue.capacity} />
+                <VenueMetric icon={Maximize2} label="Area" value={activeVenue.area} />
                 <VenueMetric icon={LayoutPanelTop} label="Formats" value={activeVenue.format} />
                 <VenueMetric icon={CalendarDays} label="Support" value={activeVenue.support} />
               </div>
@@ -114,7 +115,7 @@ export function ExperienceSection() {
                       <span>
                         <span className="block text-heading-sm">{venue.title}</span>
                         <span className="mt-1 block text-body-sm text-text-muted">
-                          {venue.capacity}
+                          {venue.area}
                         </span>
                       </span>
                       <ArrowRight
@@ -150,7 +151,7 @@ function VenueMetric({
   label,
   value,
 }: {
-  icon: typeof Users;
+  icon: typeof Maximize2;
   label: string;
   value: string;
 }) {

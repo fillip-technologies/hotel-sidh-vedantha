@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Inter } from "next/font/google";
 import { MobileBookingBar } from "@/components/cta";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { FloatingWhatsApp } from "@/components/cta/FloatingWhatsApp";
 import { BrandGradientDefs } from "@/components/ui/BrandGradientDefs";
 import { seoKeywords } from "@/data/seoKeywords";
 import { siteContact } from "@/data/siteContact";
@@ -77,6 +78,7 @@ export default function RootLayout({
         <div className="flex-1">{children}</div>
         <Footer />
         <MobileBookingBar />
+        <FloatingWhatsApp />
       </body>
     </html>
   );

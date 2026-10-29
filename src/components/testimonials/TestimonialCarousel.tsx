@@ -71,7 +71,7 @@ export function TestimonialCarousel({
   };
 
   return (
-    <section className="bg-background py-20 md:py-28">
+    <section className="bg-background py-20 md:py-28" id="reviews">
       <div className="page-shell text-center">
         <p className="brand-gradient-text text-caption tracking-[var(--tracking-eyebrow)]">
           {eyebrow}
