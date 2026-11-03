@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { BookNowButton } from "./BookNowButton";
 import { DesktopNav, type NavItem } from "./DesktopNav";
@@ -19,7 +19,6 @@ const navItems: NavItem[] = [
       { label: "Meeting Room", href: "/meeting-room" },
     ],
   },
-  { label: "Reviews", href: "/experiences#reviews" },
   {
     label: "Rooms",
     href: "/rooms",
@@ -40,6 +39,8 @@ const scrollThreshold = 76;
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const closeMenu = useCallback(() => setIsMenuOpen(false), []);
 
   useEffect(() => {
     let ticking = false;
@@ -65,24 +66,21 @@ export function Header() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 ${
-          isMenuOpen ? "z-[var(--z-modal)]" : "z-[var(--z-sticky)]"
-        } transition-[background-color,box-shadow,backdrop-filter,color] duration-[var(--duration-slow)] ${
-          isScrolled || isMenuOpen
+        className={`fixed inset-x-0 top-0 z-[var(--z-sticky)] transition-[background-color,box-shadow,backdrop-filter,color] duration-[var(--duration-slow)] ${
+          isScrolled
             ? "border-b border-border/70 bg-surface/95 text-text-primary shadow-sm backdrop-blur-md"
             : "border-b border-transparent bg-transparent text-primary-foreground shadow-none backdrop-blur-none"
         }`}
       >
         <div
-          className="site-header-row grid w-full grid-cols-[minmax(12rem,1fr)_auto_minmax(8rem,1fr)] items-center gap-4 px-shell"
+          className="site-header-row flex w-full items-center justify-between gap-4 px-shell xl:grid xl:grid-cols-[minmax(12rem,1fr)_auto_minmax(8rem,1fr)]"
           style={{
-            ["--header-height" as string]:
-              isScrolled || isMenuOpen
-                ? "var(--header-height-scrolled)"
-                : undefined,
+            ["--header-height" as string]: isScrolled
+              ? "var(--header-height-scrolled)"
+              : undefined,
           }}
         >
-          <Logo isScrolled={isScrolled || isMenuOpen} />
+          <Logo isScrolled={isScrolled} />
           <DesktopNav items={navItems} isScrolled={isScrolled} />
           <div className="hidden items-center justify-end xl:flex">
             <BookNowButton />
@@ -90,7 +88,7 @@ export function Header() {
           <div className="flex justify-end xl:hidden">
             <MobileNav
               isOpen={isMenuOpen}
-              isScrolled={isScrolled || isMenuOpen}
+              isScrolled={isScrolled}
               onToggle={() => setIsMenuOpen((current) => !current)}
             />
           </div>
@@ -99,7 +97,7 @@ export function Header() {
       <MobileMenu
         items={navItems}
         isOpen={isMenuOpen}
-        onNavigate={() => setIsMenuOpen(false)}
+        onNavigate={closeMenu}
       />
     </>
   );

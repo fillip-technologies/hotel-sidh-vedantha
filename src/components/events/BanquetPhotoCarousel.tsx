@@ -69,18 +69,18 @@ export function BanquetPhotoCarousel() {
   }
 
   return (
-    <section className="luxury-dark-section section-y" aria-labelledby="banquet-gallery-heading">
+    <section className="luxury-ivory-section section-y" aria-labelledby="banquet-gallery-heading">
       <div className="mx-auto w-full px-shell">
         <div className="mx-auto max-w-[var(--container-readable)] text-center">
           <p className="brand-gradient-text text-caption tracking-[var(--tracking-eyebrow)]">Explore the spaces</p>
-          <h2 className="mt-5 text-heading-xl text-primary-foreground sm:text-display-lg" id="banquet-gallery-heading">Picture your occasion here</h2>
-          <p className="mt-6 text-body-lg text-primary-foreground/72">Browse celebration settings, meeting layouts, and dining arrangements.</p>
+          <h2 className="mt-5 text-heading-xl text-text-primary sm:text-display-lg" id="banquet-gallery-heading">Picture your occasion here</h2>
+          <p className="mt-6 text-body-lg text-text-secondary">Browse celebration settings, meeting layouts, and dining arrangements.</p>
         </div>
         <div className="mt-10 flex items-center justify-between gap-5">
-          <p className="text-body-sm text-primary-foreground/70" aria-live="polite">{String(activeIndex + 1).padStart(2, "0")} / {String(photos.length).padStart(2, "0")}</p>
+          <p className="text-body-sm text-text-muted" aria-live="polite">{String(activeIndex + 1).padStart(2, "0")} / {String(photos.length).padStart(2, "0")}</p>
           <div className="flex gap-3">
-            <button aria-label="Previous photo" className="luxury-focus inline-flex size-11 items-center justify-center rounded-full border border-primary-foreground/25 text-primary-foreground hover:border-accent-hover hover:text-accent-hover" onClick={() => goTo((activeIndex - 1 + photos.length) % photos.length)} type="button"><ArrowLeft className="size-5" aria-hidden="true" /></button>
-            <button aria-label="Next photo" className="luxury-focus inline-flex size-11 items-center justify-center rounded-full border border-primary-foreground/25 text-primary-foreground hover:border-accent-hover hover:text-accent-hover" onClick={() => goTo((activeIndex + 1) % photos.length)} type="button"><ArrowRight className="size-5" aria-hidden="true" /></button>
+            <button aria-label="Previous photo" className="luxury-focus inline-flex size-11 items-center justify-center rounded-full border border-border text-text-primary hover:border-accent-hover hover:text-accent-hover" onClick={() => goTo((activeIndex - 1 + photos.length) % photos.length)} type="button"><ArrowLeft className="size-5" aria-hidden="true" /></button>
+            <button aria-label="Next photo" className="luxury-focus inline-flex size-11 items-center justify-center rounded-full border border-border text-text-primary hover:border-accent-hover hover:text-accent-hover" onClick={() => goTo((activeIndex + 1) % photos.length)} type="button"><ArrowRight className="size-5" aria-hidden="true" /></button>
           </div>
         </div>
         <div aria-label="Banquet and event photos" aria-roledescription="carousel" className="-mx-shell mt-5 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-shell pb-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" onScroll={updateActiveSlide} ref={carouselRef} role="region">

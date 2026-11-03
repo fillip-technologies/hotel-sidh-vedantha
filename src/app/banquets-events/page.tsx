@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDown, ArrowRight, Building2, CalendarDays, CircleHelp, Mail, MessageCircle, UtensilsCrossed } from "lucide-react";
+import { ArrowRight, Mail, MessageCircle, Phone } from "lucide-react";
 
 import { BanquetEnquiryForm } from "@/components/events/BanquetEnquiryForm";
 import { BanquetPhotoCarousel } from "@/components/events/BanquetPhotoCarousel";
+import { SelectHallLink } from "@/components/events/SelectHallLink";
+import { siteContact } from "@/data/siteContact";
 
 export const metadata: Metadata = {
   title: "Banquets & Events in Patna | Hotel Sidh Vedantha",
@@ -12,65 +14,81 @@ export const metadata: Metadata = {
     "Celebrate weddings, family occasions, meetings, and corporate events at Hotel Sidh Vedantha in Patna. Share your event plans with our team.",
 };
 
-const moments = [
+const banquetImg = (file: string) => `/images/banquet/${encodeURIComponent(`WhatsApp Image 2024-01-30 at ${file}.jpeg`)}`;
+const hallImg = (file: string) => `/images/banq-2/${encodeURIComponent(`WhatsApp Image 2022-07-27 at ${file}.jpeg`)}`;
+
+const heroImage = banquetImg("3.48.07 PM");
+
+const venues = [
   {
-    number: "01",
-    title: "Weddings & Receptions",
-    description: "A memorable setting for the moments that bring everyone together.",
-    image: "/images/banquet/WhatsApp%20Image%202024-01-30%20at%203.47.42%20PM.jpeg",
-    alt: "Wedding reception set up in the banquet hall",
-    className: "md:col-span-7",
+    name: "Lus Crown",
+    formHall: "Lus Crown",
+    type: "Banquet Hall",
+    area: "5,000",
+    tagline: "Our grandest hall, made for big celebrations.",
+    bestFor: ["Weddings", "Receptions"],
+    image: banquetImg("3.48.13 PM"),
+    image2: banquetImg("3.48.10 PM"),
+    alt: "Lus Crown banquet hall with banquet seating and decorated stage",
   },
   {
-    number: "02",
-    title: "Birthday Parties & Anniversaries",
-    description: "Bring family and friends together to mark a milestone or simply enjoy time together.",
-    image: "/images/banquet/WhatsApp%20Image%202024-01-30%20at%203.47.41%20PM.jpeg",
-    alt: "Colorful celebration backdrop and stage decor",
-    className: "md:col-span-5 md:mt-24",
+    name: "La Imperial",
+    formHall: "La Imperial",
+    type: "Banquet Hall",
+    area: "4,500",
+    tagline: "Warm wood, soft lounges, a stage for the spotlight.",
+    bestFor: ["Engagements", "Birthdays"],
+    image: banquetImg("3.47.42 PM"),
+    image2: banquetImg("3.47.54 PM"),
+    alt: "La Imperial banquet hall with decorated stage and lounge seating",
   },
   {
-    number: "03",
-    title: "Meetings & Conferences",
-    description: "Hotel event spaces are referenced for business meetings and conferences; ask us about the right fit for your group.",
-    image: "/images/banq-2/WhatsApp%20Image%202022-07-27%20at%201.36.38%20PM%20(1).jpeg",
-    alt: "Meeting room prepared with a presentation screen",
-    className: "md:col-span-5",
+    name: "Crystal Elite",
+    formHall: "Crystal Elite",
+    type: "Banquet Hall",
+    area: "2,000",
+    tagline: "Conferences, dinners and family functions.",
+    bestFor: ["Conferences", "Family functions"],
+    image: hallImg("1.36.37 PM"),
+    image2: hallImg("1.36.39 PM"),
+    alt: "Crystal Elite hall arranged with conference-style tables",
   },
   {
-    number: "04",
-    title: "Engagement Ceremonies",
-    description: "Explore the hotel's event spaces for a ring ceremony or another meaningful celebration.",
-    image: "/images/banquet/WhatsApp%20Image%202024-01-30%20at%203.47.51%20PM.jpeg",
-    alt: "Decorated stage for an engagement celebration",
-    className: "md:col-span-7 md:mt-24",
+    name: "The Oasis",
+    formHall: "The Oasis (Board Room)",
+    type: "Board Room",
+    area: "500",
+    tagline: "A focused room for important conversations.",
+    bestFor: ["Board meetings", "Presentations"],
+    image: "/images/event.png",
+    alt: "The Oasis board room arranged for a meeting",
   },
   {
-    number: "05",
-    title: "Family Functions & Social Gatherings",
-    description: "A hotel setting to bring your wider circle together for a shared occasion.",
-    image: "/images/banquet/WhatsApp%20Image%202024-01-30%20at%203.48.07%20PM.jpeg",
-    alt: "Banquet hall arranged for a family gathering",
-    className: "md:col-span-7",
+    name: "Rooftop Terrace",
+    formHall: "Rooftop Terrace",
+    type: "Open-air Setup",
+    area: "Open air",
+    tagline: "Fairy lights, chandeliers and the open sky.",
+    bestFor: ["Evening receptions", "Sangeet"],
+    image: banquetImg("3.47.35 PM"),
+    image2: banquetImg("3.47.36 PM (1)"),
+    alt: "Rooftop terrace with chandeliers and fairy lights at night",
   },
 ];
 
+const occasions = [
+  { title: "Weddings & Receptions", image: banquetImg("3.47.42 PM"), alt: "Wedding reception stage in the banquet hall" },
+  { title: "Engagements & Ring Ceremonies", image: banquetImg("3.47.51 PM"), alt: "Decorated stage for an engagement celebration" },
+  { title: "Birthdays & Anniversaries", image: banquetImg("3.47.41 PM"), alt: "Colorful celebration backdrop and stage decor" },
+  { title: "Meetings & Conferences", image: hallImg("1.36.38 PM (1)"), alt: "Meeting room prepared with a presentation screen" },
+  { title: "Family Functions", image: banquetImg("3.47.54 PM"), alt: "Banquet hall arranged for a family gathering" },
+];
+
 const venueDetails = [
-  { label: "Lus Crown", detail: "5,000 sq ft banquet hall." },
-  { label: "La Imperial", detail: "4,500 sq ft banquet hall." },
-  { label: "Crystal Elite", detail: "2,000 sq ft banquet hall." },
-  { label: "The Oasis (Board Room)", detail: "500 sq ft board room." },
   { label: "Seating & layouts", detail: "Custom layouts are mentioned in the hotel's event information. Confirm the available setup for your date and guest count." },
   { label: "Food & dining", detail: "The hotel has the Norton Classic Restaurant. Ask the team which dining or menu options are available for your event." },
   { label: "Audio-visual, parking & access", detail: "Availability and arrangements are not specified here. The team can confirm these for your event." },
   { label: "Decoration", detail: "Decoration options depend on the occasion and date. Share your ideas in the enquiry form to discuss them." },
-];
-
-const planningSteps = [
-  { number: "01", title: "Share your requirements", detail: "Tell us the occasion, date, guest count, and anything you already have in mind." },
-  { number: "02", title: "Discuss the details", detail: "The hotel team can talk through your preferred date and expected attendance." },
-  { number: "03", title: "Review availability & arrangements", detail: "Confirm the suitable space, available arrangements, and pricing directly with the hotel." },
-  { number: "04", title: "Finalize with the team", detail: "Once the details work for you, coordinate the booking confirmation with the hotel." },
 ];
 
 const faqs = [
@@ -82,105 +100,212 @@ const faqs = [
   { question: "Which halls are available?", answer: "The hotel has Lus Crown, La Imperial, Crystal Elite, and The Oasis (Board Room). Contact the team to discuss availability and event arrangements." },
 ];
 
+const eyebrow = "text-caption uppercase tracking-[var(--tracking-eyebrow)] text-accent-hover";
+const accent = "brand-gradient-text font-heading italic font-normal";
+
+function Ornament({ className = "" }: { className?: string }) {
+  return (
+    <span aria-hidden="true" className={`flex items-center justify-center gap-3 text-accent-hover ${className}`}>
+      <span className="h-px w-14 bg-gradient-to-r from-transparent to-accent-hover/70" />
+      <span className="size-1.5 rotate-45 border border-accent-hover" />
+      <span className="h-px w-14 bg-gradient-to-l from-transparent to-accent-hover/70" />
+    </span>
+  );
+}
+
+const areaLabel = (area: string) => (area === "Open air" ? area : `${area} sq ft`);
+
 export default function BanquetsEventsPage() {
   return (
     <main className="bg-background text-text-primary">
-      <section className="relative isolate flex min-h-[78svh] items-end overflow-hidden bg-primary md:min-h-[92svh]">
-        <Image
-          alt="An elegant wedding reception setup at Hotel Sidh Vedantha"
-          className="absolute inset-0 -z-20 size-full object-cover object-center"
-          fill
-          priority
-          sizes="100vw"
-          src="/images/banquet/WhatsApp%20Image%202024-01-30%20at%203.47.35%20PM.jpeg"
-        />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#1d1310]/85 via-[#1d1310]/45 to-[#1d1310]/10" />
-        <div className="absolute inset-x-0 bottom-0 -z-10 h-44 bg-gradient-to-t from-background/70 to-transparent" />
-        <div className="page-shell w-full pb-16 pt-36 text-primary-foreground md:pb-28 md:pt-44">
-          <p className="brand-gradient-text text-caption tracking-[var(--tracking-eyebrow)]">Banquets & Events · Patna</p>
-          <h1 className="mt-5 max-w-4xl font-heading text-5xl font-light leading-[0.98] sm:text-6xl md:text-7xl lg:text-8xl">
-            Celebrate Your Moments in Style
-          </h1>
-          <p className="mt-6 max-w-2xl text-body-lg text-primary-foreground/85 md:mt-8 md:text-xl">
-            From once-in-a-lifetime celebrations to meaningful business gatherings, let our team help bring your occasion together.
-          </p>
-          <div className="mt-9 flex flex-wrap items-center gap-5 md:mt-11">
-            <Link className="luxury-focus btn btn-primary" href="#event-enquiry">
-              Enquire About Your Event <ArrowRight aria-hidden="true" className="size-4" />
-            </Link>
-            <a className="luxury-focus inline-flex items-center gap-2 text-body-sm text-primary-foreground/90 transition-colors hover:text-white" href="https://wa.me/918092877877" rel="noreferrer" target="_blank">
-              <MessageCircle aria-hidden="true" className="size-4" /> Chat on WhatsApp
-            </a>
-            <a className="luxury-focus inline-flex items-center gap-2 text-body-sm text-primary-foreground/90 transition-colors hover:text-white" href="#celebrations">
-              Explore celebrations <ArrowDown aria-hidden="true" className="size-4" />
-            </a>
-          </div>
-          <div className="mt-14 flex items-center gap-3 text-caption text-primary-foreground/75 md:mt-20">
-            <span className="h-px w-10 bg-accent-hover" /> New Bypass, Patna
-          </div>
+      {/* Hero: photo, then a calm intro on white */}
+      <section>
+        <div className="relative h-[48svh] min-h-[22rem] w-full md:h-[62svh]">
+          <video
+            aria-label="Banquet halls and celebration setups at Hotel Sidh Vedantha"
+            autoPlay
+            className="size-full object-cover object-center"
+            loop
+            muted
+            playsInline
+            poster={heroImage}
+            preload="metadata"
+          >
+            <source src="/videos/banquet-hotel.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/45 to-transparent" />
         </div>
-      </section>
-
-      <section className="luxury-ivory-section py-20 md:py-28">
-        <div className="page-shell grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end lg:gap-20">
-          <div>
-            <p className="brand-gradient-text text-caption tracking-[var(--tracking-eyebrow)]">Gather beautifully</p>
-            <h2 className="mt-5 max-w-xl font-heading text-4xl font-light leading-tight text-text-primary sm:text-5xl md:text-6xl">
-              Every occasion deserves its own kind of welcome.
-            </h2>
-          </div>
-          <div className="max-w-2xl lg:justify-self-end">
-            <p className="text-body-lg leading-relaxed text-text-secondary">
-              Hotel Sidh Vedantha welcomes guests planning weddings, engagements, birthdays, family gatherings, and business events. The hotel lists banquet and meeting spaces alongside its in-house Norton Classic Restaurant. Share the occasion, date, and expected guest count, and the team can discuss which space and arrangements may suit your plans. Availability, layouts, dining options, and pricing are confirmed directly with the hotel for each enquiry.
+        <div className="page-shell relative -mt-20 pb-16 md:-mt-28 md:pb-24">
+          <div className="mx-auto max-w-6xl rounded-2xl border border-border bg-background px-4 py-10 text-center shadow-xl md:px-8 md:py-14">
+            <p className={eyebrow}>Banquets & Events · Patna</p>
+            <h1 className="mt-5 whitespace-nowrap font-heading text-[clamp(1.35rem,5.4vw,4rem)] font-light leading-tight">
+              Celebrate your moments <span className={accent}>in style</span>
+            </h1>
+            <Ornament className="mt-6" />
+            <p className="mx-auto mt-6 max-w-2xl text-body-lg leading-relaxed text-text-secondary">
+              Four elegant halls and an open-air rooftop for weddings, ring ceremonies, birthdays and business events, on New Bypass, Patna.
             </p>
-            <div className="mt-8 grid gap-5 border-t border-border pt-6 sm:grid-cols-3">
-              <div className="flex items-start gap-3"><Building2 className="mt-1 size-5 shrink-0 text-accent-hover" aria-hidden="true" /><span className="text-body-sm text-text-secondary">Spaces for occasions and meetings</span></div>
-              <div className="flex items-start gap-3"><UtensilsCrossed className="mt-1 size-5 shrink-0 text-accent-hover" aria-hidden="true" /><span className="text-body-sm text-text-secondary">Norton Classic Restaurant on site</span></div>
-              <div className="flex items-start gap-3"><CalendarDays className="mt-1 size-5 shrink-0 text-accent-hover" aria-hidden="true" /><span className="text-body-sm text-text-secondary">Event details confirmed with the team</span></div>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <Link className="luxury-focus btn btn-primary" href="#event-enquiry">
+                Enquire About Your Event <ArrowRight aria-hidden="true" className="size-4" />
+              </Link>
+              <a className="luxury-focus btn btn-secondary" href={siteContact.phoneHref}>
+                <Phone aria-hidden="true" className="size-4" /> {siteContact.phoneDisplay}
+              </a>
+              <a className="luxury-focus btn btn-secondary" href={siteContact.whatsappHref} rel="noreferrer" target="_blank">
+                <MessageCircle aria-hidden="true" className="size-4" /> WhatsApp
+              </a>
             </div>
+            <dl className="mt-10 grid grid-cols-3 divide-x divide-border border-t border-border pt-8">
+              {[
+                ["5", "Event spaces"],
+                ["5,000 sq ft", "Largest hall"],
+                ["50%", "Advance to confirm"],
+              ].map(([value, label]) => (
+                <div className="flex flex-col px-2" key={label}>
+                  <dd className="order-1 font-heading text-xl sm:text-3xl">{value}</dd>
+                  <dt className="order-2 mt-1 text-caption text-text-muted">{label}</dt>
+                </div>
+              ))}
+            </dl>
           </div>
         </div>
       </section>
 
-      <section className="bg-background py-20 md:py-28" aria-labelledby="venue-details-heading">
-        <div className="page-shell grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
-          <div>
-            <p className="brand-gradient-text text-caption tracking-[var(--tracking-eyebrow)]">Plan with clarity</p>
-            <h2 className="mt-5 font-heading text-4xl font-light leading-tight sm:text-5xl" id="venue-details-heading">Venue details to discuss with us.</h2>
-            <p className="mt-6 max-w-md text-body-md leading-relaxed text-text-secondary">Some event information depends on the space and date. Our team can confirm the details before you decide.</p>
-            <Link className="luxury-focus mt-7 inline-flex items-center gap-2 text-button text-text-primary transition-colors hover:text-accent-hover" href="#event-enquiry">Discuss Your Requirements <ArrowRight aria-hidden="true" className="size-4" /></Link>
+      {/* Occasions strip */}
+      <div aria-hidden="true" className="border-y border-border bg-surface/50 py-5">
+        <div className="page-shell flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-heading text-lg italic text-text-secondary md:text-2xl">
+          {["Weddings", "Receptions", "Ring Ceremonies", "Birthdays", "Conferences", "Family Functions"].map((item, index) => (
+            <span className="flex items-center gap-6" key={item}>
+              {index > 0 && <span className="size-1.5 rotate-45 bg-accent-hover/70" />}
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Venues at a glance */}
+      <section className="border-y border-border bg-surface/60" aria-labelledby="glance-heading">
+        <div className="page-shell py-12 md:py-16">
+          <h2 className="sr-only" id="glance-heading">Venues at a glance</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[34rem] text-left">
+              <thead>
+                <tr className="border-b border-border text-caption uppercase tracking-[var(--tracking-eyebrow)] text-text-muted">
+                  <th className="py-3 pr-4 font-medium">Venue</th>
+                  <th className="py-3 pr-4 font-medium">Type</th>
+                  <th className="py-3 pr-4 font-medium">Area</th>
+                  <th className="py-3 text-right font-medium"><span className="sr-only">Action</span></th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {venues.map((venue) => (
+                  <tr key={venue.name}>
+                    <td className="py-4 pr-4 font-heading text-xl">{venue.name}</td>
+                    <td className="py-4 pr-4 text-body-sm text-text-secondary">{venue.type}</td>
+                    <td className="py-4 pr-4 text-body-sm text-text-secondary">{areaLabel(venue.area)}</td>
+                    <td className="py-4 text-right">
+                      <SelectHallLink className="luxury-focus inline-flex items-center gap-1.5 text-body-sm font-medium text-accent-hover hover:underline" hall={venue.formHall}>
+                        Enquire <ArrowRight aria-hidden="true" className="size-3.5" />
+                      </SelectHallLink>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-          <div className="divide-y divide-border border-y border-border">
-            {venueDetails.map((item, index) => (
-              <div className="grid gap-2 py-5 sm:grid-cols-[minmax(10rem,0.7fr)_1.3fr] sm:gap-8" key={item.label}>
-                <h3 className="flex items-start gap-3 text-body-md font-medium text-text-primary"><span className="mt-0.5 text-caption text-accent-hover">0{index + 1}</span>{item.label}</h3>
-                <p className="max-w-xl text-body-sm leading-relaxed text-text-secondary">{item.detail}</p>
-              </div>
+        </div>
+      </section>
+
+      {/* Venues */}
+      <section className="py-16 md:py-24" aria-labelledby="venues-heading" id="venues">
+        <div className="page-shell">
+          <div className="max-w-2xl">
+            <p className={eyebrow}>Our venues</p>
+            <h2 className="mt-4 font-heading text-4xl font-light leading-tight sm:text-5xl" id="venues-heading">Find the space that fits <span className={accent}>your occasion</span></h2>
+          </div>
+          <div className="mt-12 divide-y divide-border border-t border-border">
+            {venues.map((venue, index) => (
+              <article className="grid gap-8 py-12 md:grid-cols-12 md:items-center md:gap-12 md:py-16" key={venue.name}>
+                <div className={`relative pb-3 md:col-span-7 ${index % 2 === 1 ? "md:order-2" : ""}`}>
+                  <div aria-hidden="true" className={`absolute inset-0 rounded-md border border-accent-hover/50 ${index % 2 === 1 ? "-translate-x-3" : "translate-x-3"} translate-y-3`} />
+                  <div className="relative aspect-[3/2] overflow-hidden rounded-md bg-surface">
+                    <Image alt={venue.alt} className="size-full object-cover transition-transform duration-700 hover:scale-[1.03]" fill sizes="(min-width: 768px) 58vw, 100vw" src={venue.image} />
+                  </div>
+                  {venue.image2 && (
+                    <div className={`absolute -bottom-6 hidden aspect-[4/3] w-1/3 overflow-hidden rounded-md border-4 border-background bg-surface shadow-lg md:block ${index % 2 === 1 ? "-left-6" : "-right-6"}`}>
+                      <Image alt={`${venue.name} setup`} className="size-full object-cover" fill sizes="20vw" src={venue.image2} />
+                    </div>
+                  )}
+                </div>
+                <div className="md:col-span-5">
+                  <span aria-hidden="true" className="font-heading text-6xl font-light text-accent-hover/30">{String(index + 1).padStart(2, "0")}</span>
+                  <p className={`${eyebrow} mt-2`}>{venue.type}</p>
+                  <h3 className="mt-3 font-heading text-3xl font-normal sm:text-4xl">{venue.name}</h3>
+                  <p className="mt-3 text-body-md leading-relaxed text-text-secondary">{venue.tagline}</p>
+                  <dl className="mt-6 grid grid-cols-2 gap-4 border-y border-border py-5">
+                    <div>
+                      <dt className="text-caption text-text-muted">Area</dt>
+                      <dd className="mt-1 text-body-md font-medium">{areaLabel(venue.area)}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-caption text-text-muted">Ideal for</dt>
+                      <dd className="mt-1 text-body-md font-medium">{venue.bestFor.join(", ")}</dd>
+                    </div>
+                  </dl>
+                  <SelectHallLink className="luxury-focus btn btn-primary mt-6" hall={venue.formHall}>
+                    Enquire about {venue.name} <ArrowRight aria-hidden="true" className="size-4" />
+                  </SelectHallLink>
+                </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-background py-20 md:py-28" id="celebrations">
-        <div className="page-shell">
-          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-            <div>
-              <p className="brand-gradient-text text-caption tracking-[var(--tracking-eyebrow)]">Made for the moments</p>
-              <h2 className="mt-5 max-w-2xl font-heading text-4xl font-light leading-tight sm:text-5xl md:text-6xl">A setting for the stories you will tell.</h2>
+      {/* Enquiry */}
+      <section className="luxury-ivory-section py-16 md:py-24" id="event-enquiry">
+        <div className="page-shell grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+          <div>
+            <p className={eyebrow}>Plan your event</p>
+            <h2 className="mt-4 font-heading text-4xl font-light leading-tight sm:text-5xl">Tell us your date. <span className={accent}>We will take it from here.</span></h2>
+            <ol className="mt-8 space-y-4 text-body-md text-text-secondary">
+              {["Fill the short form: it takes about a minute.", "Our events team contacts you to confirm availability and pricing.", "Confirm your booking with a 50% advance. All major credit cards are accepted."].map((step, index) => (
+                <li className="flex items-start gap-4" key={step}>
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-full border border-accent-hover/50 text-caption text-accent-hover">{index + 1}</span>
+                  <span className="pt-1">{step}</span>
+                </li>
+              ))}
+            </ol>
+            <div className="mt-9 border-t border-border pt-7">
+              <p className="text-body-sm text-text-muted">Prefer to talk? Reach us directly.</p>
+              <div className="mt-4 flex flex-wrap gap-3">
+                <a className="luxury-focus btn btn-secondary" href={siteContact.phoneHref}><Phone aria-hidden="true" className="size-4" /> {siteContact.phoneDisplay}</a>
+                <a className="luxury-focus btn btn-secondary" href={siteContact.whatsappHref} rel="noreferrer" target="_blank"><MessageCircle aria-hidden="true" className="size-4" /> WhatsApp</a>
+                <a className="luxury-focus btn btn-secondary" href={siteContact.emailHref}><Mail aria-hidden="true" className="size-4" /> Email</a>
+              </div>
             </div>
-            <p className="max-w-sm text-body-md leading-relaxed text-text-secondary">Tell us what you are planning and we will help you explore the right arrangement for your gathering.</p>
           </div>
-          <div className="mt-12 grid gap-x-7 gap-y-12 md:grid-cols-12 md:gap-y-4 lg:mt-16">
-            {moments.map((moment) => (
-              <article className={`group ${moment.className}`} key={moment.number}>
-                <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-surface md:aspect-[1.32/1]">
-                  <Image alt={moment.alt} className="size-full object-cover transition-transform duration-700 group-hover:scale-[1.035]" fill sizes="(min-width: 768px) 55vw, 100vw" src={moment.image} />
-                  <span className="absolute left-4 top-4 rounded-full bg-black/35 px-3 py-1.5 text-caption tracking-wide text-white backdrop-blur-sm">{moment.number}</span>
+          <BanquetEnquiryForm />
+        </div>
+      </section>
+
+      {/* Occasions */}
+      <section className="py-16 md:py-24" id="celebrations" aria-labelledby="occasions-heading">
+        <div className="page-shell">
+          <div className="max-w-2xl">
+            <p className={eyebrow}>Made for the moments</p>
+            <h2 className="mt-4 font-heading text-4xl font-light leading-tight sm:text-5xl" id="occasions-heading">Occasions <span className={accent}>we host</span></h2>
+          </div>
+          <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-5">
+            {occasions.map((occasion) => (
+              <article key={occasion.title}>
+                <div className="relative aspect-[3/4] overflow-hidden rounded-t-full border border-accent-hover/40 bg-surface p-1.5">
+                  <div className="relative size-full overflow-hidden rounded-t-full">
+                  <Image alt={occasion.alt} className="size-full object-cover" fill sizes="(min-width: 768px) 20vw, 50vw" src={occasion.image} />
+                  </div>
                 </div>
-                <div className="mt-5 flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
-                  <h3 className="font-heading text-2xl font-normal text-text-primary sm:text-3xl">{moment.title}</h3>
-                  <p className="max-w-sm text-body-sm leading-relaxed text-text-secondary sm:text-right">{moment.description}</p>
-                </div>
+                <h3 className="mt-4 text-center font-heading text-lg italic leading-snug sm:text-xl">{occasion.title}</h3>
               </article>
             ))}
           </div>
@@ -189,47 +314,36 @@ export default function BanquetsEventsPage() {
 
       <BanquetPhotoCarousel />
 
-      <section className="luxury-ivory-section py-20 md:py-28" aria-labelledby="planning-heading">
+      {/* Good to know */}
+      <section className="py-16 md:py-24" aria-labelledby="know-heading">
         <div className="page-shell">
           <div className="max-w-2xl">
-            <p className="brand-gradient-text text-caption tracking-[var(--tracking-eyebrow)]">From first note to booking</p>
-            <h2 className="mt-5 font-heading text-4xl font-light leading-tight sm:text-5xl md:text-6xl" id="planning-heading">A clear way to start planning.</h2>
+            <p className={eyebrow}>Good to know</p>
+            <h2 className="mt-4 font-heading text-4xl font-light leading-tight sm:text-5xl" id="know-heading">Details <span className={accent}>we confirm for you</span></h2>
           </div>
-          <ol className="mt-12 grid gap-0 border-y border-border sm:grid-cols-2 lg:grid-cols-4">
-            {planningSteps.map((step, index) => (
-              <li className={`relative py-7 sm:px-6 lg:py-9 ${index > 0 ? "border-t border-border sm:border-t-0 lg:border-l" : ""} ${index === 2 ? "sm:border-l" : ""}`} key={step.number}>
-                <span className="flex size-10 items-center justify-center rounded-full border border-accent-hover/40 text-caption text-accent-hover">{step.number}</span>
-                <h3 className="mt-5 font-heading text-2xl font-normal text-text-primary">{step.title}</h3>
-                <p className="mt-3 text-body-sm leading-relaxed text-text-secondary">{step.detail}</p>
-              </li>
+          <div className="mt-10 grid gap-x-12 border-t border-border md:grid-cols-2">
+            {venueDetails.map((item) => (
+              <div className="border-b border-border py-6" key={item.label}>
+                <h3 className="text-heading-sm">{item.label}</h3>
+                <p className="mt-2 text-body-sm leading-relaxed text-text-secondary">{item.detail}</p>
+              </div>
             ))}
-          </ol>
-          <Link className="luxury-focus btn btn-primary mt-8" href="#event-enquiry">Check Event Availability <ArrowRight aria-hidden="true" className="size-4" /></Link>
-          <div className="mt-10 grid gap-5 rounded-xl border border-border bg-card p-6 sm:grid-cols-2 sm:p-8">
-            <div>
-              <h3 className="text-heading-sm text-text-primary">Booking confirmation</h3>
-              <p className="mt-2 text-body-sm leading-relaxed text-text-secondary">A 50% advance payment is required to confirm a booking. All major credit cards are accepted.</p>
-            </div>
-            <div>
-              <h3 className="text-heading-sm text-text-primary">What to include in your enquiry</h3>
-              <p className="mt-2 text-body-sm leading-relaxed text-text-secondary">Share your event date, occasion, approximate guest count, preferred hall, and any seating, dining, or decoration requests. The team can confirm availability and arrangements.</p>
-            </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-background py-20 md:py-28" aria-labelledby="faq-heading">
-        <div className="page-shell grid gap-10 lg:grid-cols-[0.65fr_1.35fr] lg:gap-20">
+      {/* FAQ */}
+      <section className="luxury-ivory-section py-16 md:py-24" aria-labelledby="faq-heading">
+        <div className="page-shell grid gap-10 lg:grid-cols-[0.65fr_1.35fr] lg:gap-16">
           <div>
-            <p className="brand-gradient-text flex items-center gap-2 text-caption tracking-[var(--tracking-eyebrow)]"><CircleHelp aria-hidden="true" className="size-4" /> Helpful details</p>
-            <h2 className="mt-5 font-heading text-4xl font-light leading-tight sm:text-5xl" id="faq-heading">Questions before you plan?</h2>
-            <p className="mt-5 text-body-md leading-relaxed text-text-secondary">If you need details that are not listed, send us a note and the team can help confirm them.</p>
-            <Link className="luxury-focus mt-7 inline-flex items-center gap-2 text-button text-text-primary transition-colors hover:text-accent-hover" href="/contact-us">Contact Us <ArrowRight aria-hidden="true" className="size-4" /></Link>
+            <p className={eyebrow}>Helpful details</p>
+            <h2 className="mt-4 font-heading text-4xl font-light leading-tight sm:text-5xl" id="faq-heading">Questions <span className={accent}>before you plan?</span></h2>
+            <Link className="luxury-focus mt-6 inline-flex items-center gap-2 text-button hover:text-accent-hover" href="/contact-us">Contact Us <ArrowRight aria-hidden="true" className="size-4" /></Link>
           </div>
           <div className="divide-y divide-border border-y border-border">
             {faqs.map((faq) => (
               <details className="group py-5" key={faq.question}>
-                <summary className="luxury-focus flex cursor-pointer list-none items-center justify-between gap-5 text-body-md font-medium text-text-primary marker:hidden">{faq.question}<span className="flex size-8 shrink-0 items-center justify-center rounded-full border border-border transition-transform group-open:rotate-45"><span aria-hidden="true">+</span></span></summary>
+                <summary className="luxury-focus flex cursor-pointer list-none items-center justify-between gap-5 text-body-md font-medium marker:hidden">{faq.question}<span className="flex size-8 shrink-0 items-center justify-center rounded-full border border-border transition-transform group-open:rotate-45"><span aria-hidden="true">+</span></span></summary>
                 <p className="max-w-2xl pb-1 pt-4 text-body-sm leading-relaxed text-text-secondary">{faq.answer}</p>
               </details>
             ))}
@@ -237,20 +351,11 @@ export default function BanquetsEventsPage() {
         </div>
       </section>
 
-      <section className="luxury-dark-section py-20 md:py-28" id="event-enquiry">
-        <div className="page-shell grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-20">
-          <div className="text-primary-foreground">
-            <p className="brand-gradient-text text-caption tracking-[var(--tracking-eyebrow)]">A thoughtful beginning</p>
-            <h2 className="mt-5 font-heading text-4xl font-light leading-tight sm:text-5xl md:text-6xl">Let us help plan the gathering.</h2>
-            <p className="mt-6 max-w-lg text-body-lg leading-relaxed text-primary-foreground/75">Share your preferred date, guest count, and any specific requirements. The hotel team can discuss availability, suitable arrangements, and pricing with you.</p>
-            <Link className="luxury-focus mt-7 inline-flex items-center gap-2 text-button text-primary-foreground transition-colors hover:text-accent-hover" href="/contact-us"><Mail aria-hidden="true" className="size-4" /> Contact Us <ArrowRight aria-hidden="true" className="size-4" /></Link>
-            <div className="mt-9 hidden overflow-hidden rounded-sm lg:block">
-              <div className="relative aspect-[1.45/1]">
-                <Image alt="A meeting table arranged for a hotel event" className="size-full object-cover" fill sizes="40vw" src="/images/event.png" />
-              </div>
-            </div>
-          </div>
-          <BanquetEnquiryForm />
+      <section className="py-14 text-center md:py-20">
+        <div className="page-shell">
+          <Ornament className="mb-6" />
+          <h2 className="font-heading text-3xl font-light sm:text-4xl">Ready to plan your <span className={accent}>celebration?</span></h2>
+          <Link className="luxury-focus btn btn-primary mt-7" href="#event-enquiry">Send an enquiry <ArrowRight aria-hidden="true" className="size-4" /></Link>
         </div>
       </section>
     </main>

@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+
+import { selectHallEvent } from "./SelectHallLink";
 
 import { getRecaptchaToken } from "@/lib/recaptchaClient";
 import { postForm } from "@/lib/postForm";
@@ -20,6 +22,16 @@ export function BanquetEnquiryForm({ mode = "banquet" }: { mode?: EnquiryMode })
   const [isSending, setIsSending] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [hall, setHall] = useState("");
+
+  useEffect(() => {
+    const onSelectHall = (event: Event) => {
+      setSubmitted(false);
+      setHall((event as CustomEvent<string>).detail);
+    };
+    window.addEventListener(selectHallEvent, onSelectHall);
+    return () => window.removeEventListener(selectHallEvent, onSelectHall);
+  }, []);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -36,6 +48,7 @@ export function BanquetEnquiryForm({ mode = "banquet" }: { mode?: EnquiryMode })
     if (failure) setError(failure);
     else {
       form.reset();
+      setHall("");
       setSubmitted(true);
     }
   };
@@ -94,12 +107,13 @@ export function BanquetEnquiryForm({ mode = "banquet" }: { mode?: EnquiryMode })
         {!isMeeting ? (
           <label className={`${labelClass} sm:col-span-2`}>
             Preferred Hall <span className="text-caption text-zinc-500">Optional</span>
-            <select className={fieldClass} defaultValue="" name="preferredHall">
+            <select className={fieldClass} name="preferredHall" onChange={(event) => setHall(event.target.value)} value={hall}>
               <option value="">Help me choose</option>
               <option>Lus Crown</option>
               <option>La Imperial</option>
               <option>Crystal Elite</option>
               <option>The Oasis (Board Room)</option>
+              <option>Rooftop Terrace</option>
             </select>
           </label>
         ) : null}

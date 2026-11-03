@@ -44,15 +44,22 @@ export function MobileBookingBar() {
       className="mobile-booking-bar lg:hidden"
       data-visible={isVisible}
     >
-      <a
-        className="luxury-focus btn btn-primary btn-sm"
-        href={siteContact.bookingHref}
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        <CalendarCheck aria-hidden="true" className="size-4" />
-        Book Now
-      </a>
+      {pathname.startsWith("/banquets-events") ? (
+        <a className="luxury-focus btn btn-primary btn-sm" href="#event-enquiry">
+          <CalendarCheck aria-hidden="true" className="size-4" />
+          Enquire Now
+        </a>
+      ) : (
+        <a
+          className="luxury-focus btn btn-primary btn-sm"
+          href={siteContact.bookingHref}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <CalendarCheck aria-hidden="true" className="size-4" />
+          Book Now
+        </a>
+      )}
       <Link
         aria-label={`Call ${siteContact.phoneDisplay}`}
         className="luxury-focus btn btn-sm btn-icon mobile-booking-call"
