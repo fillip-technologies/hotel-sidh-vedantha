@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
+import Script from "next/script";
 import { MobileBookingBar } from "@/components/cta";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
@@ -79,6 +80,16 @@ export default function RootLayout({
         <Footer />
         <MobileBookingBar />
         <FloatingWhatsApp />
+        <Script id="gtm-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());`}
+        </Script>
+        <Script
+          id="gtm-script"
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-NDK3F3LN"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
