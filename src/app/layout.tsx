@@ -37,6 +37,9 @@ export const metadata: Metadata = {
     locale: "en_IN",
     type: "website",
   },
+  verification: {
+    google: "8h3K3Kgu3Z3afWbGQkGtxhzSIlC4aFsJSm_a58KpQh0",
+  },
 };
 
 const hotelJsonLd = {
